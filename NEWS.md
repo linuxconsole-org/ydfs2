@@ -1,5 +1,15 @@
 # YDFS - What is new in 2.12 relase
 
+## Kernel 6.18.29, Busybox 1.36.1
+
+> [make_config_ini] (https://github.com/linuxconsole-org/ydfs2/blob/2.12/2.12/scripts/make_config_ini)
+
+## Packages in the core module
+
+> [ more than 1000 pacakages ] (https://github.com/linuxconsole-org/ydfs2/blob/2.12/2.12/packages/list-x86)
+
+> [ Flapak update ] (https://github.com/linuxconsole-org/ydfs2/blob/2.12/2.12/packages/list-updates)
+
 ## Kernel config based on Arch linux
 
 > To improve hardware compatilibity
