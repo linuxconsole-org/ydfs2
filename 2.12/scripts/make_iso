@@ -29,9 +29,9 @@ menuentry "'$DISTRONAME'" {
 	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path rdinit=/busybox/bin/ash /init-newroot ---
 	initrd	/isolinux/initramfs
 }
-menuentry "'$DISTRONAME' : azerty console keyboard" {
+menuentry "'$DISTRONAME' : French locale" {
 	set gfxpayload=keep
-	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path rdinit=/busybox/bin/ash /azerty ---
+	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path rdinit=/busybox/bin/ash /init-newroot locale=fr ---
 	initrd	/isolinux/initramfs
 }
 menuentry "'$DISTRONAME' : rescue boot" {
@@ -67,9 +67,13 @@ then
   LIVE=livecd
   echo ONTIMEOUT Auto
 
-  echo LABEL Auto detet boot media
+  echo LABEL Auto detect boot media
   echo KERNEL $KERNEL
   echo "APPEND $COMMON"
+
+  echo 'LABEL Auto detect boot media (French locale)'
+  echo KERNEL $KERNEL
+  echo "APPEND $COMMON locale=fr"
 
   echo LABEL LiveCD
   echo KERNEL $KERNEL
