@@ -37,19 +37,23 @@ DBNAME=$(/busybox/bin/cat /ydfs-name)
 DBHOME=$(/busybox/bin/cat /ydfs-home)
 DBREL=$(/busybox/bin/cat /ydfs-release)
 DBDATE=$(/busybox/bin/cat /ydfs-date)
+DBTAG=$(/busybox/bin/cat /ydfs-tag)
 echo -n -e '\e[33m'
-#echo -n $DBHOME
+echo -n $DBHOME
 echo -n $DBNAME
 echo -n -e '\e[0m'
 echo -n -e '\e[32m'
-echo -n " YDFS $DBREL"
+echo -n " YDFS $DBREL "
+echo -n -e '\e[0m'
+echo -n -e '\e[1;33m'
+echo -n $DBTAG
 echo -n -e '\e[0m'
 echo -n -e '\e[36m'
 echo -n " Build : $DBDATE"
 echo -n -e '\e[0m'
-echo " - Yann Le Doaré - GNU GPL v3"
+echo " - OS4B.BZH - GNU GPL v3"
 echo
-for WAIT in 9 8 7 6 5 4 3 2 1 
+for WAIT in 9 8 7 6 5 4 3 2 1
 do
   echo -n "$WAIT "
   /busybox/bin/sleep 2

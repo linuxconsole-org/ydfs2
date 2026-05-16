@@ -118,7 +118,7 @@ cp -fR init-$ARCH/* $INITRAMFS
 echo "$DISTRONAME" > $INITRAMFS/ydfs-name
 basename $HOME > $INITRAMFS/ydfs-home
 echo $GIT_BRANCH > $INITRAMFS/ydfs-release
-echo $YDFS_TAG > $INITRAMFS/ydfs-tag
+echo $GIT_TAG > $INITRAMFS/ydfs-tag
 
 # if [ ! -e $HOME/ydfs/src/yaffs2utils-read-only/src/buildok ]
 # then
@@ -239,7 +239,7 @@ mount -t sysfs sys /sys
 mount -t devtmpfs none /dev
 mkdir /dev/pts
 mount devpts /dev/pts -t devpts
-mount -t tmpfs none /rootfs -o rw,noatime,mode=755
+mount -t tmpfs none /rootfs -o rw,noatime,mode=755,size=75%
 mkdir /rootfs/sys
 mkdir /rootfs/proc
 mkdir /rootfs/dev
