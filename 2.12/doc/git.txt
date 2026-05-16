@@ -1,0 +1,10 @@
+# Change Remote
+git remote set-url origin https://github.com/linuxconsole-org/ydfs2.git
+git remote srt-url origin git@github.com:linuxconsole-org/ydfs2.git
+
+# Add TAG 
+git tag -a v2.12 -m "Version 2.12"
+git push origin v2.12
+
+# Changes in files
+git log --follow -p -- 2.12/Makefile-docke
