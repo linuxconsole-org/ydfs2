@@ -10,3 +10,15 @@ Avec la migration de postes de travail de Windows vers Linux, comprendre comment
 
 ## Demo
 
+* [ ISO Download link ] (https://ftp.cc.uoc.gr/mirrors/linux/linuxconsole/)
+
+> LinuxConsole 0.4
+```
+qemu-system-i386 -cdrom linuxconsole0.4-test6mini-fr.iso
+```
+
+> LinuxConsole 1.0
+
+```
+qemu-system-x86_64 -enable-kvm -cpu qemu64,avx,pdpe1gb,check,enforce -cdrom Linuxconsole-1.0.1.iso
+```
