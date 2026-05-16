@@ -1,22 +1,25 @@
-if [ -e /disk/wifi.txt ]
+WIRELESSCFG=/disk/ydfs/wireless.cfg
+
+if [ -e $WIRELESSCFG ]
 then
-  nmcli dev wifi | grep Infra | gawk '{print $2}' | while read SSID
+  while ! ping -c 2 www.free.fr
   do
-    echo -n "$SSID : key exists ?"
-    KEY=$(grep ":$SSID:" /disk/wifi.txt | cut -d':' -f3)
-    [ "$KEY" = "" ] && echo " .. No " && continue
-    echo " .. Yes"
-    echo $SSID $KEY
-    ls /sys/class/net/ | while read network
+    sleep 2.1
+    nmcli dev wifi | grep Infra | gawk '{print $2}' | while read SSID
     do
-      [ -e /sys/class/net/$network/wireless ] || continue
-      echo Network $network  
-      # echo nmcli dev wifi connect $SSID password "$KEY"
-      nmcli dev wifi connect $SSID password "$KEY"
-    #  sleep 5
-    # udhcpd
-    #  udhcpc -i $network -t 5 -q -S -s /etc/udhcpc/simple.script
+      echo -n "$SSID : key exists ?"
+      KEY=$(grep ":$SSID:" $WIRELESSCFG | cut -d':' -f3)
+      [ "$KEY" = "" ] && echo " .. No " && continue
+      echo " .. Yes"
+      echo $SSID $KEY
+      ls /sys/class/net/ | while read network
+      do
+        [ -e /sys/class/net/$network/wireless ] || continue
+        echo Network $network  
+        nmcli dev wifi connect $SSID password "$KEY"
+      done
+      break
     done
-    break
+  [ -e /tmp/break-detect-wireless ] && break
   done
 fi
