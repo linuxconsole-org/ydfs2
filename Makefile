@@ -74,6 +74,9 @@ virtualbox:
 fast-iso: prepare
 	$(CMD) fast-iso-docker
 
+verbose-iso: prepare
+	$(CMD) iso-verbose-docker
+
 iso: prepare
 	$(CMD) iso-docker
 
@@ -178,3 +181,6 @@ uninstall:
 
 buildme: 
 	$(CMD) buildme-docker
+
+docker:
+	docker build ./${GIT_BRANCH} --file ${GIT_BRANCH}/Dockerfile --tag ydfs-${GIT_BRANCH}
