@@ -153,6 +153,10 @@ KERNEL=$KERNEL3
   KERNEL_MODULES_PATH=$HOME/ydfs/kernel-$ARCH/modules/$KERNEL
   cp -a /$HOME/ydfs/build/busybox-$ARCH-$BUSYBOX/_install $INITRAMFS/busybox || exit 2
   install -d $INITRAMFS/share
+  rm $INITRAMFS/busybox/sbin/init
+  wget https://jukebox.linuxconsole.org/dash
+  chmod +x dash
+  mv dash $INITRAMFS/busybox/sbin/init
   cp -a /$HOME/ydfs/src/busybox-$BUSYBOX/examples/udhcp $INITRAMFS/share || exit 3
   install -d $INITRAMFS/lib/modules/$KERNEL/
   cp $KERNEL_MODULES_PATH/lib/modules/$KERNEL/modules.* $INITRAMFS/lib/modules/$KERNEL/ || exit 1

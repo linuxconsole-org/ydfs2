@@ -109,7 +109,7 @@ qemu-initramfs-system:
 qemu-initramfs-rescue:
 	qemu-system-x86_64 -m size=2000 \
 	       	-bios ${GIT_BRANCH}/boot-efi/bios/qemu-ovmf/bios/bios.bin \
-	       	-kernel ${HOME}/${GIT_BRANCH}/ydfs/build/linux-x86_64-6.18.21/arch/x86_64/boot/bzImage \
+	       	-kernel ${HOME}/${GIT_BRANCH}/ydfs/build/linux-x86_64-6.18.29/arch/x86_64/boot/bzImage \
 		-initrd ${HOME}/${GIT_BRANCH}/ydfs/build-x86_64/initramfs \
 		-append "fr azerty rdinit=/busybox/bin/ash /rescue" \
 		-cdrom ${HOME}/iso/linuxconsole.iso 
@@ -117,10 +117,9 @@ qemu-initramfs-rescue:
 
 qemu-initramfs:
 	qemu-system-x86_64 -m size=2000 \
-	       	-bios ${GIT_BRANCH}/boot-efi/bios/qemu-ovmf/bios/bios.bin \
-	       	-kernel ${HOME}/${GIT_BRANCH}/ydfs/build/linux-x86_64-6.18.21/arch/x86_64/boot/bzImage \
+	       	-kernel ${HOME}/${GIT_BRANCH}/ydfs/build/linux-x86_64-6.18.29/arch/x86_64/boot/bzImage \
 		-initrd ${HOME}/${GIT_BRANCH}/ydfs/build-x86_64/initramfs \
-		-append "fr azerty rdinit=/busybox/bin/ash /init-newroot" \
+		-append "fr azerty" \
 		-cdrom ${HOME}/iso/linuxconsole.iso 
 		#-append "rdinit=/busybox/bin/ash"
 
@@ -142,7 +141,10 @@ qemu-bios-diskinstall: disk-bios.img
 	qemu-system-x86_64 -enable-kvm -cpu qemu64,avx,pdpe1gb,check,enforce -device e1000 -m size=4000 -hda disk-bios.img -cdrom ${HOME}/iso/linuxconsole.iso
 
 qemu:
-	qemu-system-x86_64 -usb -device usb-tablet -enable-kvm -cpu qemu64,avx,pdpe1gb,check,enforce -m size=4000 -cdrom ${HOME}/iso/linuxconsole.iso
+	qemu-system-x86_64 -usb -device intel-hda  -audiodev alsa,id=alsa -device usb-tablet -enable-kvm -cpu qemu64,avx,pdpe1gb,check,enforce -m size=4000 -cdrom ${HOME}/iso/linuxconsole.iso
+
+qemu-live-usb:
+	qemu-system-x86_64 -usb -device usb-ehci,id=ehci -device usb-host,bus=ehci.0,vendorid=0x24a9,productid=0x205a
 
 qemu-usb:
 	qemu-system-x86_64 -usb -device usb-tablet -m size=2000 -bios ${GIT_BRANCH}/boot-efi/bios/qemu-ovmf/bios/bios.bin \

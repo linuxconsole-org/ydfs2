@@ -1,5 +1,9 @@
 # YDFS - What is new in 2.12 relase
 
+## Compatible with MultiOS-USB
+
+> You can boot with this tool
+
 ## Kernel 6.18.29, Busybox 1.36.1
 
 > [make_config_ini] (https://github.com/linuxconsole-org/ydfs2/blob/2.12/2.12/scripts/make_config_ini)

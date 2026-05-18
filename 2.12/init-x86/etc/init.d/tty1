@@ -40,7 +40,7 @@ DBDATE=$(/busybox/bin/cat /ydfs-date)
 DBTAG=$(/busybox/bin/cat /ydfs-tag)
 echo -n -e '\e[33m'
 echo -n $DBHOME
-echo -n $DBNAME
+# echo -n $DBNAME
 echo -n -e '\e[0m'
 echo -n -e '\e[32m'
 echo -n " YDFS $DBREL "

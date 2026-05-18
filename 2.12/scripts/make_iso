@@ -6,7 +6,7 @@
 print_menu_options()
 {
   echo "MENU TITLE $DISTRONAME $LCBUILD (c) Yann Le Doare"                                                    
-#  echo "MENU BACKGROUND splash.png"
+  echo "MENU BACKGROUND splash.png"
   echo '
 DEFAULT vesamenu.c32
 MENU VSHIFT 6 
@@ -404,6 +404,7 @@ print_rescue_options > /$ISOTMP/iso/isolinux/rescue.cfg
 print_help_fr > /$ISOTMP/iso/isolinux/helpfr.txt
 print_help > /$ISOTMP/iso/isolinux/help.txt
 
+cp logos/linuxconsole.png /$ISOTMP/iso/isolinux/splash.cfg || exit 1
 
 cd /$ISOTMP/iso/
 [ -e /$ISOTMP/iso/md5sum.txt ] && rm /$ISOTMP/iso/md5sum.txt
