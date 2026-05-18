@@ -19,6 +19,10 @@
 
 . /ventoy/hook/ventoy-hook-lib.sh
 
+if is_ventoy_hook_finished; then
+    exit 0
+fi
+
 vtlog "####### $0 $* ########"
 
 VTPATH_OLD=$PATH; PATH=$BUSYBOX_PATH:$VTOY_PATH/tool:$PATH
@@ -38,6 +42,8 @@ vtoydm -i -f $VTOY_PATH/ventoy_image_map -d $vtdiskname > $VTOY_PATH/iso_file_li
 vtline=$(grep '[-][-] drivers-.*\.squashfs'  $VTOY_PATH/iso_file_list)
 sector=$(echo $vtline | awk '{print $(NF-1)}')
 length=$(echo $vtline | awk '{print $NF}')
+
+modprobe dm-mod
 
 ventoy_udev_disk_common_hook "${vtdiskname#/dev/}2" "noreplace"
 

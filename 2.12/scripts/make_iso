@@ -1,6 +1,5 @@
-# /bin/sh
-[ "$ARCH" = "arm" ] && exit 0
 
+/
 # functions
 
 print_menu_options()
@@ -30,7 +29,7 @@ menuentry "'$DISTRONAME'" {
 	initrd	/isolinux/initramfs
 }
 '
-python3 scripts/print-locale-options.py
+DISTRONAME=$DISTRONAME python3 scripts/print-locale-options.py grub-boot
 
 echo '
 menuentry "'$DISTRONAME' : rescue boot" {
@@ -43,6 +42,8 @@ menuentry "'$DISTRONAME' : rescue boot" {
 
 print_efi_liveusb_options()
 {
+
+
 echo '
 menuentry "'$DISTRONAME' LiveUSB (loopback)" {
 	set gfxpayload=keep
@@ -54,6 +55,9 @@ menuentry "'$DISTRONAME' LiveUSB rescue (loopback)" {
 	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path debug02 rdinit=/rescue ---
 	initrd	/isolinux/initramfs
 }'
+
+DISTRONAME=$DISTRONAME python3 scripts/print-locale-options.py grub-boot
+
 }
 
 print_options()
@@ -69,6 +73,8 @@ then
   echo LABEL Auto detect boot media
   echo KERNEL $KERNEL
   echo "APPEND $COMMON"
+
+  KERNEL=$KERNEL COMMON=$COMMON python3 scripts/print-locale-options.py isolinux-boot
 
   echo 'LABEL Auto detect boot media (French locale)'
   echo KERNEL $KERNEL

@@ -144,7 +144,8 @@ qemu:
 	qemu-system-x86_64 -usb -device intel-hda  -audiodev alsa,id=alsa -device usb-tablet -enable-kvm -cpu qemu64,avx,pdpe1gb,check,enforce -m size=4000 -cdrom ${HOME}/iso/linuxconsole.iso
 
 qemu-live-usb:
-	qemu-system-x86_64 -usb -device usb-ehci,id=ehci -device usb-host,bus=ehci.0,vendorid=0x24a9,productid=0x205a
+#	qemu-system-x86_64 -m 2000 -usb -device usb-ehci,id=ehci -device usb-host,bus=ehci.0,vendorid=0x24a9,productid=0x205a
+	qemu-system-x86_64 -m 2000 -usb -device usb-ehci,id=ehci -device usb-host,bus=ehci.0,vendorid=0x0951,productid=0x1666
 
 qemu-usb:
 	qemu-system-x86_64 -usb -device usb-tablet -m size=2000 -bios ${GIT_BRANCH}/boot-efi/bios/qemu-ovmf/bios/bios.bin \

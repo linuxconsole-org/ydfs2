@@ -1,24 +1,38 @@
 import sys
+import os
 
 dico = {
-    "pl" : "polska",
-    "cs" : "czech",
-    "fr" : "french",
-    "es" : "spanish",
-    "it" : "italian",
-    "de" : "german",
-    "pt" : "portuguese",
-    "jp" : "japanese"
+    "pl" : "Polska",
+    "cs" : "Czech",
+    "fr" : "French",
+    "es" : "Spanish",
+    "it" : "Italian",
+    "de" : "German",
+    "pt" : "Portuguese",
+    "jp" : "Japanese"
 }
-try:
-    distroname=sys.argv[2]
 
-    if(sys.argv[1]=="grub-boot"):
+try:
+
+    option=sys.argv[1]
+
+    if(option == "grub-boot"):
+        print(option)
         for (key,value) in dico.items() :
-            print(f"menuentry \"{distroname} : {value} locale {key}\" "+" {")
+            print(f"menuentry \"{os.environ['DISTRONAME']} : {value} locale {key}\" "+" {")
             print("\tset gfxpayload=keep")
             print(f"\tlinux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path rdinit=/busybox/bin/ash /init-newroot locale={key} ---")
             print("\tinitrd	/isolinux/initramfs")
             print("}")
-except:
-    print("Argument(s) manquant(s) pour la fonction pyhton")
+
+    if(option == "isolinux-boot"):
+        for (key,value) in dico.items() :
+            print(f"LABEL Auto detect boot media ({value} locale)")
+            print(f"KERNEL {os.environ['KERNEL']}")
+            print(f"APPEND {os.environ['COMMON']} locale={key}")
+
+#except:
+#    print(f"Arg needed")
+
+except Exception as e:
+    print(f"Une erreur inattendue est survenue : {e}")
