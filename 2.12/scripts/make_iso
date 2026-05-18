@@ -29,11 +29,10 @@ menuentry "'$DISTRONAME'" {
 	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path rdinit=/busybox/bin/ash /init-newroot ---
 	initrd	/isolinux/initramfs
 }
-menuentry "'$DISTRONAME' : French locale" {
-	set gfxpayload=keep
-	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path rdinit=/busybox/bin/ash /init-newroot locale=fr ---
-	initrd	/isolinux/initramfs
-}
+'
+python3 scripts/print-locale-options.py
+
+echo '
 menuentry "'$DISTRONAME' : rescue boot" {
 	set gfxpayload=keep
 	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path debug02 rdinit=/rescue ---
@@ -117,6 +116,11 @@ fi
 
 echo '
 MENU SEPARATOR
+
+label Locale
+ MENU LABEL Locale options, help
+ kernel vesamenu.c32
+ append locale.cfg
 
 label Other
  MENU LABEL Other options, help
