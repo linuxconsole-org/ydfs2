@@ -236,6 +236,7 @@ EOF
  echo "Custom init-newroot"
 
 cat > $HOME/ydfs/tmp/initramfs-$ARCH/init-newroot << "EOF"
+#!/busybox/bin/ash
 PATH=/busybox/bin/:/busybox/sbin/
 mkdir /rootfs
 mount -t proc proc /proc
@@ -262,7 +263,8 @@ exec /busybox/sbin/switch_root /rootfs /busybox/sbin/init </dev/console >dev/con
 EOF
 chmod +x $HOME/ydfs/tmp/initramfs-$ARCH/init-newroot
 
-ln -sf /busybox/sbin/init  $HOME/ydfs/tmp/initramfs-$ARCH/
+# ln -sf /busybox/sbin/init  $HOME/ydfs/tmp/initramfs-$ARCH/
+ln -sf /init-newroot  $HOME/ydfs/tmp/initramfs-$ARCH/init
 
 ROOTFS=/$HOME/ydfs/tmp/initramfs-$ARCH/
 install -d $ROOTFS/$HOME

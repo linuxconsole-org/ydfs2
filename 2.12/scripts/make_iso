@@ -1,10 +1,6 @@
-
-/
-# functions
-
 print_menu_options()
 {
-  echo "MENU TITLE $DISTRONAME $LCBUILD (c) Yann Le Doare"                                                    
+  echo "MENU TITLE $DISTRONAME $LCBUILD (c) OS4B.BZH"                                                    
   echo "MENU BACKGROUND splash.png"
   echo '
 DEFAULT vesamenu.c32
@@ -25,7 +21,7 @@ print_efi_options()
 echo '
 menuentry "'$DISTRONAME'" {
 	set gfxpayload=keep
-	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path rdinit=/busybox/bin/ash /init-newroot ---
+	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path  ---
 	initrd	/isolinux/initramfs
 }
 '
@@ -47,7 +43,7 @@ print_efi_liveusb_options()
 echo '
 menuentry "'$DISTRONAME' LiveUSB (loopback)" {
 	set gfxpayload=keep
-	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path rdinit=/busybox/bin/ash /init-newroot ---
+	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path  ---
 	initrd	/isolinux/initramfs
 }
 menuentry "'$DISTRONAME' LiveUSB rescue (loopback)" {
@@ -402,7 +398,7 @@ fi
 COMMON="$MINIMAL $CONSOLE"
 COMMON2="$MINIMAL "
 
-COMMON="$COMMON rdinit=/busybox/bin/ash /init-newroot"
+COMMON="$COMMON "
 
 echo "HELP" > /$ISOTMP/iso/isolinux/help.txt
 export LIVECD=1

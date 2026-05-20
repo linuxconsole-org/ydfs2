@@ -1,0 +1,11 @@
+ls /sys/bus/usb/drivers/usb-storage | while read DEV
+do
+  #echo $DEV
+  VENDOR=$(grep PRODUCT /sys/bus/usb/drivers/usb-storage/$DEV/uevent | cut -d"=" -f2 | cut -d "/" -f1)
+  PRODUCT=$(grep PRODUCT /sys/bus/usb/drivers/usb-storage/$DEV/uevent | cut -d"=" -f2 | cut -d "/" -f2)
+  echo $VENDOR:$PRODUCT
+  qemu-system-x86_64 -m 2000 -usb -device usb-ehci,id=ehci -device usb-host,bus=ehci.0,vendorid=0x$VENDOR,productid=0x$PRODUCT
+  break
+done
+
+#2-1:1.0/uevent:PRODUCT=24a9/205a/110

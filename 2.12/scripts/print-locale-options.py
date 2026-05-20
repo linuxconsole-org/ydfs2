@@ -21,7 +21,7 @@ try:
         for (key,value) in dico.items() :
             print(f"menuentry \"{os.environ['DISTRONAME']} : {value} locale {key}\" "+" {")
             print("\tset gfxpayload=keep")
-            print(f"\tlinux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path rdinit=/busybox/bin/ash /init-newroot locale={key} ---")
+            print(f"\tlinux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path locale={key} ---")
             print("\tinitrd	/isolinux/initramfs")
             print("}")
 
