@@ -166,7 +166,7 @@ ${HOME}/ydfs/build/linux-${ARCH}-${KERNEL3}/arch/${ARCH}/boot/${KNAME}: scripts/
 
 linux: ${HOME}/ydfs/build/linux-${ARCH}-${KERNEL3}/arch/${ARCH}/boot/${KNAME} 
 
-${HOME}/ydfs/build-${ARCH}/${INITRAMFS}: scripts/make_initramfs init-x86/etc/init.d/tty1 # init-${ARCH}/ydfs/detect/media init-${ARCH}/ydfs/detect/hardware init-${ARCH}/ydfs/detect/modules init-${ARCH} init-${ARCH}/etc/init.d/rcS init-${ARCH}/etc/profile scripts/make_initramfs
+${HOME}/ydfs/build-${ARCH}/${INITRAMFS}: scripts/make_initramfs init-x86/etc/init.d/tty1 init-x86/init-newroot # init-${ARCH}/ydfs/detect/media init-${ARCH}/ydfs/detect/hardware init-${ARCH}/ydfs/detect/modules init-${ARCH} init-${ARCH}/etc/init.d/rcS init-${ARCH}/etc/profile scripts/make_initramfs
 	bash scripts/make_initramfs
 
 initramfs: ${HOME}/ydfs/build-${ARCH}/${INITRAMFS} scripts/make_linux

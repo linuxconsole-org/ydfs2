@@ -1,0 +1,37 @@
+#!/busybox/bin/ash
+PATH=/busybox/bin/:/busybox/sbin/
+mkdir /rootfs
+mount -t proc proc /proc
+mount -t sysfs sys /sys
+mount -t devtmpfs none /dev
+mkdir /dev/pts
+mount devpts /dev/pts -t devpts
+grep initash /proc/cmdline && /busybox/bin/ash
+
+TMPFSSIZE=75%
+for OPTION in `/busybox/bin/cat /proc/cmdline`
+do
+  case $OPTION in 
+    tmpfssize=*) 
+      echo "Foced TMPFSSIZE to $tmpfssize"
+	    TMPFSSIZE=$tmpfssize ;;
+  esac
+done
+mount -t tmpfs none /rootfs -o rw,noatime,mode=755,size=$TMPFSSIZE
+
+mkdir /rootfs/sys
+mkdir /rootfs/proc
+mkdir /rootfs/dev
+mount -n -o move /sys /rootfs/sys
+mount -n -o move /proc /rootfs/proc
+mount -n -o move /dev /rootfs/dev
+cp -a /busybox /rootfs/
+cp -a /fix /rootfs/
+cp -a /etc /rootfs/
+cp -a /share /rootfs/
+[ -e /ventoy ] && echo "Ventoy detected" && cp -a /ventoy /rootfs/
+cp -a /ydfs /rootfs/
+cp -a /lib /rootfs/
+cp /ydfs-* /rootfs/
+echo Switch YDFS root ..
+exec /busybox/sbin/switch_root /rootfs /busybox/sbin/init </dev/console >dev/console 2>&1 

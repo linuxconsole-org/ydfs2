@@ -231,37 +231,7 @@ export PATH=/busybox/bin/:/busybox/sbin/:/busybox/usr/bin/:/busybox/usr/sbin/
 echo INIT OK, run /etc/init.d/rcS
 /busybox/bin/ash
 EOF
- chmod +x $HOME/ydfs/tmp/initramfs-$ARCH/rescue
-
- echo "Custom init-newroot"
-
-cat > $HOME/ydfs/tmp/initramfs-$ARCH/init-newroot << "EOF"
-#!/busybox/bin/ash
-PATH=/busybox/bin/:/busybox/sbin/
-mkdir /rootfs
-mount -t proc proc /proc
-mount -t sysfs sys /sys
-mount -t devtmpfs none /dev
-mkdir /dev/pts
-mount devpts /dev/pts -t devpts
-mount -t tmpfs none /rootfs -o rw,noatime,mode=755,size=75%
-mkdir /rootfs/sys
-mkdir /rootfs/proc
-mkdir /rootfs/dev
-mount -n -o move /sys /rootfs/sys
-mount -n -o move /proc /rootfs/proc
-mount -n -o move /dev /rootfs/dev
-cp -a /busybox /rootfs/
-cp -a /fix /rootfs/
-cp -a /etc /rootfs/
-cp -a /share /rootfs/
-cp -a /ydfs /rootfs/
-cp -a /lib /rootfs/
-cp /ydfs-* /rootfs/
-echo Switch YDFS root ..
-exec /busybox/sbin/switch_root /rootfs /busybox/sbin/init </dev/console >dev/console 2>&1 
-EOF
-chmod +x $HOME/ydfs/tmp/initramfs-$ARCH/init-newroot
+chmod +x $HOME/ydfs/tmp/initramfs-$ARCH/rescue
 
 # ln -sf /busybox/sbin/init  $HOME/ydfs/tmp/initramfs-$ARCH/
 ln -sf /init-newroot  $HOME/ydfs/tmp/initramfs-$ARCH/init
