@@ -38,4 +38,4 @@ bash 2.12/scripts/echo-archpkg pipewire
 make buildme
 ```
 
-> Try building manualy, report issue on https://github.com/linuxconsole-org/ydfs/issues
+> Try building manualy, report issue on https://github.com/linuxconsole-org/ydfs2/issues

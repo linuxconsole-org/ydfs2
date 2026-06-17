@@ -33,5 +33,5 @@ cp -a /share /rootfs/
 cp -a /ydfs /rootfs/
 cp -a /lib /rootfs/
 cp /ydfs-* /rootfs/
-echo Switch YDFS root ..
+#echo Switch YDFS root ..
 exec /busybox/sbin/switch_root /rootfs /busybox/sbin/init </dev/console >dev/console 2>&1 

@@ -2,7 +2,7 @@
 
 if [ -e /sys/firmware/efi ]
 then
-  zenity --info --text="EFI Detected \n \n Auto install is not yet available \n Goes on https://github.com/linuxconsole-org/ydfs/blob/2.12/TIPS.md for more info" &>/dev/null
+  zenity --info --text="EFI Detected \n \n Auto install is not yet available \n Goes on https://github.com/linuxconsole-org/ydfs2/blob/2.12/TIPS.md for more info" &>/dev/null
   exit 1
 fi
 
