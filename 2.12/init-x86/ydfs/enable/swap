@@ -27,8 +27,9 @@ done
 
 if [ "$SWAP" = "1" ] && [ ! -e /root/usr ]
 then
-  install -d /tmp
-  mount tmpfs /tmp -t tmpfs -o size=1G 
+# ???
+#  install -d /tmp
+#  mount tmpfs /tmp -t tmpfs -o size=1G 
   install -d $HOME_DIBAB/opkg
   mount tmpfs $HOME_DIBAB/opkg -t tmpfs -o size=1G 
 fi
