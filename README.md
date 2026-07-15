@@ -45,10 +45,10 @@ make verbose-iso
 ```
 
 # Tips
-[tips](/TIPS.md)
+[Tips](/TIPS.md)
 
 # News
-[todo](/NEWS.md)
+[News](/NEWS.md)
 
 # Todo
-[todo](/TODO.md)
+[TODO](/TODO.md)

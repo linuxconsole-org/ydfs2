@@ -2,6 +2,8 @@
 
 ## Compatible with MultiOS-USB
 
+Get it from [Github] (https://github.com/Mexit/MultiOS-USB)
+
 > You can boot with this tool
 
 ## Kernel 6.18.29, Busybox 1.36.1
