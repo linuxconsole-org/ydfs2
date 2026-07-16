@@ -73,7 +73,8 @@ echo "Benchmark" && sleep 5
 . /ydfs/start/benchmark || ash
 fi
 
-. /ydfs/enable/virtualbox # &
+. /ydfs/enable/virtualbox
+. /ydfs/enable/flapak-disk
 
 /fix/libs
 
