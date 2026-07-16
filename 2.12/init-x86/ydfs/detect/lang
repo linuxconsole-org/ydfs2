@@ -13,7 +13,7 @@ then
   if [ "$lang" = "" ] || [ "$1" = "reconfigure" ]
   then
     ans=$(zenity  --height 350 --list --hide-header  --text "Choose lang" --radiolist  --column "Choice" --column "Lang" TRUE English FALSE French FALSE Spanish FALSE Italian FALSE German FALSE Portuguese FALSE Polska FALSE Czech FALSE Breton FALSE Quebec FALSE Russian FALSE Chinese FALSE Japanese FALSE Arabic)
-    lang=$(echo $ans| tr '[:upper:]' '[:lower:]')
+    # lang=$(echo $ans| tr '[:upper:]' '[:lower:]')
   fi
   install -d $HOME/.config/ydfs
   echo lang=$lang > $HOME/.config/ydfs/lang
