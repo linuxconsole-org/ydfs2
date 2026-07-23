@@ -37,10 +37,23 @@ function start_mate
 	export XDG_DATA_DIRS=$XDG_DATA_DIRS:$HOME_DIBAB/mate/share 
 	export XDG_CONFIG_DIRS=$HOME_DIBAB/mate/etc/xdg
 	export XDG_MENU_PREFIX="mate-"
+#	pulseaudio --start --log-target=syslog
 	/ydfs/start/plogoff  &
 	/usr/libexec/bluetooth/obexd &
 	caja --force-desktop -n &
+	# mate-volume-control-status-icon &
 	gsettings get org.mate.background picture-filename |grep "''" || gsettings set org.mate.background picture-filename '/etc/ydfs.png'
+	xrandr | grep '3840x2160' && BIGSCREEN=OK 	
+	[ ! -e $HOME/.mate-log ] && FIRSTSTART=OK
+        if [ "BIGSCREEN=OK" ] && [ FIRSTSTART=OK ]
+        then
+          # dbus-launch mate-display-properties
+	  install -d $HOME/.config/autostart
+	  cp /home/linuxconsole2026/mate/share/applications/mate-display-properties.desktop $HOME/.config/autostart/
+        else
+          [ -e $HOME/.config/autostart/mate-display-properties.desktop ] && rm  $HOME/.config/autostart/mate-display-properties.desktop
+        fi
+
    	NO_AT_BRIDGE=1 ck-launch-session dbus-launch mate-session 1>$HOME/.mate-log 2>$HOME/.mate-err
 }
 
