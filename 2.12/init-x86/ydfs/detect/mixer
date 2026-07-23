@@ -10,6 +10,10 @@ if [ ! -e /proc/asound/card"$ALSA_CARD"/id ]
 then
 	echo "no sound card found"
 else
+# Fix bug with hdmi"
+aplay /usr/share/sounds/alsa/Front_Center.wav || echo "defaults.pcm.card 1
+defaults.ctl.card 1" > /etc/asound.conf
+
 if [ ! -e "$HOME_DIBAB/$ARCH/lib/alsa/var/asound.state" ] 
 then
 #  install -d $HOME_DIBAB/$ARCH/lib/alsa/var
