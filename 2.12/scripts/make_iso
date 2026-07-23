@@ -46,11 +46,17 @@ menuentry "'$DISTRONAME' LiveUSB (loopback)" {
 	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path  ---
 	initrd	/isolinux/initramfs
 }
+menuentry "'$DISTRONAME' LiveUSB fixusb (loopback)" {
+	set gfxpayload=keep
+	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path fixusb ---
+	initrd	/isolinux/initramfs
+}
 menuentry "'$DISTRONAME' LiveUSB rescue (loopback)" {
 	set gfxpayload=keep
 	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path debug02 rdinit=/rescue ---
 	initrd	/isolinux/initramfs
-}'
+}
+'
 
 DISTRONAME=$DISTRONAME python3 scripts/print-locale-options.py grub-boot
 
