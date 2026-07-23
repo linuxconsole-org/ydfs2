@@ -2,12 +2,12 @@ import sys
 import os
 
 dico = {
-    "pl" : "Polska",
-    "cs" : "Czech",
     "fr" : "French",
     "es" : "Spanish",
-    "it" : "Italian",
     "de" : "German",
+    "pl" : "Polska",
+    "it" : "Italian",
+    "cs" : "Czech",
     "pt" : "Portuguese",
     "jp" : "Japanese"
 }
