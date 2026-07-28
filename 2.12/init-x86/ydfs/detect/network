@@ -31,7 +31,8 @@ EOF
   then
     echo "Start dhcp on $ETH"
     ifconfig $ETH up > /var/log/eth0.log
-    udhcpc -i $ETH -t 5 -q -S -s /etc/udhcpc/simple.script &
+    # udhcpc -i $ETH -t 5 -q -S -s /etc/udhcpc/simple.script &
+    udhcpc -i $ETH -t 5 -q -n -S -s /etc/udhcpc/simple.script &
   else
     echo "No network card was found"
   fi
