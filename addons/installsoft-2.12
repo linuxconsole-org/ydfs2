@@ -7,15 +7,15 @@ LANG=en-US
 
 [ -e $HOME/.config/ydfs/lang ] && . $HOME/.config/ydfs/lang
 
-[ "$lang" = "russian" ] && LANG=ru
-[ "$lang" = "chinese" ] && LANG=zh-CN
-[ "$lang" = "french" ] && LANG=fr
-[ "$lang" = "breton" ] && LANG=br
-[ "$lang" = "quebec" ] && LANG=br
-[ "$lang" = "italian" ] && LANG=it
-[ "$lang" = "german" ] && LANG=de
-[ "$lang" = "spanish" ] && LANG=es-ES
-[ "$lang" = "portuguese" ] && LANG=pt-PT
+[ "$lang" = "Russian" ] && LANG=ru
+[ "$lang" = "Chinese" ] && LANG=zh-CN
+[ "$lang" = "French" ] && LANG=fr
+[ "$lang" = "Breton" ] && LANG=br
+[ "$lang" = "Quebec" ] && LANG=br
+[ "$lang" = "Italian" ] && LANG=it
+[ "$lang" = "German" ] && LANG=de
+[ "$lang" = "Spanish" ] && LANG=es-ES
+[ "$lang" = "Portuguese" ] && LANG=pt-PT
 
 cat /proc/cmdline | grep layoutcode=fr >/dev/null && LANG=fr
 
@@ -23,6 +23,7 @@ wget https://gitlab.archlinux.org/archlinux/packaging/packages/thunderbird/-/raw
 FIREFOX=$(grep pkgver= PKGBUILD  | cut -d'=' -f2)
 rm PKGBUILD 
 
+ARCH="x86_64"
 if [ "$ARCH" = "x86" ]
 then
   URL=http://ftp.mozilla.org/pub/thunderbird/releases/$FIREFOX/linux-i686/$LANG/thunderbird-"$FIREFOX".tar.xz
@@ -47,22 +48,23 @@ LANG=en-US
 
 [ -e $HOME/.config/ydfs/lang ] && . $HOME/.config/ydfs/lang
 
-[ "$lang" = "arabic" ] && LANG=ar
-[ "$lang" = "russian" ] && LANG=ru
-[ "$lang" = "chinese" ] && LANG=zh-CN
-[ "$lang" = "french" ] && LANG=fr
-[ "$lang" = "breton" ] && LANG=br
-[ "$lang" = "quebec" ] && LANG=br
-[ "$lang" = "italian" ] && LANG=it
-[ "$lang" = "german" ] && LANG=de
-[ "$lang" = "spanish" ] && LANG=es-ES
-[ "$lang" = "portuguese" ] && LANG=pt-PT
+[ "$lang" = "Arabic" ] && LANG=ar
+[ "$lang" = "Russian" ] && LANG=ru
+[ "$lang" = "Chinese" ] && LANG=zh-CN
+[ "$lang" = "French" ] && LANG=fr
+[ "$lang" = "Breton" ] && LANG=br
+[ "$lang" = "Quebec" ] && LANG=br
+[ "$lang" = "Italian" ] && LANG=it
+[ "$lang" = "German" ] && LANG=de
+[ "$lang" = "Spanish" ] && LANG=es-ES
+[ "$lang" = "Portuguese" ] && LANG=pt-PT
 
 cat /proc/cmdline | grep layoutcode=fr >/dev/null && LANG=fr
 wget https://gitlab.archlinux.org/archlinux/packaging/packages/firefox/-/raw/main/PKGBUILD
 FIREFOX=$(grep pkgver= PKGBUILD  | cut -d'=' -f2)
 rm PKGBUILD 
 
+ARCH="x86_64"
 if [ "$ARCH" = "x86" ]
 then
   URL=http://ftp.mozilla.org/pub/firefox/releases/$FIREFOX/linux-i686/$LANG/firefox-"$FIREFOX".tar.xz
