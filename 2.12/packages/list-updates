@@ -1,8 +1,8 @@
-# Build flatpak
 https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.46.tar.bz2
 https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.6.3.tar.bz2
 https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.4.9.tar.bz2
 https://github.com/ostreedev/ostree/releases/download/v2026.1/libostree-2026.1.tar.xz
 https://github.com/flatpak/flatpak/releases/download/1.17.6/flatpak-1.17.6.tar.xz
 https://xorg.freedesktop.org/releases/individual/xserver/xorg-server-21.1.24.tar.xz
-
+git://github.com/CanonicalLtd/lightdm.git#tag=1.32.0
+https://github.com/linuxmint/slick-greeter/archive/refs/tags/2.2.7.tar.gz

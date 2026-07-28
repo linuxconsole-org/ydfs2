@@ -2780,7 +2780,7 @@ Cflags: -I${includedir}' > lua.pc
 	done
       fi
 
-      [ -e liblightdm-gobject ] && make DESTDIR="$HOME/ydfs/packages-$ARCH" -C liblightdm-gobject install
+      # [ -e liblightdm-gobject ] && make DESTDIR="$HOME/ydfs/packages-$ARCH" -C liblightdm-gobject install
 
       if [ -e contrib/minizip ] && [ ! "$ARCH" = "arm" ]
       then
@@ -2827,7 +2827,7 @@ Cflags: -I${includedir}' > lua.pc
 	fi
 	[ -e flatc  ] && /usr/bin/install -d $PREFIX/bin/ && cp flatc $PREFIX/bin
 	[ -e contrib/ssh-copy-id ] && install -Dm755 contrib/ssh-copy-id "${PREFIX}"/bin/ssh-copy-id
-	[ -e liblightdm-gobject ] && make -C liblightdm-gobject install
+	# [ -e liblightdm-gobject ] && make -C liblightdm-gobject install
 	if [ -e base/gsht.c ]
 	then
 		echo ghostscript 

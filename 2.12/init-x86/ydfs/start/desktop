@@ -49,7 +49,7 @@ function start_mate
         then
           # dbus-launch mate-display-properties
 	  install -d $HOME/.config/autostart
-	  cp /home/linuxconsole2026/mate/share/applications/mate-display-properties.desktop $HOME/.config/autostart/
+	  # cp /home/linuxconsole2026/mate/share/applications/mate-display-properties.desktop $HOME/.config/autostart/
         else
           [ -e $HOME/.config/autostart/mate-display-properties.desktop ] && rm  $HOME/.config/autostart/mate-display-properties.desktop
         fi
