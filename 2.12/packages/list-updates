@@ -7,4 +7,4 @@ https://xorg.freedesktop.org/releases/individual/xserver/xorg-server-21.1.24.tar
 git://github.com/CanonicalLtd/lightdm.git#tag=1.32.0
 https://github.com/linuxmint/slick-greeter/archive/refs/tags/2.2.7.tar.gz
 git://github.com/prikhi/lightdm-mini-greeter.git
-https://github.com/OpenPrinting/cups/releases/download/v2.4.19/cups-2.4.19-source.tar.gz
+git://github.com/OpenPrinting/cups.git#tag=2.4.19

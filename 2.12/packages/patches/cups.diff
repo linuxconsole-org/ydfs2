@@ -15,20 +15,6 @@ index f4d63f8..0756465 100644
  		fi ; \
  		$(INSTALL_DATA) $$file $(DATADIR)/mime ; \
  	done
-diff --git a/configure b/configure
-index 1b36f72..fadfca6 100755
---- a/configure
-+++ b/configure
-@@ -5679,9 +5679,6 @@ if test "x$ac_cv_func_dbus_threads_init" = xyes; then :
- fi
- 
- 		LIBS="$SAVELIBS"
--		if test -d /etc/dbus-1; then
--			DBUSDIR="/etc/dbus-1"
--		fi
- 	else
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
- $as_echo "no" >&6; }
 diff --git a/scheduler/env.c b/scheduler/env.c
 index 620c99c..4ed86cf 100644
 --- a/scheduler/env.c
@@ -44,3 +30,16 @@ index 620c99c..4ed86cf 100644
    set_if_undefined("SERVER_ADMIN", ServerAdmin);
    set_if_undefined("SHLIB_PATH", NULL);
    set_if_undefined("SOFTWARE", CUPS_MINIMAL);
+diff --git a/scheduler/subscriptions.c b/scheduler/subscriptions.c
+index 32294e5..a3a75b0 100644
+--- a/scheduler/subscriptions.c
++++ b/scheduler/subscriptions.c
+@@ -471,8 +471,6 @@ cupsdDeleteSubscription(
+   * Free memory...
+   */
+ 
+-  _cupsRWDestroy(&sub->lock);
+-
+   cupsdClearString(&(sub->owner));
+   cupsdClearString(&(sub->recipient));
+ 
