@@ -38,6 +38,7 @@ cp -a /busybox /newroot
 cp -a /ydfs /newroot
 cp -a /etc /newroot
 cp /* /newroot
+mv /ntfs-3g /newroot
 
 # echo exec switch_root -c /dev/console /newroot /newroot/etc/init.d/rcS
 exec switch_root /newroot /etc/init.d/rcS
