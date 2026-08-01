@@ -10,7 +10,7 @@ function install_docker_engine
 function enable_docker_engine
 {
 
-set -e
+#set -e
 if grep -v '^#' /etc/fstab | grep -q cgroup; then
 	echo 'cgroups mounted from fstab, not mounting /sys/fs/cgroup'
 	exit 0
@@ -36,6 +36,21 @@ done
 
 which docker || install_docker_engine
 enable_docker_engine
-[ ! -e /media/ydfs/docker ] && install -d /media/ydfs/docker
-[ ! -e /var/lib/docker ] && ln -s /media/ydfs/docker /var/lib
+
+if [ ! -e /media/ydfs/docker ]
+then
+   echo "Create /media/ydfs/docker"
+   install -d /media/ydfs/docker
+   if [ ! -e /media/ydfs/docker ]
+   then
+       echo "Ydfs not on disk, Running in /tmp"
+       install -d /tmp/docker
+       [ ! -e /var/lib/docker ] && ln -s /tmp/docker /var/lib
+   else
+       [ ! -e /var/lib/docker ] && ln -s /tmp/docker /var/lib
+   fi
+fi
+
 DOCKER_RAMDISK=true dockerd 
+
+# docker run -d -p 631:631 -v /var/run/dbus:/var/run/dbus -v /dev/bus/usb:/dev/bus --name cupsd olbat/cupsd
