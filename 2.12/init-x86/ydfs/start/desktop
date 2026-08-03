@@ -34,6 +34,7 @@ function start_plasma
 
 function start_mate
 {
+	xhost +local:
 	export XDG_DATA_DIRS=$XDG_DATA_DIRS:$HOME_DIBAB/mate/share 
 	export XDG_CONFIG_DIRS=$HOME_DIBAB/mate/etc/xdg
 	export XDG_MENU_PREFIX="mate-"
@@ -45,6 +46,11 @@ function start_mate
 	gsettings get org.mate.background picture-filename |grep "''" || gsettings set org.mate.background picture-filename '/etc/ydfs.png'
 	xrandr | grep '3840x2160' && BIGSCREEN=OK 	
 	[ ! -e $HOME/.mate-log ] && FIRSTSTART=OK
+	xauth list 1>$HOME/.mate-log 2>$HOME/.mate-err
+  echo "$DISPLAY"  1>>$HOME/.mate-log 2>>$HOME/.mate-err
+  echo "$XAUTHORITY" 1>>$HOME/.mate-log 2>>$HOME/.mate-err
+  ls -l $XAUTHORITY 1>>$HOME/.mate-log 2>>$HOME/.mate-err
+
         if [ "BIGSCREEN=OK" ] && [ FIRSTSTART=OK ]
         then
           # dbus-launch mate-display-properties
@@ -54,7 +60,7 @@ function start_mate
           [ -e $HOME/.config/autostart/mate-display-properties.desktop ] && rm  $HOME/.config/autostart/mate-display-properties.desktop
         fi
 
-   	NO_AT_BRIDGE=1 ck-launch-session dbus-launch mate-session 1>$HOME/.mate-log 2>$HOME/.mate-err
+   	NO_AT_BRIDGE=1 ck-launch-session dbus-launch mate-session 1>>$HOME/.mate-log 2>>$HOME/.mate-err
 }
 
 function start_pantheon
