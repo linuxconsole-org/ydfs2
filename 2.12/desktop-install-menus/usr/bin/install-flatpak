@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+flatpak remotes
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+flatpak install -y io.github.flattool.Warehouse
+dbus-launch flatpak run io.github.flattool.Warehouse
+
+# flatpak install org.gnome.Mahjongg
+# flatpak run org.gnome.Mahjongg
+# flatpak install org.kde.kmahjongg
+# flatpak run org.kde.kmahjongg
+
+# flatpak search supertuxkart
+# flatpak install net.supertuxkart.SuperTuxKart
+# flatpak run net.supertuxkart.SuperTuxKart
+
+# flatpak search gimp
+# flatpak install flathub org.gimp.GIMP
+# flatpak install https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref
+# flatpak run org.gimp.GIMP
