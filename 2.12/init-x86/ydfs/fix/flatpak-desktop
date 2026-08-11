@@ -1,0 +1,5 @@
+while [ 1 ]
+do
+sleep 3
+[ -e /home/linuxconsole2026/x86_64/var/lib/flatpak/exports/ ] && [ /home/linuxconsole2026/x86_64/var/lib/flatpak/exports/share/applications/mimeinfo.cache -nt /share/applications/mimeinfo.cache ] && echo "Sync"  && cp -rL /home/linuxconsole2026/x86_64/var/lib/flatpak/exports/share/* /share/
+done
