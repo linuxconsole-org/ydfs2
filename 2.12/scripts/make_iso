@@ -41,19 +41,24 @@ print_efi_liveusb_options()
 
 
 echo '
-menuentry "'$DISTRONAME' LiveUSB (loopback)" {
+menuentry "'$DISTRONAME' LiveUSB" {
 	set gfxpayload=keep
 	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path  ---
 	initrd	/isolinux/initramfs
 }
-menuentry "'$DISTRONAME' LiveUSB fixusb (loopback)" {
+menuentry "'$DISTRONAME' LiveUSB fixusb" {
 	set gfxpayload=keep
 	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path fixusb ---
 	initrd	/isolinux/initramfs
 }
-menuentry "'$DISTRONAME' LiveUSB rescue (loopback)" {
+menuentry "'$DISTRONAME' LiveUSB rescue" {
 	set gfxpayload=keep
 	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path debug02 rdinit=/rescue ---
+	initrd	/isolinux/initramfs
+}
+menuentry "'$DISTRONAME' LiveUSB nokbd" {
+	set gfxpayload=keep
+	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path i8042.nokbd ---
 	initrd	/isolinux/initramfs
 }
 '
