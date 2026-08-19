@@ -13,3 +13,17 @@ then
   install -d /root/.var
   ln -s  /flatpak/root/.var/app /root/.var/
 fi
+  
+install -d /flatpak/home     
+ls /home | while read home
+do
+  echo $home | grep linuxconsole && continue
+  if [ ! -e /flatpak/home/$home ] 
+  then
+      mv /home/$home /flatpak/home && ln -s /flatpak/home/$home /home/$home
+  else
+      mv /home/$home /home/$home.old
+      ln -s /flatpak/home/$home /home/$home
+  fi
+done   
+

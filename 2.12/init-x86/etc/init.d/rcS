@@ -73,8 +73,9 @@ echo "Benchmark" && sleep 5
 . /ydfs/start/benchmark || ash
 fi
 
-. /ydfs/enable/virtualbox
-. /ydfs/enable/flapak-disk
+# . /ydfs/enable/virtualbox
+
+. /ydfs/enable/flatpak-disk
 
 /fix/libs
 
@@ -90,7 +91,7 @@ else
   /ydfs/start/xorg
 fi
 
-/ydfs/start/save-persistant-data
+# /ydfs/start/save-persistant-data
 
 [ -e /ydfs/boot/options/debug09  ] && sh
 
