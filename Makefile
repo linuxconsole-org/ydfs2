@@ -1,16 +1,24 @@
 CMD=cd ${GIT_BRANCH} && DISTRONAME=linuxconsole make -f Makefile-docker
 GIT_BRANCH  = $(shell git rev-parse --abbrev-ref HEAD)
 
+ISDEBIAN := $(shell which apt)
 HASDOCKER := $(shell which docker)
 SYSTEM_KERNEL := $(shell uname -r)
 
 ifeq ($(HASDOCKER),/usr/bin/docker)
-BUILDING=prepare iso
+  BUILDING=prepare fast-iso
 else
-BUILDING=nodocker
+  ifeq ($(ISDEBIAN),/usr/bin/apt)
+  BUILDING=nodocker-debian
+  else
+    BUILDING=nobuild
+  endif
 endif
 
 all: $(BUILDING) #fail prepare iso
+
+nobuild:
+	echo "Debian or Docker not found"
 
 echo:
 	echo test
@@ -77,7 +85,7 @@ fast-iso: prepare
 verbose-iso: prepare
 	$(CMD) iso-verbose-docker
 
-iso: prepare
+full: prepare
 	$(CMD) iso-docker
 
 fast-files:
@@ -154,7 +162,7 @@ qemu-usb:
     -device usb-tablet,bus=usb-bus.0 \
     -device usb-storage,bus=ehci.0,drive=usbstick
 
-nodocker:
+nodocker-debian:
 	sudo apt-get update 
 	sudo apt-get install -y locales ack ant apt-utils autoconf automake python3-blinker bam bc bison bzip2 bzr bindgen cargo cbindgen clang-13 cmake cpio cpuinfo curl cvs docbook-xsl doxygen flex fontforge g++ gawk gcc-multilib genisoimage gettext ghc git g++-multilib gperf gsoap google-mock googletest gi-docgen help2man iasl imagemagick kmod lib32z1 libatomic-ops-dev libbabeltrace-ctf1 libboost-all-dev libboost-dev libclc-13-dev libelf-dev libghc-base-dev libghc-entropy-dev libghc-hslogger-dev libghc-network-dev libghc-random-dev libghc-regex-tdfa-dev libghc-sandi-dev libghc-sha-dev libghc-utf8-string-dev libghc-vector-dev libghc-zlib-dev libmpfr-dev libncurses5-dev libssl-dev libtool libtool-bin libunwind8 libwrap0 libxml-parser-perl lld-13 llvm-13 locales lynx lzma libgtest-dev libgmock-dev libclang-cpp-dev libclang-13-dev make makeself meson mtd-utils nasm openjdk-21-jdk-headless p7zip-full patch pciutils python3-mako rdfind rsync ruby rustc strace subversion syslinux-utils texinfo unicode-data unzip vim valac wget xfonts-utils xmlto xorriso xsltproc xutils-dev xz-utils zlib1g-dev zstd lzip
 	cd ${GIT_BRANCH} && make iso

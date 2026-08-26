@@ -10,7 +10,7 @@ This branch is designed to build LinuxConsole 2026 ISO, modules and packages
 > With this mode, pre-build files for the core module and kernel are downloaded before building "update module" and build ISO
 
 ```
-make fast-iso
+make
 ```
 
 # Building All (makes Iso)
@@ -18,7 +18,7 @@ make fast-iso
 > You will have to wait for hours or days !
 
 ```
-make 
+make full
 ```
 
 # Building - Step by step
