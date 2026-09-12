@@ -943,6 +943,7 @@ fi
   [ -e dotconf.pc.in ] && echo "AUTORECONF" && ACLOCAL_FLAGS="-I $HOME/$ARCH/share/aclocal " && sed -e 's/-Werror//' -i configure.ac && ACLOCAL="aclocal $ACLOCAL_FLAGS " autoreconf -vif 
   [ -e luit.c ] && echo "AUTORECONF" && ACLOCAL_FLAGS="-I $HOME/$ARCH/share/aclocal " && sed -e 's/-Werror//' -i configure.ac && ACLOCAL="aclocal $ACLOCAL_FLAGS " autoreconf -vif 
   [ -e libgtop-2.0.pc.in ] && sed -e 's/0.19.4/0.20/g' -i configure.ac 
+  [ -e mate-about/mate-about.c ] && sed -e 's/0.19.8/0.20/g' -i configure.ac && ACLOCAL="aclocal $ACLOCAL_FLAGS " autoreconf -vif
   [ -e docs/plank.1 ] && sed -e 's/0.19.6/0.20/g' -i configure.ac && ACLOCAL="aclocal $ACLOCAL_FLAGS " autoreconf -vif
   [ -e docs/gnome-keyring-3.1 ] && sed -e 's/0.19.8/0.20/g' -i configure.ac && ACLOCAL="aclocal $ACLOCAL_FLAGS " autoreconf -vif
   [ -e libomxil-bellagio.pc.in ] && echo "AUTORECONF" && ACLOCAL_FLAGS="-I $HOME/$ARCH/share/aclocal " && sed -e 's/-Werror//' -i configure.ac && ACLOCAL="aclocal $ACLOCAL_FLAGS " autoreconf -v
@@ -1375,6 +1376,15 @@ EOF
   fi
 
   pwd | grep mate-dock-applet && ACLOCAL_FLAGS="-I $HOME/$ARCH/share/aclocal " && ACLOCAL="aclocal $ACLOCAL_FLAGS "  && autoreconf --force --install
+
+  if [ -e libmate-panel-applet/mate-panel-applet.c ]
+  then
+	echo libmate-panel-applet/mate-panel-applet.c
+        ACLOCAL_FLAGS="-I $HOME/$ARCH/share/aclocal -I $HOME/mate/share/aclocal " && ACLOCAL="aclocal $ACLOCAL_FLAGS " $HOME/mate/bin/mate-autogen # && autoreconf --force --install
+	git clone https://github.com/mate-desktop/mate-submodules.git
+	mv mate-submodules mate-panel
+	automake --force-missing --add-missing
+  fi
 
   if [ -e calf.desktop.in ] 
   then

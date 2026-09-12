@@ -1,0 +1,13 @@
+diff --git a/mate-about/mate-about.h b/mate-about/mate-about.h
+index d0dbf16..eb292c5 100644
+--- a/mate-about/mate-about.h
++++ b/mate-about/mate-about.h
+@@ -26,7 +26,7 @@
+ #include <gtk/gtk.h>
+ #include <glib/gi18n.h>
+ 
+-const char* program_name = N_("MATE Desktop Environment");
++const char* program_name = N_("MATE Desktop Environment - LinuxConsole 2026");
+ const char* version = PACKAGE_VERSION;
+ const char* icon = "mate-desktop";
+ const char* website = "https://mate-desktop.org/";

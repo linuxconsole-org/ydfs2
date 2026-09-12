@@ -8,3 +8,5 @@ git://github.com/CanonicalLtd/lightdm.git#tag=1.32.0
 https://github.com/linuxmint/slick-greeter/archive/refs/tags/2.2.7.tar.gz
 git://github.com/prikhi/lightdm-mini-greeter.git
 git://github.com/OpenPrinting/cups.git#tag=v2.4.19
+https://ftpmirror.gnu.org/autoconf-archive/autoconf-archive-2024.10.16.tar.xz
+https://download.gnome.org/sources/libwnck/43/libwnck-43.3.tar.xz

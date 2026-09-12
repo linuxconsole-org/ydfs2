@@ -218,7 +218,7 @@ clean-opkg:
 clean:
 	bash scripts/make_clean
 uninstall:
-	bash scripts/uninstall-package SuperTuxKart-1.4-src
+	bash scripts/uninstall-package mate-desktop-1.29.0
 ifeq ($(ARCH),x86)
 	rm ${ISOPATH}
 	rm ${LCMBUILD}/*
