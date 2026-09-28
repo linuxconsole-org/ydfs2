@@ -1245,11 +1245,40 @@ pwd && sleep 5
   fi
   [ -e librsvg.pc.in ] && ACLOCAL_FLAGS="-I $HOME/$ARCH/share/aclocal " && ACLOCAL="aclocal $ACLOCAL_FLAGS " NOCONFIGURE=1 ./autogen.sh 
 
+  # mate-panel comes as a git archive, which carries neither its generated
+  # build system nor the contents of its mate-submodules submodule. Its
+  # configure.ac lists mate-panel/mate-submodules/Makefile in AC_CONFIG_FILES,
+  # so the submodule has to be in place before autogen.sh runs, not after it.
+  if [ -e libmate-panel-applet/mate-panel-applet.c ] && [ ! -e mate-panel/mate-submodules/Makefile.am ]
+  then
+    echo "Fetch mate-submodules for mate-panel"
+    rm -rf mate-submodules
+    git clone --depth 1 https://github.com/mate-desktop/mate-submodules.git || exit 1
+    # Trailing slash: the submodule belongs inside the existing mate-panel/
+    # directory, and this fails loudly rather than renaming the clone if it
+    # ever stops existing.
+    mv mate-submodules mate-panel/ || exit 1
+  fi
+
   if [ -e autogen.sh ] && [ ! -e configure ] 
   then
-    pwd && ACLOCAL_FLAGS="-I $PREFIX/share/aclocal -I $HOME/$ARCH/share/aclocal -I $HOME/opkg/share/aclocal " ACLOCAL="aclocal $ACLOCAL_FLAGS " 
+    pwd
+    # These must be exported, and assigned one per statement. autogen.sh runs
+    # in a child shell, so an unexported variable never reaches it; and in a
+    # single "A=... B=$A" command the $A still expands to its old value.
+    # mate-autogen -- like every gnome-autogen derivative -- looks its required
+    # M4 macros up through ACLOCAL_FLAGS, not ACLOCAL_PATH, and stops with
+    # "some autoconf macros required to build ... were not found" otherwise.
+    export ACLOCAL_FLAGS="-I $PREFIX/share/aclocal -I $HOME/$ARCH/share/aclocal -I $HOME/opkg/share/aclocal"
+    export ACLOCAL="aclocal $ACLOCAL_FLAGS"
+    export ACLOCAL_PATH="$PREFIX/share/aclocal:$HOME/$ARCH/share/aclocal:$HOME/opkg/share/aclocal"
+    # The module's own prefix has to be reachable from here: mate-common
+    # installs mate-autogen in $PREFIX/bin and every MATE autogen.sh looks it
+    # up with "which". PATH only gains $PREFIX/bin much further down, inside
+    # the "if [ -e configure ]" branch -- and a configure is precisely what
+    # this step is here to produce.
+    export PATH="$PREFIX/bin:$PATH"
     echo "Run autogen.sh with PATH:$PATH ACLOCAL:$ACLOCAL ACLOCAL_FLAGS:$ACLOCAL_FLAGS" 
-    export ACLOCAL_PATH="$HOME/$ARCH/share/aclocal:$HOME/opkg/share/aclocal:$HOME/opkg/share/aclocal"
     NOCONFIGURE=1 bash autogen.sh # || exit 3
     # [ -e blueman/bluemantyping.py ] && gettextize -f
     # make distclean && sleep 5
@@ -1377,13 +1406,16 @@ EOF
 
   pwd | grep mate-dock-applet && ACLOCAL_FLAGS="-I $HOME/$ARCH/share/aclocal " && ACLOCAL="aclocal $ACLOCAL_FLAGS "  && autoreconf --force --install
 
-  if [ -e libmate-panel-applet/mate-panel-applet.c ]
+  if [ -e libmate-panel-applet/mate-panel-applet.c ] && [ ! -e configure ]
   then
-	echo libmate-panel-applet/mate-panel-applet.c
-        ACLOCAL_FLAGS="-I $HOME/$ARCH/share/aclocal -I $HOME/mate/share/aclocal " && ACLOCAL="aclocal $ACLOCAL_FLAGS " $HOME/mate/bin/mate-autogen # && autoreconf --force --install
-	git clone https://github.com/mate-desktop/mate-submodules.git
-	mv mate-submodules mate-panel
-	automake --force-missing --add-missing
+	# autogen.sh above is the only way to bootstrap mate-panel: configure.ac
+	# opens with MATE_COMMON_INIT, so running automake by hand here expands
+	# no MATE macro at all and reports every AM_CONDITIONAL and LT_INIT as
+	# missing -- forty lines of noise for one missing package. Say the real
+	# thing instead and stop.
+	echo "mate-panel: autogen.sh produced no configure."
+	echo "mate-common must be built into $PREFIX first (see packages/list-mate)."
+	exit 1
   fi
 
   if [ -e calf.desktop.in ] 

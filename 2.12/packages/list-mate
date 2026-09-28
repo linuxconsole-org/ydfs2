@@ -1,5 +1,10 @@
 #pip::setuptools==65.0.2
 lp:libappindicator
+# mate-common first: it installs mate-autogen and the MATE_* m4 macros into
+# this module's prefix. mate-desktop and mate-panel below are fetched as git
+# archives, which carry no generated configure, and their autogen.sh refuses to
+# run without it.
+https://github.com/mate-desktop/mate-common/releases/download/v1.28.0/mate-common-1.28.0.tar.xz
 https://github.com/mate-desktop/mate-polkit/releases/download/v1.28.1/mate-polkit-1.28.1.tar.xz
 #https://pub.mate-desktop.org/releases/1.28/mate-desktop-1.28.2.tar.xz
 https://github.com/mate-desktop/mate-desktop/archive/refs/tags/v1.29.0.tar.gz
