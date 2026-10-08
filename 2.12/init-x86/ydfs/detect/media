@@ -15,7 +15,7 @@ done
 echo
 
 echo -n "Loading kernel modules : "
-for module in dm_mod isofs overlay cdrom ata-piix nls-iso8859-1 usb-storage xhci-pci ata-generic ata-generic exfat cdrom sr_mod pata-acpi loop squashfs
+for module in nvme dm_mod isofs overlay cdrom ata-piix nls-iso8859-1 usb-storage xhci-pci ata-generic ata-generic exfat cdrom sr_mod pata-acpi loop squashfs
 do
     modprobe $module 2>/dev/null || continue
     echo -n "$module "
@@ -39,7 +39,7 @@ do
 		echo "Creating $device"
 		mknod /dev/$device b `cat /sys/class/block/$device/dev | cut -d ':' -f1` `cat /sys/class/block/$device/dev | cut -d ':' -f2`
 	fi
-	echo $device | grep sd >/dev/null || continue
+	echo $device | grep sd >/dev/null || echo $device | grep nvme >/dev/null || continue
 	echo -n "$device ? "
         if [ -e /ydfs/boot/options/liveusb  ]
         then
