@@ -48,9 +48,9 @@ then
   rmdir /root
   ln -s /media/ydfs/root /root
   [ ! -e /home ] && mkdir /home
-  ls /media/ydfs/home | while read home
+  ls /media/ydfs/home-ydfs | while read home
   do
-    ln -s /media/ydfs/home/$home /home/$home
+    ln -s /media/ydfs/home-ydfs/$home /home/$home
   done
   install -d /root/usr
   install -d /root/etc

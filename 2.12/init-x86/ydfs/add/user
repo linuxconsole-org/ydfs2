@@ -52,9 +52,9 @@ fi
 
 if [ -e /media/ydfs/home ]
 then
-  install -d /media/ydfs/home/$user
-  ln -s /media/ydfs/home/$user /home/$user
-  chown $user  /media/ydfs/home/$user
+  install -d /media/ydfs/home-ydfs/$user
+  ln -s /media/ydfs/home-ydfs/$user /home/$user
+  chown $user  /media/ydfs/home-ydfs/$user
 else
   install -d /home/$user
   chown $user  /home/$user
