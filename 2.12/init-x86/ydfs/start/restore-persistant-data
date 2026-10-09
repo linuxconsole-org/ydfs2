@@ -47,6 +47,7 @@ then
   ln -s /media/ydfs/opkg $HOME_DIBAB/opkg
   rmdir /root
   ln -s /media/ydfs/root /root
+  [ ! -e /home ] && mkdir /home
   ls /media/ydfs/home | while read home
   do
     ln -s /media/ydfs/home/$home /home/$home
