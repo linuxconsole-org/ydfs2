@@ -2,9 +2,15 @@
 set -e
 
 flatpak remotes
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+if [ "$USER" == "root" ]
+then
+  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  flatpak install -y io.github.flattool.Warehouse || zenity --warning --text="Cannot Install Warehouse !"
+else
+  flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  flatpak install --user -y io.github.flattool.Warehouse || zenity --warning --text="Cannot Install Warehouse !"
+fi
 
-flatpak install -y io.github.flattool.Warehouse || zenity --warning --text="Cannot Install Warehouse !"
 dbus-launch flatpak run io.github.flattool.Warehouse
 
 # flatpak install org.gnome.Mahjongg
