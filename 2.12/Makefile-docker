@@ -59,11 +59,11 @@ bash-root-docker:
 bash-docker:
 	${COMPOSE} ${DOCKER_OPTIONS} -c '${BUILD_COMMAND} ${OPTION_BUILD} bash'
 
+dist-docker:
+	${COMPOSE} ${DOCKER_OPTIONS} -c '${BUILD_COMMAND} ${OPTION_BUILD} DISTRONAME=all make dist'
+
 opkg-docker:
-	chmod 777 ${HOME}/.ncftp/bookmarks
 	${COMPOSE} ${DOCKER_OPTIONS} -c '${BUILD_COMMAND} ${OPTION_BUILD} DISTRONAME=all BUILDOPKG=YES make opkg'
-	ls -l  ${HOME}/${GIT_BRANCH}-modules/ydfs/opkg/
-	chmod 700 ${HOME}/.ncftp/bookmarks
 
 buildenv-docker:
 	${COMPOSE} ${DOCKER_OPTIONS} -c '${BUILD_COMMAND} ${OPTION_BUILD} make buildenv'

@@ -13,6 +13,7 @@ services:
             - $HOME/2.12/multilib:/home/linuxconsole2026/multilib
             - $HOME/2.12/llvm-multilib:/home/linuxconsole2026/llvm-multilib
             - $HOME/2.12/kde:/home/linuxconsole2026/kde
+            - $HOME/.ncftp:/home/linuxconsole2026/.ncftp
             - ${PWD}:/2.12
         environment:
             YDFS_ARCH: "x86_64"
@@ -35,7 +36,6 @@ services:
             - $HOME/2.12/multilib:/home/linuxconsole2026/multilib
             - $HOME/2.12/llvm-multilib:/home/linuxconsole2026/llvm-multilib
             - $HOME/2.12/kde:/home/linuxconsole2026/kde
-              #- $HOME/.ncftp:/home/linuxconsole2026/.ncftp
             - ${PWD}:/2.12
         environment:
             BUILDYDFS: "fast"

@@ -36,6 +36,7 @@ prepare:
 	install -d ${HOME}/${GIT_BRANCH}/llvm-multilib
 	install -d ${HOME}/${GIT_BRANCH}/opkg
 	install -d ${HOME}/iso
+	install -d ${HOME}/.ncftp
 
 	chmod 777 ${HOME}/${GIT_BRANCH}/multilib
 	chmod 777 ${HOME}/${GIT_BRANCH}/x86_64
@@ -58,6 +59,13 @@ bash-root:
 
 bash:
 	$(CMD) bash-docker
+
+dist: opkg
+	install -d ${HOME}/.ncftp/
+	touch ${HOME}/.ncftp/bookmarks
+	chmod 777 ${HOME}/.ncftp/bookmarks
+	$(CMD) dist-docker
+	chmod 700 ${HOME}/.ncftp/bookmarks
 
 opkg: packages
 
