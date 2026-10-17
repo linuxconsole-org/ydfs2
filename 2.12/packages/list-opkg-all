@@ -1,6 +1,6 @@
 git://github.com/vim/vim.git#tag=v9.2.0388
 https://mesa.freedesktop.org/archive/demos/mesa-demos-9.0.0.tar.xz
 git://github.com/htop-dev/htop.git#tag=3.4.1
-git://github.com/git/git#tag=v2.56.0
+https://www.kernel.org/pub/software/scm/git/git-2.56.0.tar.xz
 https://www.ncftp.com/public_ftp/ncftp/ncftp-3.3.0-src.tar.gz
 #https://ftp.gnu.org/gnu/gdb/gdb-17.1.tar.xz
