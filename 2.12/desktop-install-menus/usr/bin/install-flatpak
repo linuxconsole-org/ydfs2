@@ -11,7 +11,9 @@ else
   flatpak install --user -y io.github.flattool.Warehouse || zenity --warning --text="Cannot Install Warehouse !"
 fi
 
-dbus-launch flatpak run io.github.flattool.Warehouse
+dbus-launch flatpak run io.github.flattool.Warehouse || sleep 10
+
+sleep 5
 
 # flatpak install org.gnome.Mahjongg
 # flatpak run org.gnome.Mahjongg
