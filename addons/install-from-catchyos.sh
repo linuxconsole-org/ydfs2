@@ -19,6 +19,6 @@ cp -fR /media/iso/modules/ / || exit 1
 
 # update-grub
 limine-entry-tool --add-kernel "LinuxConsole-2026" /media/iso/isolinux/initramfs /media/iso/isolinux/kernel
-touch /syslinux.cfg
+touch /ydfs.cfg
 
 umount /media/iso

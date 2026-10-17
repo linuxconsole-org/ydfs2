@@ -14,6 +14,6 @@ cp /media/iso/isolinux/initramfs /boot/initrd.img-4-linuxconsole || exit 1
 cp -fR /media/iso/modules/ / || exit 1
 
 update-grub
-touch /syslinux.cfg
+touch /ydfs.cfg
 
 umount /media/iso
