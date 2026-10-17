@@ -65,7 +65,7 @@ dist: opkg
 	touch ${HOME}/.ncftp/bookmarks
 	chmod 777 ${HOME}/.ncftp/bookmarks
 	$(CMD) dist-docker
-	chmod 700 ${HOME}/.ncftp/bookmarks
+	#chmod 700 ${HOME}/.ncftp/bookmarks
 
 opkg: packages
 
