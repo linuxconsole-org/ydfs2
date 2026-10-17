@@ -93,9 +93,9 @@ then
   LC_ALL=en_US.UTF8 grub-mkconfig -o /media/$DISTRONAME/grub/grub.cfg
   [ -e /media/$DISTRONAME/grub/grub.cfg.new ] && cp /media/$DISTRONAME/grub/grub.cfg.new /media/$DISTRONAME/grub/grub.cfg
   sed -i "s@ ro @$BOOTOPTION ro quiet loglevel=0 @" /media/$DISTRONAME/grub/grub.cfg
-  touch /media/$DISTRONAME/syslinux.cfg # used for mount partition as DISTRONAME disk
+  touch /media/$DISTRONAME/ydfs.cfg # used for mount partition as DISTRONAME disk
 else
-  touch /media/$DISTRONAME/syslinux.cfg # used for mount partition as DISTRONAME disk
+  touch /media/$DISTRONAME/ydfs.cfg # used for mount partition as DISTRONAME disk
 fi
 
 echo "Copying module ..."

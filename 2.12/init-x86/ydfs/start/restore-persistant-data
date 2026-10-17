@@ -19,15 +19,15 @@ mount /disk/root.ext3 /root
   install -d /root/tmp
 fi
 
-#liveusb
-if [ -e /media/ydfs/syslinux.cfg ]
+#check if filesystem is writable
+if [ -e /media/ydfs/ydfs.cfg ]
 then
   ln -s /tmp /media/ydfs/test-tmp || sleep 10
   # sleep 1
   [ ! -e /media/ydfs/test-tmp ] &&  echo "Error, please use a NTFS or EXT4 filesystem to store data" && sleep 5
 fi
 
-if [ -e /media/ydfs/syslinux.cfg ] && [ -e /media/ydfs/test-tmp ]
+if [ -e /media/ydfs/ydfs.cfg ] && [ -e /media/ydfs/test-tmp ]
 then
   # Persistant data on disk
   rm /media/ydfs/test-tmp
@@ -44,8 +44,9 @@ then
   then
     install -d /media/ydfs/opkg
   fi
+  install -d $HOME_DIBAB
   ln -s /media/ydfs/opkg $HOME_DIBAB/opkg
-  rmdir /root
+  [ -e /root ] && rmdir /root
   ln -s /media/ydfs/root /root
   [ ! -e /home ] && mkdir /home
   ls /media/ydfs/home-ydfs | while read home
