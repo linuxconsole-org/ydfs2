@@ -10,3 +10,6 @@ git://github.com/prikhi/lightdm-mini-greeter.git
 git://github.com/OpenPrinting/cups.git#tag=v2.4.19
 https://ftpmirror.gnu.org/autoconf-archive/autoconf-archive-2024.10.16.tar.xz
 https://download.gnome.org/sources/libwnck/43/libwnck-43.3.tar.xz
+# mate panel
+https://github.com/mesonbuild/meson/releases/download/1.12.1/meson-1.12.1.tar.gz
+git://gitlab.gnome.org/GNOME/glib.git#tag=2.84.4
