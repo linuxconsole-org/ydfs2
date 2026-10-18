@@ -3,6 +3,7 @@ install -d $HOME/Desktop
 
 # Does it works ???
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/firefox/:$PATH
 
 if [ ! -e $HOME/.bashrc ]
 then
