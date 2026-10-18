@@ -1,0 +1,13 @@
+diff --git a/configure.ac b/configure.ac
+index f3d0316..872364a 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -67,7 +67,7 @@ fi
+ # Translation
+ # ***********
+ AM_GNU_GETTEXT([external])
+-AM_GNU_GETTEXT_VERSION([0.19.8])
++AM_GNU_GETTEXT_REQUIRE_VERSION([0.19.8])
+ AM_CONDITIONAL([USE_NLS], [test "x${USE_NLS}" = "xyes"])
+ 
+ AC_SUBST(CFLAGS)
