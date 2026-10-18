@@ -6,6 +6,9 @@
 
 > Get it from [Github] (https://github.com/Mexit/MultiOS-USB)
 
+## Faster with Ventoy
+
+> Using a [Ventoy release] (https://github.com/ventoy/Ventoy/issues/3745) greater than 1.1.18
 
 ## Kernel 6.18.29, Busybox 1.36.1
 
@@ -15,7 +18,7 @@
 
 > [ more than 1000 pacakages ] (https://github.com/linuxconsole-org/ydfs2/blob/2.12/2.12/packages/list-x86)
 
-> [ Flapak update ] (https://github.com/linuxconsole-org/ydfs2/blob/2.12/2.12/packages/list-updates)
+> [ Flatpak is available ] (https://github.com/linuxconsole-org/ydfs2/blob/2.12/2.12/packages/list-updates)
 
 ## Kernel config based on Arch linux
 
@@ -35,9 +38,12 @@
 
 > By writing a /ydfs/wireless.cfg file on the USB key, Wireless network will be up at statup
 
-Reduce size for firmares modules 
+## Installation easier in dual boot
+
+Scripts have been successufuly tested on [Linux Mint] (https://raw.githubusercontent.com/linuxconsole-org/ydfs2/refs/heads/2.12/addons/install-with-grub.sh) and [Catchy OS] (https://github.com/linuxconsole-org/ydfs2/blob/2.12/addons/install-with-limine.sh)
 
 ## WSL Build
+
 
 I works ! (Make fast-iso)
 
