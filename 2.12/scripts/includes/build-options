@@ -459,7 +459,7 @@ echo $ARCHIVE | grep virglrenderer && LC_CONFIGURE_OPTS="  -Dvenus-experimental=
               --with-ensurepip"
 	echo $ARCHIVE | grep mpeg2dec && LC_CONFIGURE_OPTS="--enable-shared"
 	echo $ARCHIVE | grep pipewire && LC_CONFIGURE_OPTS="--prefix=$PREFIX"
-	echo $ARCHIVE | grep lame && LC_CONFIGURE_OPTS="--enable-nasm --enable-shared"
+	echo $ARCHIVE | grep downloads.sourceforge.net/lame/lame && LC_CONFIGURE_OPTS="--enable-nasm --enable-shared"
 	echo $ARCHIVE | grep libvpx && LC_CONFIGURE_OPTS="--enable-pic --enable-shared --disable-unit-tests"
 	echo $ARCHIVE | grep lirc && LC_CONFIGURE_OPTS="--enable-sandboxed --with-driver=userspace --with-transmitter"
 	echo $ARCHIVE | grep gltron && LC_CONFIGURE_OPTS="--disable-warn"
