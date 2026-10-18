@@ -307,6 +307,9 @@ Cflags: ' > $PREFIX/lib/pkgconfig/id3tag.pc
   fi
 
   [ -e libuv.pc.in ] && rm ./autogen.sh
+  # [ -e org.mate.control-center.gschema.xml.in ] && rm ./autogen.sh
+  # [ -e org.mate.control-center.gschema.xml.in ] && gettextize -f
+  # [ -e org.mate.control-center.gschema.xml.in ] && aclocal -I m4
 
   [ -e "json-c.pc.in" ] && echo " json-c.pc.in" && ACLOCAL_FLAGS="-I $HOME/$ARCH/share/aclocal " && ACLOCAL="aclocal $ACLOCAL_FLAGS " NOCONFIGURE=1 ./autogen.sh
   if [ -e "wx-config.in" ]
