@@ -25,26 +25,39 @@
 ## Tools
 
 > CUPS 2.4.19
+
 > Flameshot
+
 > Vlc 3.0.24
+
 > Audacity 3.1.3
+
 > Chntpw 
+
 > Gimp 2.10
+
 > Lmms 1.2.2
 
 ## Education
 
 > Gcompris 2.4
+
 > Stellarium 1.0
 
 ## Games
 
 > Xmoto 0.6.1
+
 > Extremetuxracer 0.8.1
+
 > SuperTuxKart 1.4
+
 > CalcMySky 0.1.0
+
 > Wesnoth 1.16.6
+
 > Astromenace 1.4.1
+
 > SuperTuxKart 1.4
 
 ## Kernel config based on Arch linux
