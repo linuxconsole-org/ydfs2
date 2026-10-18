@@ -1,0 +1,13 @@
+diff --git a/configure.ac b/configure.ac
+index 4d67c29..4ff502e 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -24,7 +24,7 @@ YELP_HELP_INIT
+ 
+ # Internationalization support
+ AM_GNU_GETTEXT([external])
+-AM_GNU_GETTEXT_VERSION([0.19.8])
++AM_GNU_GETTEXT_REQUIRE_VERSION([0.19.8])
+ AM_CONDITIONAL([USE_NLS], [test "x${USE_NLS}" = "xyes"])
+ 
+ GETTEXT_PACKAGE=mate-control-center
