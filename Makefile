@@ -8,10 +8,14 @@ SYSTEM_KERNEL := $(shell uname -r)
 ifeq ($(HASDOCKER),/usr/bin/docker)
   BUILDING=prepare fast-iso
 else
-  ifeq ($(ISDEBIAN),/usr/bin/apt)
-  BUILDING=nodocker-debian
+  ifeq ($(HASDOCKER),/usr/local/bin/docker)
+    BUILDING=prepare fast-iso
   else
-    BUILDING=nobuild
+    ifeq ($(ISDEBIAN),/usr/bin/apt)
+    BUILDING=nodocker-debian
+    else
+      BUILDING=nobuild
+    endif
   endif
 endif
 
