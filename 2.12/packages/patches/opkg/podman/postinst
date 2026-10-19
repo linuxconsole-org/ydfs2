@@ -1,0 +1,3 @@
+install -d /usr/local/lib/podman
+cp $HOME_DIBAB/opkg/bin/gvproxy /usr/local/lib/podman
+

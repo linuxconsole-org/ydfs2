@@ -250,7 +250,7 @@ Cflags: ' > $PREFIX/lib/pkgconfig/id3tag.pc
 	/usr/bin/install -d $PREFIX/bin
 	cp target/release/virtiofsd $PREFIX/bin/	|| exit 2
         touch buildok-$ARCH
-        exit 0
+        # exit 0
   fi
 
   if [ -e src/bindgen/cargo ]
