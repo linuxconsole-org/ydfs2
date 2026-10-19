@@ -10,7 +10,7 @@ OPTION=" -s"
 if [ ! -e $HOME/archpkg/$PKG ]
 then
 curl $OPTION "$URL1" -o $HOME/archpkg/$PKG 
-grep 'You need to sign in or sign up before ' $HOME/archpkg/$PKG >/dev/null && wget $OPTION "$URL2" -o $HOME/archpkg/$PKG 
+grep 'gitlab.archlinux.org/users/sign_in' $HOME/archpkg/$PKG >/dev/null && curl $OPTION "$URL2" -o $HOME/archpkg/$PKG 
 [ ! -e $HOME/archpkg/$PKG ] && exit 1
 fi
 
