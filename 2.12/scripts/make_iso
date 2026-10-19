@@ -27,11 +27,22 @@ menuentry "'$DISTRONAME'" {
 '
 DISTRONAME=$DISTRONAME python3 scripts/print-locale-options.py grub-boot
 
+for bootoption in fixusb fixme text xterm
+do
+echo '
+menuentry "'$DISTRONAME' : '$bootoption' boot" {
+	set gfxpayload=keep
+	linux /isolinux/kernel quiet '$bootoption' ISOPATH=$iso_path ---
+	initrd /isolinux/initramfs
+} 
+'
+done
+
 echo '
 menuentry "'$DISTRONAME' : rescue boot" {
 	set gfxpayload=keep
-	linux	/isolinux/kernel quiet liveusb ISOPATH=$iso_path debug02 rdinit=/rescue ---
-	initrd	/isolinux/initramfs
+	linux /isolinux/kernel quiet liveusb ISOPATH=$iso_path debug02 rdinit=/rescue ---
+	initrd /isolinux/initramfs
 }
 '
 }
