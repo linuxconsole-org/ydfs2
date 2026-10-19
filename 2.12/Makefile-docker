@@ -1,11 +1,11 @@
-DOCKER_COMPOSE  = $(shell which docker-compose)
+PODMAN  = $(shell which podman)
 GIT_BRANCH  = $(shell git rev-parse --abbrev-ref HEAD)
 GIT_TAG  = $(shell git describe --tags --abbrev=0)
 
-ifeq ($(DOCKER_COMPOSE),)
+ifeq ($(PODMAN),)
 COMPOSE=docker compose
 else
-COMPOSE=docker-compose
+COMPOSE=podman compose
 endif
 
 ifneq ($(wildcard /tmp/.X11-unix),)

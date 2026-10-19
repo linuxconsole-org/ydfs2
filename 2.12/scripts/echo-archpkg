@@ -3,17 +3,14 @@ PKG=$1
 SHORT=${PKG:0:2}
 install -d $HOME/archpkg
 cd $HOME/archpkg
-#URL2=https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/$1/trunk/PKGBUILD
 URL1=https://gitlab.archlinux.org/archlinux/packaging/packages/$1/-/raw/main/PKGBUILD?ref_type=heads
-#URL6=https://aur.archlinux.org/packages/$SHORT/$1/PKGBUILD
-URL3=https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$PKG
+URL2=https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$PKG
+OPTION=" -s" 
 
-OPTION=" --no-check-certificate" 
-OPTION=" -q --no-check-certificate" 
 if [ ! -e $HOME/archpkg/$PKG ]
 then
-wget $OPTION "$URL1" -O $HOME/archpkg/$PKG 
-grep 'You need to sign in or sign up before ' $HOME/archpkg/$PKG >/dev/null && wget $OPTION "$URL3" -O $HOME/archpkg/$PKG 
+curl $OPTION "$URL1" -o $HOME/archpkg/$PKG 
+grep 'You need to sign in or sign up before ' $HOME/archpkg/$PKG >/dev/null && wget $OPTION "$URL2" -o $HOME/archpkg/$PKG 
 [ ! -e $HOME/archpkg/$PKG ] && exit 1
 fi
 
