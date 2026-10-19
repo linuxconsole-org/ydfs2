@@ -22,6 +22,10 @@ services:
             SLEEPTIME: 1
         security_opt:
             - seccomp:unconfined
+        deploy:
+            resources:
+              limits:
+                memory: 4G
 
     ydfs2.12-fast64:
         image: yledoare/ydfs-2.12
@@ -45,4 +49,8 @@ services:
             SLEEPTIME: 1
         security_opt:
             - seccomp:unconfined
+        deploy:
+            resources:
+              limits:
+                memory: 4G
 
