@@ -152,7 +152,7 @@ qemu-azerty-system:
 		-cdrom ${HOME}/iso/linuxconsole.iso 
 
 qemu-efi:
-	qemu-system-x86_64 -usb -device usb-tablet -enable-kvm -cpu qemu64,avx,pdpe1gb,check,enforce -m size=4000 -bios ${GIT_BRANCH}/boot-efi/bios/qemu-ovmf/bios/bios.bin -cdrom ${HOME}/iso/linuxconsole.iso
+	qemu-system-x86_64 -usb -device usb-tablet -enable-kvm -cpu qemu64,avx,pdpe1gb,check,enforce -m size=8000 -bios ${GIT_BRANCH}/boot-efi/bios/qemu-ovmf/bios/bios.bin -cdrom ${HOME}/iso/linuxconsole.iso
 
 disk-bios.img:
 	qemu-img create -f qcow2 disk-bios.img 10G
