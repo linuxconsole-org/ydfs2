@@ -41,7 +41,8 @@ then
 else
   if [ -e /dev/"$DISK"1 ]
   then
-    zenity --question --text="Warning, grub will be installed on your /dev/"$DISK" disk wich is not empty ! Are you sure ?" &>/dev/null
+    zenity --error --text="/dev/"$DISK" disk is not empty ! \n Please run gparted and delete all partitions, then reboot " &>/dev/null
+    exit 1
   else
     zenity --question --text="Warning, grub will be installed on your /dev/"$DISK" disk ! Are you sure ?" &>/dev/null
   fi
@@ -55,6 +56,13 @@ then
   #which gpartedbin || opkg-cl install gparted
   #zenity --info --text="Please create a partition named $DISTRONAME \n\nClose this, gparted will start" &>/dev/null
 
+  echo "Please wait ..."
+# To disable remounting while running gparted
+  echo > /usr/lib/udev/rules.d/11-media-by-label-auto-mount.rules
+  echo "udevam trigger .."
+  udevadm trigger --action=add
+  
+  sleep 1
   if [ -e /sys/firmware/efi ]
   then
 	echo 'mklabel gpt
@@ -81,18 +89,17 @@ then
         mkfs.ext4 -L "linuxconsole" /dev/"$DISK"1 1>/dev/null
   fi
 
-
-  echo "Please wait ..."
-# To disable remounting while running gparted
-  echo > /usr/lib/udev/rules.d/11-media-by-label-auto-mount.rules
-  echo "udevam trigger .."
-  udevadm trigger --action=add
   #$HOME_DIBAB/$ARCH/sbin/gpartedbin &>/dev/null
   sh /ydfs/start/automount
   sleep 1
   udevadm trigger --action=add
   echo "sleep 5 .."
   sleep 5
+  [ ! -e /media/$DISTRONAME ] && [ -e /media/usbhd-"$DISK"1 ] && umount /media/usbhd-"$DISK"1 && echo "Restart trigger" && udevadm trigger --action=add && sleep 2
+  [ ! -e /media/$DISTRONAME ] && [ -e /media/usbhd-"$DISK"2 ] && umount /media/usbhd-"$DISK"2 && echo "Restart trigger" && udevadm trigger --action=add && sleep 2
+  [ ! -e /media/$DISTRONAME ] && e2label /dev/"$DISK"2 | grep $DISTRONAME && mkdir /media/$DISTRONAME && mount /dev/"$DISK"2 /media/$DISTRONAME && echo "Force to $DISK"2
+  [ ! -e /media/$DISTRONAME ] && e2label /dev/"$DISK"1 | grep $DISTRONAME && mkdir /media/$DISTRONAME && mount /dev/"$DISK"1 /media/$DISTRONAME && echi "Force to $DISK"1
+
   if [ ! -e /media/$DISTRONAME ]
   then
 	zenity --error --text="Ext4 partition with $DISTRONAME lablel not found, exiting" &>/dev/null
