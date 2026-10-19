@@ -1,6 +1,6 @@
-git@github.com:linuxconsole-org/podman-ydfs.git
+git://github.com/linuxconsole-org/opkg-gui.git
+git://github.com/linuxconsole-org/podman-ydfs.git
 https://gitlab.com/virtio-fs/virtiofsd/-/archive/v1.12.0/virtiofsd-v1.12.0.tar.gz
-git@github.com:linuxconsole-org/opkg-gui.git
 https://ftp.gnu.org/gnu/make/make-4.4.1.tar.lz
 https://christian.amsuess.com/tools/arandr/files/arandr-0.1.11.tar.gz
 https://download.qemu.org/qemu-10.2.4.tar.xz

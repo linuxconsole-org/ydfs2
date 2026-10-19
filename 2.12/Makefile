@@ -422,7 +422,6 @@ ${HOME}/ydfs/opkg/Packages : packages/list-opkg-${DISTRONAME}
 ifeq ($(BUILDOPKG),YES)
 	cp packages/list-opkg-${DISTRONAME} packages/list-opkg
 	bash scripts/make_packages opkg
-	bash scripts/make_opkg_filelist opkg
 else
 	echo "Skip opkg"
 endif
