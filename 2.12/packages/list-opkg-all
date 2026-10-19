@@ -1,3 +1,5 @@
+git@github.com:linuxconsole-org/podman-ydfs.git
+https://gitlab.com/virtio-fs/virtiofsd/-/archive/v1.12.0/virtiofsd-v1.12.0.tar.gz
 #https://go.dev/dl/go1.27.2.src.tar.gz
 #git://github.com/podman-container-tools/podman.git#tag=v6.1.4
 https://ftp.gnu.org/gnu/make/make-4.4.1.tar.lz

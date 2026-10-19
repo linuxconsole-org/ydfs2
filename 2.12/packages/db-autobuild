@@ -242,6 +242,17 @@ Cflags: ' > $PREFIX/lib/pkgconfig/id3tag.pc
 	cp -fR $PWD $PREFIX
   fi
 
+  pwd | grep virtiofsd
+  if [ "$?" = "0" ]
+  then
+	echo "$LDFLAGS"
+	RUSTFLAGS="$LDFLAGS" cargo build --release || exit 1
+	/usr/bin/install -d $PREFIX/bin
+	cp target/release/virtiofsd $PREFIX/bin/	|| exit 2
+        touch buildok-$ARCH
+        exit 0
+  fi
+
   if [ -e src/bindgen/cargo ]
   then
 	echo src/bindgen/cargo
