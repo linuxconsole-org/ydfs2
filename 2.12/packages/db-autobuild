@@ -1897,6 +1897,9 @@ Cflags: -I${includedir}' > glm.pc
   if [ -e grub-core ] && [ "$ARCH" == "x86_64" ]
   then
      unset CPPFLAGS && unset CFLAGS && unset LDFLAGS
+     #https://gitlab.freedesktop.org/gnu-grub/grub/-/archive/grub-2.16/grub-grub-2.16.tar.bz2
+     #./bootstrap || exit 2
+     #sed -i "s@AM_GNU_GETTEXT_VERSION@AM_GNU_GETTEXT_REQUIRE_VERSION@" configure.ac
      ./configure --prefix=$PREFIX \
 	--with-platform="efi" \
 		--target="x86_64" || exit 1

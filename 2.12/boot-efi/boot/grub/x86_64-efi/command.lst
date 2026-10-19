@@ -2,6 +2,7 @@
 *all_functional_test: functional_test
 *background_image: gfxterm_background
 *cat: cat
+*cmp: cmp
 *cpuid: cpuid
 *crc: hashsum
 *cryptomount: cryptodisk
@@ -32,7 +33,10 @@
 *md5sum: hashsum
 *menuentry: normal
 *pcidump: pcidump
+*plainmount: plainmount
 *probe: probe
+*rdmsr: rdmsr
+*read: read
 *read_byte: memrw
 *read_dword: memrw
 *read_word: memrw
@@ -45,6 +49,7 @@
 *sha256sum: hashsum
 *sha512sum: hashsum
 *sleep: sleep
+*smbios: smbios
 *submenu: normal
 *syslinux_configfile: syslinuxcfg
 *syslinux_source: syslinuxcfg
@@ -52,8 +57,8 @@
 *test_blockarg: test_blockarg
 *testspeed: testspeed
 *tr: tr
-*trust: verify
-*verify_detached: verify
+*trust: pgp
+*verify_detached: pgp
 *xnu_splash: xnu
 *zfskey: zfscrypt
 .: configfile
@@ -70,14 +75,14 @@ cat: minicmd
 cbmemc: cbmemc
 chainloader: chain
 clear: normal
-cmp: cmp
 configfile: configfile
 continue: normal
 coreboot_boottime: cbtime
 cutmem: mmap
 date: date
-distrust: verify
+distrust: pgp
 dump: minicmd
+efitextmode: efitextmode
 eval: eval
 exit: minicmd
 export: normal
@@ -92,9 +97,9 @@ fwsetup: efifwsetup
 gptsync: gptsync
 halt: halt
 help: minicmd
+hexdump_random: random
 initrd16: linux16
 initrd: linux
-initrdefi: linuxefi
 keymap: keylayouts
 kfreebsd_loadenv: bsd
 kfreebsd_module: bsd
@@ -111,8 +116,7 @@ legacy_password: legacycfg
 legacy_source: legacycfg
 linux16: linux16
 linux: linux
-linuxefi: linuxefi
-list_trusted: verify
+list_trusted: pgp
 loadbios: loadbios
 loadfont: font
 lscoreboot: cbls
@@ -133,10 +137,12 @@ nativedisk: nativedisk
 net_add_addr: net
 net_add_dns: net
 net_add_route: net
+net_bootp6: net
 net_bootp: net
 net_del_addr: net
 net_del_dns: net
 net_del_route: net
+net_dhcp: net
 net_get_dhcp_option: net
 net_ipv6_autoconf: net
 net_ls_addr: net
@@ -144,6 +150,7 @@ net_ls_cards: net
 net_ls_dns: net
 net_ls_routes: net
 net_nslookup: net
+net_set_vlan: net
 normal: normal
 normal_exit: normal
 outb: iorw
@@ -153,7 +160,6 @@ parttool: parttool
 password: password
 password_pbkdf2: password_pbkdf2
 play: play
-read: read
 reboot: reboot
 return: normal
 rmmod: minicmd
@@ -175,6 +181,7 @@ videotest: videotest
 write_byte: memrw
 write_dword: memrw
 write_word: memrw
+wrmsr: wrmsr
 xnu_devprop_load: xnu
 xnu_kernel64: xnu
 xnu_kernel: xnu
