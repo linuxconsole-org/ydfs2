@@ -1,10 +1,10 @@
 #!/bin/bash
 
-if [ -e /sys/firmware/efi ]
-then
-  zenity --info --text="EFI Detected \n \n Auto install is not yet available \n Goes on https://github.com/linuxconsole-org/ydfs2/blob/2.12/INSTALL.md for more info" &>/dev/null
-  exit 1
-fi
+#if [ -e /sys/firmware/efi ]
+#then
+#  zenity --info --text="EFI Detected \n \n Auto install is not yet available \n Goes on https://github.com/linuxconsole-org/ydfs2/blob/2.12/INSTALL.md for more info" &>/dev/null
+#  exit 1
+#fi
 
 LIST_DISK=""
 
@@ -40,36 +40,62 @@ then
   exit 1	  
 else
   if [ -e /dev/"$DISK"1 ]
-	then
-           zenity --question --text="Warning, grub will be installed on your /dev/"$DISK" disk ! Are you sure ?" &>/dev/null
-	   ans=$?
-	   echo $ans  
-	   [ "$ans" != "0" ] && exit 1
-	fi
+  then
+    zenity --question --text="Warning, grub will be installed on your /dev/"$DISK" disk wich is not empty ! Are you sure ?" &>/dev/null
+  else
+    zenity --question --text="Warning, grub will be installed on your /dev/"$DISK" disk ! Are you sure ?" &>/dev/null
+  fi
+  ans=$?
+  echo $ans  
+  [ "$ans" != "0" ] && exit 1
 fi
 
 if [ ! -e /media/$DISTRONAME ]
 then
-which gpartedbin || opkg-cl install gparted
-zenity --info --text="Please create a partition named $DISTRONAME \n\nClose this, gparted will start" &>/dev/null
+  #which gpartedbin || opkg-cl install gparted
+  #zenity --info --text="Please create a partition named $DISTRONAME \n\nClose this, gparted will start" &>/dev/null
 
-if [ -e /sys/firmware/efi ]
-then
-  zenity --info --text="EFI Detected \n \n Please first create a FAT32 BOOT partition, and copy EFI, isolinux, boot \n Also remove the liveusb option from /boot/grub/grub.cfg" &>/dev/null
-fi
+  if [ -e /sys/firmware/efi ]
+  then
+	echo 'mklabel gpt
+	mkpart primary fat32 0% 100M
+	mkpart primary ext4 100M 100%' | parted /dev/"$DISK"
 
-echo "Please wait ..."
+	mkfs.vfat -n boot /dev/"$DISK"1
+	install -d /mnt/"$DISK"1
+	mount /dev/"$DISK"1 /mnt/"$DISK"1
+
+	cp -fR /media/ydfs/EFI /mnt/"$DISK"1
+	cp -fR /media/ydfs/boot /mnt/"$DISK"1
+	cp -fR /media/ydfs/isolinux /mnt/"$DISK"1
+	cp -fR /media/ydfs/.disk /mnt/"$DISK"1
+
+  	sed -i "s@liveusb@@g" /mnt/"$DISK"1/boot/grub/grub.cfg
+        echo mkfs.ext4 -L "linuxconsole" /dev/"$DISK"2
+        mkfs.ext4 -L "linuxconsole" /dev/"$DISK"2 1>/dev/null
+  #  zenity --info --text="EFI Detected \n \n Please first create a FAT32 BOOT partition, and copy EFI, isolinux, boot \n Also remove the liveusb option from /boot/grub/grub.cfg" &>/dev/null
+  else
+	echo 'mklabel msdos
+	mkpart primary ext4 0% 100%' | parted /dev/"$DISK"
+        echo mkfs.ext4 -L "linuxconsole" /dev/"$DISK"1
+        mkfs.ext4 -L "linuxconsole" /dev/"$DISK"1 1>/dev/null
+  fi
+
+
+  echo "Please wait ..."
 # To disable remounting while running gparted
-echo > /usr/lib/udev/rules.d/11-media-by-label-auto-mount.rules
-udevadm trigger --action=add
-$HOME_DIBAB/$ARCH/sbin/gpartedbin &>/dev/null
-sh /ydfs/start/automount
-sleep 1
-udevadm trigger --action=add
-sleep 3
+  echo > /usr/lib/udev/rules.d/11-media-by-label-auto-mount.rules
+  echo "udevam trigger .."
+  udevadm trigger --action=add
+  #$HOME_DIBAB/$ARCH/sbin/gpartedbin &>/dev/null
+  sh /ydfs/start/automount
+  sleep 1
+  udevadm trigger --action=add
+  echo "sleep 5 .."
+  sleep 5
   if [ ! -e /media/$DISTRONAME ]
   then
-	  zenity --error --text="Please format an ext4 partition with $DISTRONAME lablel !" &>/dev/null
+	zenity --error --text="Ext4 partition with $DISTRONAME lablel not found, exiting" &>/dev/null
   	exit 1
   fi
 fi
