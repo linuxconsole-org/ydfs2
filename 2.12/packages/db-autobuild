@@ -1900,6 +1900,9 @@ Cflags: -I${includedir}' > glm.pc
      #https://gitlab.freedesktop.org/gnu-grub/grub/-/archive/grub-2.16/grub-grub-2.16.tar.bz2
      sed -i "s@AM_GNU_GETTEXT_VERSION@AM_GNU_GETTEXT_REQUIRE_VERSION@" configure.ac
      ./bootstrap --skip-po
+     #wget http://deb.debian.org/debian/pool/main/g/gnulib/gnulib_20250303.orig.tar.gz
+     #tar xzvf gnulib_20250303.orig.tar.gz
+     #./bootstrap --no-git --skip-po   --gnulib-srcdir=$PWD/gnulib-20250303 || bash
      bash autogen.sh
 
      #ACLOCAL_FLAGS="-I $HOME/$ARCH/share/aclocal " && ACLOCAL="aclocal $ACLOCAL_FLAGS " ./bootstrap
@@ -1924,13 +1927,15 @@ echo 'all:
 install:
 	echo OK' > po/Makefile
 	make && make install || exit 1
-	DESTDIR=/tmp/grub make install
+	# DESTDIR=/tmp/grub make install
+	DESTDIR=$HOME/iso/tmp/grub make install
 	# ls -l $PREFIX/lib/grub/i386-pc/lzma_decompress.img |grep 134479600 && cp $HOME_DIBAB/fix/lzma_decompress.img $PREFIX/lib/grub/i386-pc/lzma_decompress.img
         touch buildok-$ARCH
   	if [ "$MODULE" != "opkg" ]
 	then
 		exit 0
 	fi
+	rm configure
   fi
   if [ -e nss/build.sh ]
   then
