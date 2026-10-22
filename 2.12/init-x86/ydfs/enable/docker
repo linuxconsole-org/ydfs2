@@ -1,0 +1,7 @@
+if [ -e /media/ydfs/docker ]
+then 
+  ln -s ln -s /media/ydfs/docker /var/lib
+  install -d /var/log/docker
+  cd /var/log/docker
+  nohup DOCKER_RAMDISK=true dockerd &
+endif

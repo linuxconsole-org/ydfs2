@@ -74,6 +74,7 @@ echo "Benchmark" && sleep 5
 fi
 
 # . /ydfs/enable/virtualbox
+. /ydfs/enable/docker
 
 . /ydfs/enable/flatpak-disk
 

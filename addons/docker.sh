@@ -1,5 +1,6 @@
 function install_docker_engine
 {
+  TARBALL=https://download.docker.com/linux/static/stable/x86_64/docker-29.8.2.tgz
   TARBALL=https://download.docker.com/linux/static/stable/x86_64/docker-20.10.12.tgz
   cd $HOME
   [ ! -e `basename $TARBALL` ] && wget $TARBALL 
@@ -51,6 +52,7 @@ then
    fi
 fi
 
+grep docker /etc/group | groupadd docker
 DOCKER_RAMDISK=true dockerd 
 
 # docker run -d -p 631:631 -v /var/run/dbus:/var/run/dbus -v /dev/bus/usb:/dev/bus --name cupsd olbat/cupsd
