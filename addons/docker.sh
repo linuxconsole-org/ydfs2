@@ -47,7 +47,7 @@ then
        install -d /tmp/docker
        [ ! -e /var/lib/docker ] && ln -s /tmp/docker /var/lib
    else
-       [ ! -e /var/lib/docker ] && ln -s /tmp/docker /var/lib
+       [ ! -e /var/lib/docker ] && ln -s /media/ydfs/docker /var/lib
    fi
 fi
 
