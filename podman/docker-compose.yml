@@ -1,0 +1,7 @@
+services:
+    test:
+        image: yledoare/ydfs-2.12
+        volumes:
+            - $HOME/2.12/ydfs:/home/linuxconsole2026/ydfs
+            - ./test:/home/linuxconsole2026/test:z
+
