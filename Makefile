@@ -3,7 +3,9 @@ GIT_BRANCH  = $(shell git rev-parse --abbrev-ref HEAD)
 
 ISDEBIAN := $(shell which apt)
 HASDOCKER := $(shell which docker)
+HASPODMAN := $(shell which podman)
 SYSTEM_KERNEL := $(shell uname -r)
+
 
 ifeq ($(HASDOCKER),/usr/bin/docker)
   BUILDING=prepare fast-iso
@@ -19,7 +21,17 @@ else
   endif
 endif
 
+ifneq ($(HASPODMAN),)
+  BUILDING=podman-start prepare fast-iso
+else
+	echo $(HADPODMAN)
+endif
+
 all: $(BUILDING) #fail prepare iso
+
+podman-start:
+#	podman machine init
+	podman ps || podman machine start
 
 nobuild:
 	echo "Debian or Docker not found"

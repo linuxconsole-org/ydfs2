@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 if [ -e /disk/flatpak.loop ]
 then
   echo "Enable /disk/flatpak.loop"
@@ -27,3 +28,5 @@ do
   fi
 done   
 
+# Create needed folders
+flatpak remotes
