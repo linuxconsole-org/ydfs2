@@ -21,6 +21,10 @@ else
   endif
 endif
 
+ifeq ($(HASDOCKER),/home/linuxconsole2026/x86_64/bin/docker)
+  BUILDING=prepare fast-iso
+endif
+
 ifneq ($(HASPODMAN),)
 	BUILDING=podman-start prepare fast-iso
 endif

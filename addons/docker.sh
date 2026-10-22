@@ -50,6 +50,8 @@ then
    else
        [ ! -e /var/lib/docker ] && ln -s /media/ydfs/docker /var/lib
    fi
+else
+   [ ! -e /var/lib/docker ] && ln -s /media/ydfs/docker /var/lib
 fi
 
 grep docker /etc/group | groupadd docker
