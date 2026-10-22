@@ -22,9 +22,7 @@ else
 endif
 
 ifneq ($(HASPODMAN),)
-  BUILDING=podman-start prepare fast-iso
-else
-	echo $(HADPODMAN)
+	BUILDING=podman-start prepare fast-iso
 endif
 
 all: $(BUILDING) #fail prepare iso

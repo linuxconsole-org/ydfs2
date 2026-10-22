@@ -321,8 +321,7 @@ install -d $ISOTMP/iso/modules
 #  ln -s $LCMBUILD/$file /$ISOTMP/iso/modules
 # done
 
-# if [ "$MEDIA" = "DVD" ]
-if [ -e $HOME/ydfs/opkg/ ]
+if [ "$MEDIA" = "OPKGISO" ] && [ -e $HOME/ydfs/opkg/ ]
 then
 install -d /$ISOTMP/iso/pkg
 ls $HOME/ydfs/opkg/ | while read PKG

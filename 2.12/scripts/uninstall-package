@@ -28,4 +28,5 @@ echo "Clear src"
 rm -fR "$HOME/ydfs/src/$1"
 fi 
 
+# rm "$HOME/ydfs/opkg/$1*"
 rm -fR "$HOME/ydfs/packages-$ARCH/$1"
