@@ -4,4 +4,4 @@ then
   install -d /var/log/docker
   cd /var/log/docker
   nohup DOCKER_RAMDISK=true dockerd &
-endif
+fi
