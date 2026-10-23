@@ -1,5 +1,6 @@
-for file in usr/share/desktop-directories/Install.directory usr/share/applications/install-firefox.desktop usr/share/pixmaps/firefox.png \
-	usr/share/applications/install-flatpak.desktop usr/share/pixmaps/flatpak.png
+for file in usr/share/desktop-directories/Install.directory usr/share/applications/install-thunderbird.desktop usr/share/pixmaps/thunderbird.png \
+	usr/share/applications/install-flatpak.desktop usr/share/pixmaps/flatpak.png \
+	usr/share/applications/install-firefox.desktop usr/share/pixmaps/firefox.png
 do
   dirname=$( dirname $file )
   basename=$( basename $file )

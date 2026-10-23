@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=thunderbird
+Exec=/ydfs/add/software thunderbird
+Terminal=false
+Icon=thunderbird
+Type=Application
+Categories=Install 
