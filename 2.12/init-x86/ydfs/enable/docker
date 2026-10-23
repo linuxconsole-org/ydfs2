@@ -3,5 +3,5 @@ then
   ln -s ln -s /media/ydfs/docker /var/lib
   install -d /var/log/docker
   cd /var/log/docker
-  nohup DOCKER_RAMDISK=true dockerd &
+  DOCKER_RAMDISK=true nohup dockerd &
 fi
