@@ -1,7 +1,15 @@
-WIRELESSCFG=/disk/ydfs/wireless.cfg
+# [ -e /media/ydfs/wireless.cfg ] && WIRELESSCFG=/media/ydfs/wireless.cfg 
 
-if [ -e $WIRELESSCFG ]
+# MultiOS USB
+[ -e /disk/ydfs/wireless.cfg ] && WIRELESSCFG=/disk/ydfs/wireless.cfg 
+# Rufus
+[ -e /media/ydfs/ydfs/wireless.cfg ] && WIRELESSCFG=/media/ydfs/ydfs/wireless.cfg 
+
+echo $WIRELESSCFG
+
+if [ -n "$WIRELESSCFG" ] && [ -f "$WIRELESSCFG" ]
 then
+  echo "Using $WIRELESSCFG"
   while ! ping -c 2 www.free.fr
   do
     sleep 2.1
