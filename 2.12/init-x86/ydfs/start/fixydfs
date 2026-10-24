@@ -6,6 +6,9 @@ if [ -e /root/.ydfs/fixydfs ]
        bash /root/.ydfs/fixydfs/$file
      done
 fi
-# YDFS 2.12
 
+# Enable dmesg for users
+echo 0 > /proc/sys/kernel/dmesg_restrict
+
+# YDFS 2.12
 rm /busybox/bin/su
