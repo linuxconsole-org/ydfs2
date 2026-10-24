@@ -12,3 +12,8 @@ echo 0 > /proc/sys/kernel/dmesg_restrict
 
 # YDFS 2.12
 rm /busybox/bin/su
+
+# Mount Ventoy as disk
+[ -e /ventoy ] && -e /dev/dm-1 && mount /dev/dm-1 /disk
+
+echo
