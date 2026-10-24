@@ -202,6 +202,9 @@ busybox:
 linux:
 	$(CMD) linux-docker
 
+clear-initramfs:
+	$(CMD) clear-initramfs-docker
+
 initramfs:
 	$(CMD) initramfs-docker
 

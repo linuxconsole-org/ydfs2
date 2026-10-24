@@ -14,6 +14,6 @@ echo 0 > /proc/sys/kernel/dmesg_restrict
 rm /busybox/bin/su
 
 # Mount Ventoy as disk
-[ -e /ventoy ] && -e /dev/dm-1 && mount /dev/dm-1 /disk
+[ -e /ventoy ] && [ -e /dev/dm-1 ] && install -d /disk && mount /dev/dm-1 /disk
 
 echo

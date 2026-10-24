@@ -46,6 +46,9 @@ OPTION_BUILD=KERNEL3=SYSTEM
 OPTION_BUILD=DIBAB_VERBOSE_BUILD=YES
 OPTION_BUILD=
 
+clear-initramfs-docker: 
+	${COMPOSE} ${DOCKER_OPTIONS} -c '${BUILD_COMMAND} ${OPTION_BUILD} rm /home/linuxconsole2026/ydfs/build-x86_64/initramfs'
+
 initramfs-docker: busybox-docker
 	${COMPOSE} ${DOCKER_OPTIONS} -c '${BUILD_COMMAND} ${OPTION_BUILD} make initramfs'
 
