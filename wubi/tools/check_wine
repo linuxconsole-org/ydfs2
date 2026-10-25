@@ -60,11 +60,11 @@ install_wine(){
 }
 
 install_mingw32(){
-	if [ ! -x /usr/bin/i586-mingw32msvc-gcc -a ! -x /usr/local/bin/i586-mingw32msvc-gcc ]; then
+	if [ ! -x /usr/bin/i686-w64-mingw32-gcc -a ! -x /usr/local/bin/i686-w64-mingw32-gcc ]; then
 		echo "Installing mingw32..."
 		sudo apt-get install mingw32 #TBD do not assume apt
 	fi
-	if [ ! -x /usr/bin/i586-mingw32msvc-gcc -a ! -x /usr/local/bin/i586-mingw32msvc-gcc ]; then
+	if [ ! -x /usr/bin/i686-w64-mingw32-gcc -a ! -x /usr/local/bin/i686-w64-mingw32-gcc ]; then
 		echo "Installing mingw32 via dpkg..."
 		arch=$(dpkg --print-architecture)
 		wget "$mingw32_url$arch.deb" -P /tmp -O "/tmp/mingw32.deb"
@@ -121,7 +121,7 @@ install_pycrypto(){
 if [ ! -e "$root/wine" ]; then
 	install_wine
 fi
-if [ ! -x /usr/bin/i586-mingw32msvc-gcc -a ! -x /usr/local/bin/i586-mingw32msvc-gcc ]; then
+if [ ! -x /usr/bin/i686-w64-mingw32-gcc -a ! -x /usr/local/bin/i686-w64-mingw32-gcc ]; then
 	install_mingw32
 fi
 if [ ! -e "$python_dir/python.exe" ]; then
