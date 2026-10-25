@@ -11,8 +11,26 @@ then
 	echo "no sound card found"
 else
 # Fix bug with hdmi"
-# aplay /usr/share/sounds/alsa/Front_Center.wav || echo "defaults.pcm.card 1
-defaults.ctl.card 1" > /etc/asound.conf
+
+if [ ! -e /etc/asound.conf ]
+then
+  echo -n "mute .. "
+  amixer -q sset Master 80% mute
+  amixer -q sset Speaker 80% mute
+
+  echo -n " aplay test .. "
+  aplay -q /usr/share/sounds/alsa/Front_Center.wav || echo "defaults.pcm.card 1
+  defaults.ctl.card 1" > /etc/asound.conf
+
+  if [ -e /etc/asound.conf ]
+  then
+	echo -n " failed, /etc/asound.conf fixed "
+  fi
+
+  echo -n " unmute .. "
+  amixer -q sset Master 80% unmute
+  amixer -q sset Speaker 80% unmute
+fi
 
 if [ ! -e "$HOME_DIBAB/$ARCH/lib/alsa/var/asound.state" ] 
 then
@@ -20,7 +38,7 @@ then
 #  ln -s $HOME_DIBAB/$ARCH/var/lib $HOME_DIBAB/var/lib
 #  alsactl store
 
-cat /proc/asound/card"$ALSA_CARD"/id
+echo -n " card : "
 cat /proc/asound/card"$ALSA_CARD"/id
 
 # Output mode (SPDIF or analog)
