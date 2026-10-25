@@ -31,9 +31,20 @@ RUN apt-get update && apt-get install -y make sudo wget unzip
 RUN dpkg --add-architecture i386 && sudo apt update
 RUN apt-get update && apt-get install -y wine32
 RUN apt-get update && apt-get install -y wine
-RUN useradd debian
+RUN apt-get update && apt-get install -y sbsigntool grub-efi-amd64-bin
+RUN apt-get update && apt-get install -y gettext x11-apps
+RUN apt-get update && apt-get install -y build-essential libreadline-dev libbz2-dev libsqlite3-dev libssl-dev zlib1g-dev
+RUN apt-get update && apt-get install -y wget
+RUN wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz && tar xzf Python-2.7.18.tgz && cd Python-2.7.18 && ./configure --prefix=/usr/python2 && make && make install
+RUN apt-get update && apt-get install -y p7zip-full
+#RUN useradd debian
+RUN useradd --password='$y$j9T$OaSg3czvtEIUIp3A.dYqz.$mJJ8lrN0T4pAr/BylRCk4JrKYkBW0cVRHKHcuyTi9t8' debian
+RUN install -d /home/debian
+RUN chown debian /home/debian
 RUN usermod -aG sudo debian
+RUN apt-get update && apt-get install -y whois
 RUN mkdir -p /work
 WORKDIR /work
+ENV DISPLAY=:0
 
 CMD make && tail -f /dev/null
