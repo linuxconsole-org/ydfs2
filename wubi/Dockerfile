@@ -42,6 +42,7 @@ RUN useradd --password='$y$j9T$OaSg3czvtEIUIp3A.dYqz.$mJJ8lrN0T4pAr/BylRCk4JrKYk
 RUN install -d /home/debian
 RUN chown debian /home/debian
 RUN usermod -aG sudo debian
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN apt-get update && apt-get install -y whois
 RUN mkdir -p /work
 WORKDIR /work
