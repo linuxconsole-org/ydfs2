@@ -1,8 +1,8 @@
-docker build -t "ydfs-wubi" .
+docker build -t "ydfs-wubi" . || exit 1
 
-docker run -u root -ti --rm --security-opt seccomp=unconfined \
-	-w="$(pwd)" \
+docker run -ti --rm --security-opt seccomp=unconfined \
 	-v "$(pwd):$(pwd)" \
+	-w="$(pwd)" \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
+	--user="`id -u`:`id -g`" \
 	"ydfs-wubi" ${@}
-	#--user="`id -u`:`id -g`" \
