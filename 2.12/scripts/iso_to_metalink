@@ -1,19 +1,8 @@
 echo "<metalink version=\"3.0\" xmlns=\"http://www.metalinker.org/\">
     <files>
-      <file name=\"linuxconsole.2026-x86.iso\">
+      <file name=\"linuxconsole.iso\">
       <resources>
-        <url type=\"http\"><https://jukebox.linuxconsole.org/official/linuxconsole.2024-x86_64.iso/url> 
-      </resources>
-      </file>
-    </files>
-</metalink>
-" > ydfs-i386.metalink
-
-echo "<metalink version=\"3.0\" xmlns=\"http://www.metalinker.org/\">
-    <files>
-      <file name=\"linuxconsole.2026-x86.iso\">
-      <resources>
-        <url type=\"http\">https://jukebox.linuxconsole.org/official/linuxconsole.2024-x86_64.iso</url> 
+        <url type=\"http\">https://jukebox.linuxconsole.org/testing/linuxconsole.iso</url> 
       </resources>
       </file>
     </files>
