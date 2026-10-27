@@ -380,15 +380,15 @@ action=Install LinuxConsole
 shell\open\command=install.bat
 " > /$ISOTMP/iso/autorun.inf
 
-echo 'copy wubi\linuxconsole.exe %TEMP%' > /$ISOTMP/iso/install.bat
-echo 'c:' >> /$ISOTMP/iso/install.bat
-echo 'cd %TEMP%' >> /$ISOTMP/iso/install.bat
-echo 'linuxconsole.exe' >> /$ISOTMP/iso/install.bat
-echo 'start www.linuxconsole.org/faq' >> /$ISOTMP/iso/install.bat
+#echo 'copy wubi\linuxconsole.exe %TEMP%' > /$ISOTMP/iso/install.bat
+#echo 'c:' >> /$ISOTMP/iso/install.bat
+#echo 'cd %TEMP%' >> /$ISOTMP/iso/install.bat
+#echo 'linuxconsole.exe' >> /$ISOTMP/iso/install.bat
+#echo 'start www.linuxconsole.org/faq' >> /$ISOTMP/iso/install.bat
 
-mkdir /$ISOTMP/iso/wubi
-[ ! -e linuxconsole.exe ] && wget https://jukebox.linuxconsole.org/linuxconsole/wubi/linuxconsole.exe
-cp linuxconsole.exe /$ISOTMP/iso/wubi || exit $?
+#mkdir /$ISOTMP/iso/wubi
+#[ ! -e linuxconsole.exe ] && wget https://jukebox.linuxconsole.org/linuxconsole/wubi/linuxconsole.exe
+#cp linuxconsole.exe /$ISOTMP/iso/wubi || exit $?
 
 if [ ! -e memtest86+-5.01.bin ]
 then
