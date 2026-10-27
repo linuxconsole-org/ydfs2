@@ -11,7 +11,13 @@ fi
 echo 0 > /proc/sys/kernel/dmesg_restrict
 
 # YDFS 2.12
-# rm /busybox/bin/su
+
+chown root:root /home/linuxconsole2026/x86_64/libexec/sudo/sudoers.so
+chown root:root /home/linuxconsole2026/x86_64/etc/sudo/sudoers
+chown root:root /home/linuxconsole2026/x86_64/etc/sudo/sudoers.d
+chmod +s /home/linuxconsole2026/x86_64/bin/sudo
+
+grep NOPASSWD /etc/sudoers | echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Mount Ventoy as disk
 [ -e /ventoy ] && [ -e /dev/dm-1 ] && install -d /disk && mount /dev/dm-1 /disk
