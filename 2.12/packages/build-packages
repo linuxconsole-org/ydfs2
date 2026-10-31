@@ -493,6 +493,11 @@ then
   mv dejavu-fonts-ttf-2.29 $HOME/$ARCH/share/fonts
 fi
 
+if [ ! -e $HOME/$ARCH/share/fonts/noto ] && [ "$ARCH" != "arm" ]
+then
+  cp -fR $HOME_DIBAB/fonts/noto  $HOME/$ARCH/share/fonts/
+fi
+
 echo > $HOME/$ARCH/buildenv
 for ENV in LD_LIBRARY_PATH LIB_CUPS PATH CUPS_ETC XDG_DATA_DIRS PYTHONPATH
 do
