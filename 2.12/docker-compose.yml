@@ -1,7 +1,7 @@
 services:
     ydfs2.12:
-        #build: .
-        image: yledoare/ydfs-2.12
+        build: docker
+          #image: yledoare/ydfs-2.12
         volumes:
             - $HOME/2.12/ydfs:/home/linuxconsole2026/ydfs
             - $HOME/2.12/opkg:/home/linuxconsole2026/opkg
@@ -28,7 +28,8 @@ services:
                 memory: 4G
 
     ydfs2.12-fast64:
-        image: yledoare/ydfs-2.12
+        build: docker
+          #image: yledoare/ydfs-2.12
         volumes:
             - $HOME/2.12/ydfs:/home/linuxconsole2026/ydfs
             - $HOME/2.12/opkg:/home/linuxconsole2026/opkg
