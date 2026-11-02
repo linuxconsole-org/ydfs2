@@ -16,20 +16,33 @@ if [ ! -e /etc/asound.conf ]
 then
   echo -n "mute .. "
   amixer -q sset Master 80% mute
-  amixer -q sset Speaker 80% mute
+#  amixer -q sset Speaker 80% mute
+
 
   echo -n " aplay test .. "
-  aplay -q /usr/share/sounds/alsa/Front_Center.wav || echo "defaults.pcm.card 1
-  defaults.ctl.card 1" > /etc/asound.conf
-
-  if [ -e /etc/asound.conf ]
+  APLAY="OK"
+  aplay -q /usr/share/sounds/alsa/Front_Center.wav || APLAY="KO"
+  if [ "$APLAY" = "KO" ]
   then
-	echo -n " failed, /etc/asound.conf fixed "
+    for CARD in $(cat /proc/asound/cards | grep -v "at" | tr -s ' ' | cut -d ' ' -f2);
+    do
+      [ "$CARD" = 0 ] && continue
+      LC_ALL=en aplay -q -Dplughw:$CARD,0 /usr/share/sounds/alsa/Front_Center.wav && APLAY="OK"
+      if [ "$APLAY" = "OK" ]
+      then 
+      echo -e "defaults.pcm.card $CARD \ndefaults.ctl.card $CARD" > /etc/asound.conf
+	    echo -n " failed, /etc/asound.conf fixed with card $CARD "
+      ALSA_CARD=$CARD
+      break
+      fi
+    done
   fi
 
   echo -n " unmute .. "
   amixer -q sset Master 80% unmute
-  amixer -q sset Speaker 80% unmute
+#  amixer -q sset Speaker 80% unmute
+else
+  ALSA_CARD=$(grep defaults.pcm.card /etc/asound.conf  | cut -d' ' -f2)
 fi
 
 if [ ! -e "$HOME_DIBAB/$ARCH/lib/alsa/var/asound.state" ] 
