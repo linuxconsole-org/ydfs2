@@ -40,7 +40,7 @@ EOF
 [ "$lang" = "German" ] && export LC_ALL=de_DE.UTF8 && export LANG=de_DE.UTF8
 [ "$lang" = "Portuguese" ] && export LC_ALL=pt_PT.UTF8 && export LANG=pt_PT.UTF8
 [ "$lang" = "English" ] && export LC_ALL=en_US.UTF8
-[ "$lang" = "Japanese" ] && export LC_ALL=jp_JP.UTF8
+[ "$lang" = "Japanese" ] && export LC_ALL=ja_JP.UTF8
 [ "$lang" = "Arabic" ] && export LC_ALL=ar_TN.UTF8
 
 if [ "$ans" != "" ]
