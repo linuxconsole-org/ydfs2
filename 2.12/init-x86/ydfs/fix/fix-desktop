@@ -7,3 +7,10 @@ do
   #echo "Hidden=true" >> $HOME/.config/autostart/$app
 done
 fi
+
+if [ ! -e /ydfs/boot/options/nounderscan ]
+then
+  OUTPUT=$(xrandr |grep primary |cut -d' ' -f1)
+  echo Output is $OUTPUT
+  xrandr --output $OUTPUT --set underscan auto
+fi
