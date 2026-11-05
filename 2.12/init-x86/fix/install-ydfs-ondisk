@@ -10,14 +10,18 @@ LIST_DISK=""
 
 for device in `ls /sys/class/block/`
 do
+  [ "$device" = "dm-0" ] && continue
+  [ "$device" = "dm-1" ] && continue
   [ -e /sys/class/block/$device/partition ] && continue
   [ $(cat /sys/class/block/$device/removable) = "1" ] && continue
   echo $device |grep loop >/dev/null && continue
   SIZE=$(LC_ALL=EN fdisk -l /dev/$device |grep sector |head -1 |  gawk '{print $3}' |sed s@' '@_@g)
+  UNIT=$(LC_ALL=EN fdisk -l /dev/$device |grep sector |head -1 |  gawk '{print $4}' |sed s@','@@g)
   # MODEL=$(LC_ALL=EN fdisk -l /dev/$device |grep model |cut -d':' -f2|sed s@' '@_@g)
-  MODEL=$(LC_ALL=EN fdisk -l /dev/$device |grep model |gawk '{print $3}')
+  # MODEL=$(LC_ALL=EN fdisk -l /dev/$device |grep model |gawk '{print $3}')
+  MODEL=$(cat /sys/block/$device/device/model |sed s@' '@_@g | tr -s '_')
   [ "$MODEL" = "" ] && MODEL="-"
-  LIST_DISK="$LIST_DISK FALSE $device $MODEL $SIZE"
+  LIST_DISK="$LIST_DISK FALSE $device $MODEL $SIZE$UNIT"
 done
 
 echo $LIST_DISK
@@ -78,7 +82,8 @@ then
 	cp -fR /media/ydfs/isolinux /mnt/"$DISK"1
 	cp -fR /media/ydfs/.disk /mnt/"$DISK"1
 
-  	sed -i "s@liveusb@@g" /mnt/"$DISK"1/boot/grub/grub.cfg
+#  	sed -i "s@liveusb@@g" /mnt/"$DISK"1/boot/grub/grub.cfg
+	cp /mnt/"$DISK"1/boot/grub/grub-disk.cfg /mnt/"$DISK"1/boot/grub/grub.cfg
         echo mkfs.ext4 -L "linuxconsole" /dev/"$DISK"2
         mkfs.ext4 -L "linuxconsole" /dev/"$DISK"2 1>/dev/null
   #  zenity --info --text="EFI Detected \n \n Please first create a FAT32 BOOT partition, and copy EFI, isolinux, boot \n Also remove the liveusb option from /boot/grub/grub.cfg" &>/dev/null

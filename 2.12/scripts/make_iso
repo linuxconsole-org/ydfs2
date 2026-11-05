@@ -16,6 +16,17 @@ TIMEOUT 200
 '
 }
 
+print_efi_boot_disk_options()
+{
+echo '
+menuentry "'$DISTRONAME'" {
+	set gfxpayload=keep
+	linux	/isolinux/kernel quiet ISOPATH=$iso_path  ---
+	initrd	/isolinux/initramfs
+}
+'
+}
+
 print_efi_options()
 {
 echo '
@@ -400,6 +411,7 @@ then
   cp -fR boot-efi/* /$ISOTMP/iso/ || exit $?
   print_efi_liveusb_options > $ISOTMP/iso/boot/grub/loopback.cfg
   print_efi_options > $ISOTMP/iso/boot/grub/grub.cfg
+  print_efi_boot_disk_options > $ISOTMP/iso/boot/grub/grub-disk.cfg
   EFIBOOT=" -e /EFI/boot/efiboot.img -e boot/grub/efi.img "
 fi
 
