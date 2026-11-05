@@ -24,6 +24,8 @@ RUN echo "ro_RO.UTF-8 UTF-8">> /etc/locale.gen
 RUN echo "uk_UA.UTF-8 UTF-8">> /etc/locale.gen
 RUN echo "uk_UA.UTF-8 UTF-8">> /etc/locale.gen
 RUN echo "el_GR.UTF-8 UTF-8">> /etc/locale.gen
+RUN echo "vi_VN.UTF-8 UTF-8">> /etc/locale.gen
+RUN echo "zh_TW.UTF-8 UTF-8">> /etc/locale.gen
 RUN locale-gen
 ENV LANG en_US.utf8
 #ENV LANG fr_FR.utf8

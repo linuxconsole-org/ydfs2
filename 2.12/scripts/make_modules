@@ -125,17 +125,11 @@ cp -a $HOME/$ARCH/share/doc/cups $HOME/ydfs/modules/$ARCH/share/doc
 [ "$ARCH" = "x86_64" ] && [ -e /usr/lib/x86_64-linux-gnu/gconv ] && install -d $HOME/ydfs/modules/$ARCH/lib/x86_64-linux-gnu && cp -fR /usr/lib/x86_64-linux-gnu/gconv $HOME/ydfs/modules/$ARCH/lib/x86_64-linux-gnu
 [ -e /usr/lib/gconv ] && cp -fR /usr/lib/gconv $HOME/ydfs/modules/$ARCH/lib/
 install -d $HOME/ydfs/modules/$ARCH/share/locale 
-cp -fR $HOME/$ARCH/share/locale/br $HOME/ydfs/modules/$ARCH/share/locale
-cp -fR $HOME/$ARCH/share/locale/ar $HOME/ydfs/modules/$ARCH/share/locale
-cp -fR $HOME/$ARCH/share/locale/fr $HOME/ydfs/modules/$ARCH/share/locale
-cp -fR $HOME/$ARCH/share/locale/es $HOME/ydfs/modules/$ARCH/share/locale
-cp -fR $HOME/$ARCH/share/locale/it $HOME/ydfs/modules/$ARCH/share/locale
-cp -fR $HOME/$ARCH/share/locale/de $HOME/ydfs/modules/$ARCH/share/locale
-cp -fR $HOME/$ARCH/share/locale/pt $HOME/ydfs/modules/$ARCH/share/locale
-cp -fR $HOME/$ARCH/share/locale/cs $HOME/ydfs/modules/$ARCH/share/locale
-cp -fR $HOME/$ARCH/share/locale/pl $HOME/ydfs/modules/$ARCH/share/locale
-cp -fR $HOME/$ARCH/share/locale/zh_CN $HOME/ydfs/modules/$ARCH/share/locale
-cp -fR $HOME/$ARCH/share/locale/ru $HOME/ydfs/modules/$ARCH/share/locale
+
+cat /etc/locale.gen | cut -d '_' -f1 | while read LOCALE
+do
+  cp -fR $HOME/$ARCH/share/locale/$LOCALE* $HOME/ydfs/modules/$ARCH/share/locale
+done
 # Enable wanted locales like es_ES.UTF-8 with 'dpkg-reconfigure locales' on debian
 install -d $HOME/ydfs/modules/$ARCH/lib/locale && cp /usr/lib/locale/locale-archive $HOME/ydfs/modules/$ARCH/lib/locale
 ln -sf libcurl.so.4 $HOME/ydfs/modules/$ARCH/lib/libcurl-gnutls.so.4

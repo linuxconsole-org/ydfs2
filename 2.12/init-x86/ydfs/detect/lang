@@ -2,17 +2,21 @@
 cat /proc/cmdline | grep locale=pl >/dev/null && lang="Polska"
 cat /proc/cmdline | grep locale=cs >/dev/null && lang="Czech"
 cat /proc/cmdline | grep locale=fr >/dev/null && lang="French"
+cat /proc/cmdline | grep locale=br_fr >/dev/null && lang="Breton"
 cat /proc/cmdline | grep locale=es >/dev/null && lang="Spanish"
 cat /proc/cmdline | grep locale=it >/dev/null && lang="Italian"
 cat /proc/cmdline | grep locale=de >/dev/null && lang="German"
 cat /proc/cmdline | grep locale=pt >/dev/null && lang="Portuguese"
 cat /proc/cmdline | grep locale=jp >/dev/null && lang="Japanese"
+cat /proc/cmdline | grep locale=vi >/dev/null && lang="Vietnam"
+cat /proc/cmdline | grep locale=zh >/dev/null && lang="Chinese"
+cat /proc/cmdline | grep locale=zh_TW >/dev/null && lang="Taiwan"
 
 if [ ! -e $HOME/.config/ydfs/lang ] || [ "$1" = "reconfigure" ]
 then
   if [ "$lang" = "" ] || [ "$1" = "reconfigure" ]
   then
-    ans=$(zenity  --height 350 --list --hide-header  --text "Choose lang" --radiolist  --column "Choice" --column "Lang" TRUE English FALSE French FALSE Spanish FALSE Italian FALSE German FALSE Portuguese FALSE Polska FALSE Czech FALSE Breton FALSE Quebec FALSE Russian FALSE Chinese FALSE Japanese FALSE Arabic)
+    ans=$(zenity  --height 350 --list --hide-header  --text "Choose lang" --radiolist  --column "Choice" --column "Lang" TRUE English FALSE French FALSE Spanish FALSE Italian FALSE German FALSE Portuguese FALSE Polska FALSE Czech FALSE Breton FALSE Quebec FALSE Russian FALSE Chinese FALSE Japanese FALSE Arabic FALSE Vietnam False Taiwan)
     # lang=$(echo $ans| tr '[:upper:]' '[:lower:]')
     lang=$(echo $ans)
   fi
@@ -42,6 +46,8 @@ EOF
 [ "$lang" = "English" ] && export LC_ALL=en_US.UTF8
 [ "$lang" = "Japanese" ] && export LC_ALL=ja_JP.UTF8
 [ "$lang" = "Arabic" ] && export LC_ALL=ar_TN.UTF8
+[ "$lang" = "Vietnam" ] && export LC_ALL=vi_VN.UTF-8
+[ "$lang" = "Taiwan" ] && export LC_ALL=zh_CN.UTF-8 && export LANG=zh_TW.UTF-8
 
 if [ "$ans" != "" ]
 then
