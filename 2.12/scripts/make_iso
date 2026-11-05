@@ -19,9 +19,10 @@ TIMEOUT 200
 print_efi_boot_disk_options()
 {
 echo '
+set timeout=5
 menuentry "'$DISTRONAME'" {
 	set gfxpayload=keep
-	linux	/isolinux/kernel quiet ISOPATH=$iso_path  ---
+	linux	/isolinux/kernel quiet ---
 	initrd	/isolinux/initramfs
 }
 '
