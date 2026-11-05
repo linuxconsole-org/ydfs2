@@ -9,11 +9,11 @@ dico = {
     "it" : "Italian",
     "cs" : "Czech",
     "pt" : "Portuguese",
-    "jp" : "Japanese"
-    "vi" : "Vietnam"
-    "zh" : "Chinese"
-    "zh_TW" : "Taiwan"
-    "br_FR" : "Breton"
+    "jp" : "Japanese",
+    "vi" : "Vietnam",
+    "zh" : "Chinese",
+    "zh_TW" : "Taiwan",
+    "br_FR" : "Breton",
 }
 
 try:
