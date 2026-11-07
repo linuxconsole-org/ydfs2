@@ -1,6 +1,16 @@
 #!/bin/bash
 set -e
 
+FREEMEG=$(free -m |grep Mem |  gawk '{print $4}')
+if [ "$FREEMEG" -gt "4000" ]
+then
+  echo "Free mem : $FREEMEG, OK"
+else
+  echo "$FREEMEG Mb is not enough free memory, please visit https://github.com/linuxconsole-org/ydfs2/blob/2.12/TIPS.md"
+  read key
+  exit 1
+fi
+
 flatpak remotes
 if [ "$USER" == "root" ]
 then
