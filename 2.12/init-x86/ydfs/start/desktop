@@ -66,16 +66,16 @@ function start_mate
   ls -l $XAUTHORITY 1>>$HOME/.mate-log 2>>$HOME/.mate-err
 
         # if [ "$BIGSCREEN" = "OK" ] && [ "$FIRSTSTART"="OK" ]
-        if [ "$FIRSTSTART"="OK" ]
-        then
+        #if [ "$FIRSTSTART"="OK" ]
+        #then
           # dbus-launch mate-display-properties
-	  install -d $HOME/.config/autostart
+	  # install -d $HOME/.config/autostart
 	  # cp /home/linuxconsole2026/mate/share/applications/mate-display-properties.desktop $HOME/.config/autostart/
-	  install -d $HOME/Desktop
-	  cp /home/linuxconsole2026/mate/share/applications/mate-display-properties.desktop $HOME/Desktop
-        else
-          [ -e $HOME/.config/autostart/mate-display-properties.desktop ] && rm  $HOME/.config/autostart/mate-display-properties.desktop
-        fi
+	  # install -d $HOME/Desktop
+	  # cp /home/linuxconsole2026/mate/share/applications/mate-display-properties.desktop $HOME/Desktop
+        #else
+          #[ -e $HOME/.config/autostart/mate-display-properties.desktop ] && rm  $HOME/.config/autostart/mate-display-properties.desktop
+        #fi
 
    	NO_AT_BRIDGE=1 ck-launch-session dbus-launch mate-session 1>>$HOME/.mate-log 2>>$HOME/.mate-err
 }
