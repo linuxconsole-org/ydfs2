@@ -15,26 +15,30 @@ else
 if [ ! -e /etc/asound.conf ]
 then
   echo -n "mute .. "
-  amixer -q sset Master 80% mute
+  amixer | grep Master && amixer -q sset Master 80% mute
 #  amixer -q sset Speaker 80% mute
 
 
   echo -n " aplay test .. "
   APLAY="OK"
-  aplay -q /usr/share/sounds/alsa/Front_Center.wav || APLAY="KO"
+  aplay -q /usr/share/sounds/alsa/Front_Center.wav 2>/dev/null || APLAY="KO"
   if [ "$APLAY" = "KO" ]
   then
+    echo -n " failed on card 0, tring " 
     for CARD in $(cat /proc/asound/cards | grep -v "at" | tr -s ' ' | cut -d ' ' -f2);
     do
       [ "$CARD" = 0 ] && continue
+      echo -n " card $CARD "
+      amixer -c $CARD | grep Master >/dev/null 2>/dev/null && amixer -c $CARD -q sset Master 80% mute
       LC_ALL=en aplay -q -Dplughw:$CARD,0 /usr/share/sounds/alsa/Front_Center.wav && APLAY="OK"
       if [ "$APLAY" = "OK" ]
       then 
-      echo -e "defaults.pcm.card $CARD \ndefaults.ctl.card $CARD" > /etc/asound.conf
-	    echo -n " failed, /etc/asound.conf fixed with card $CARD "
-      ALSA_CARD=$CARD
-      break
+        echo -e "defaults.pcm.card $CARD \ndefaults.ctl.card $CARD" > /etc/asound.conf
+	echo -n " test OK, /etc/asound.conf fixed with card ID $CARD "
+        ALSA_CARD=$CARD
+        break
       fi
+      amixer -c $CARD -q sset Master 80% unmute
     done
   fi
 
@@ -51,7 +55,7 @@ then
 #  ln -s $HOME_DIBAB/$ARCH/var/lib $HOME_DIBAB/var/lib
 #  alsactl store
 
-echo -n " card : "
+echo -n " Card name : "
 cat /proc/asound/card"$ALSA_CARD"/id
 
 # Output mode (SPDIF or analog)
