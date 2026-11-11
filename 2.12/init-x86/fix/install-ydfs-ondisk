@@ -72,10 +72,16 @@ then
 	echo 'mklabel gpt
 	mkpart primary fat32 0% 100M
 	mkpart primary ext4 100M 100%' | parted /dev/"$DISK"
-
-	mkfs.vfat -n boot /dev/"$DISK"1
 	install -d /mnt/"$DISK"1
-	mount /dev/"$DISK"1 /mnt/"$DISK"1
+	if [ -e /dev/"$DISK"p1 ]
+	then
+	  mkfs.vfat -n boot /dev/"$DISK"p1
+	  mount /dev/"$DISK"p1 /mnt/"$DISK"1
+        else
+	  mkfs.vfat -n boot /dev/"$DISK"1
+	  mount /dev/"$DISK"1 /mnt/"$DISK"1
+        fi
+
 
 	cp -fR /media/ydfs/EFI /mnt/"$DISK"1
 	cp -fR /media/ydfs/boot /mnt/"$DISK"1
@@ -84,8 +90,14 @@ then
 
 #  	sed -i "s@liveusb@@g" /mnt/"$DISK"1/boot/grub/grub.cfg
 	cp /mnt/"$DISK"1/boot/grub/grub-disk.cfg /mnt/"$DISK"1/boot/grub/grub.cfg
-        echo mkfs.ext4 -L "linuxconsole" /dev/"$DISK"2
-        mkfs.ext4 -L "linuxconsole" /dev/"$DISK"2 1>/dev/null
+	if [ -e /dev/"$DISK"p2 ]
+	then
+          echo mkfs.ext4 -L "linuxconsole" /dev/"$DISK"p2
+          mkfs.ext4 -L "linuxconsole" /dev/"$DISK"p2 1>/dev/null
+	else
+          echo mkfs.ext4 -L "linuxconsole" /dev/"$DISK"2
+          mkfs.ext4 -L "linuxconsole" /dev/"$DISK"2 1>/dev/null
+	fi
   #  zenity --info --text="EFI Detected \n \n Please first create a FAT32 BOOT partition, and copy EFI, isolinux, boot \n Also remove the liveusb option from /boot/grub/grub.cfg" &>/dev/null
   else
 	echo 'mklabel msdos
@@ -93,7 +105,6 @@ then
         echo mkfs.ext4 -L "linuxconsole" /dev/"$DISK"1
         mkfs.ext4 -L "linuxconsole" /dev/"$DISK"1 1>/dev/null
   fi
-
   #$HOME_DIBAB/$ARCH/sbin/gpartedbin &>/dev/null
   sh /ydfs/start/automount
   sleep 1
@@ -102,9 +113,15 @@ then
   sleep 5
   [ ! -e /media/$DISTRONAME ] && [ -e /media/usbhd-"$DISK"1 ] && umount /media/usbhd-"$DISK"1 && echo "Restart trigger" && udevadm trigger --action=add && sleep 2
   [ ! -e /media/$DISTRONAME ] && [ -e /media/usbhd-"$DISK"2 ] && umount /media/usbhd-"$DISK"2 && echo "Restart trigger" && udevadm trigger --action=add && sleep 2
-  [ ! -e /media/$DISTRONAME ] && e2label /dev/"$DISK"2 | grep $DISTRONAME && mkdir /media/$DISTRONAME && mount /dev/"$DISK"2 /media/$DISTRONAME && echo "Force to $DISK"2
-  [ ! -e /media/$DISTRONAME ] && e2label /dev/"$DISK"1 | grep $DISTRONAME && mkdir /media/$DISTRONAME && mount /dev/"$DISK"1 /media/$DISTRONAME && echi "Force to $DISK"1
 
+  if [ -e /dev/"$DISK"p2 ]
+  then
+    [ ! -e /media/$DISTRONAME ] && e2label /dev/"$DISK"p1 | grep $DISTRONAME && mkdir /media/$DISTRONAME && mount /dev/"$DISK"p1 /media/$DISTRONAME && echo "Force to $DISK"p1
+    [ ! -e /media/$DISTRONAME ] && e2label /dev/"$DISK"p2 | grep $DISTRONAME && mkdir /media/$DISTRONAME && mount /dev/"$DISK"p2 /media/$DISTRONAME && echo "Force to $DISK"p2
+  else
+    [ ! -e /media/$DISTRONAME ] && e2label /dev/"$DISK"1 | grep $DISTRONAME && mkdir /media/$DISTRONAME && mount /dev/"$DISK"1 /media/$DISTRONAME && echo "Force to $DISK"1
+    [ ! -e /media/$DISTRONAME ] && e2label /dev/"$DISK"2 | grep $DISTRONAME && mkdir /media/$DISTRONAME && mount /dev/"$DISK"2 /media/$DISTRONAME && echo "Force to $DISK"2
+  fi
   if [ ! -e /media/$DISTRONAME ]
   then
 	zenity --error --text="Ext4 partition with $DISTRONAME lablel not found, exiting" &>/dev/null
