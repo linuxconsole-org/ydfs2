@@ -6,7 +6,7 @@ mkdir /tmp
 
 install -d /ydfs/modules/$ARCH
 
-mount /media/ydfs/modules/$ARCH.squashfs /ydfs/modules/$ARCH || ash
+mount /media/ydfs/modules/$ARCH.squashfs /ydfs/modules/$ARCH 2>/dev/tty1 >/dev/tty1 || ash
 
 echo "Clear initramfs /lib/modules"
 rm -fR /lib/modules
