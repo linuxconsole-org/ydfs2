@@ -174,6 +174,13 @@ disk-bios.img:
 qemu-bios-diskinstall: disk-bios.img
 	qemu-system-x86_64 -enable-kvm -cpu qemu64,avx,pdpe1gb,check,enforce -device e1000 -m size=4000 -hda disk-bios.img -cdrom ${HOME}/iso/linuxconsole.iso
 
+lc1:
+	qemu-system-i386 \
+-cdrom /home/yann/Téléchargements/Linuxconsole-1.0.1.iso
+lc04:
+	qemu-system-i386 \
+-cdrom /home/yann/Téléchargements/linuxconsole0.4-test6mini-fr.iso
+
 qemu:
 	qemu-system-x86_64 -usb -device intel-hda  -audiodev alsa,id=alsa -device usb-tablet -enable-kvm -cpu qemu64,avx,pdpe1gb,check,enforce -m size=4000 -cdrom ${HOME}/iso/linuxconsole.iso
 
