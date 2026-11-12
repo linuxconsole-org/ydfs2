@@ -116,7 +116,7 @@ then
 
 	[ -e /ydfs/boot/options/livecd ] && rmdir /ydfs/boot/options/livecd
 	# sleep 10
-	touch /ydfs/boot/options/liveusb
+	[ $COUNT = 5 ] && echo "Enable liveusb .." > /dev/tty1 && touch /ydfs/boot/options/liveusb
 	# touch /tmp/waitusb
 	echo
 	echo "Restarting /ydfs/detect/media"
