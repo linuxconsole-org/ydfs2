@@ -1,4 +1,4 @@
-# YDFS - What is new in 2.12 relase
+# YDFS - What is new in 2.12-RC2 relase
 
 ## Compatible with MultiOS-USB
 
@@ -18,9 +18,28 @@
 
 > [ more than 1000 pacakages ] (https://github.com/linuxconsole-org/ydfs2/blob/2.12/2.12/packages/list-x86)
 
-> [ Flatpak is available ] (https://github.com/linuxconsole-org/ydfs2/blob/2.12/2.12/packages/list-updates)
+> [ Flatpak is now available ] (https://github.com/linuxconsole-org/ydfs2/blob/2.12/2.12/packages/list-updates)
 
 ## Mate Desktop 1.29.0
+
+## New modules in initramfs
+
+> To boot from MMC cards
+> To boot from External ssd/nvme
+
+## Auto install script for empty Hard disks
+
+> Legacy 
+> EFI
+
+## New Locales
+
+> Basque (eu_ES)
+> Romanian (ro_RO)
+> Ukraninan (uk_UA)
+> Greek (el_GR)
+> Vietnamese (vi_VN)
+> Taiwan (zh_TW)
 
 ## Tools
 
