@@ -30,16 +30,26 @@
 ## Auto install script for empty Hard disks
 
 > Legacy 
+
 > EFI
 
 ## New Locales
 
 > Basque (eu_ES)
+
 > Romanian (ro_RO)
-> Ukraninan (uk_UA)
+
+> Ukrainian (uk_UA)
+
 > Greek (el_GR)
+
 > Vietnamese (vi_VN)
-> Taiwan (zh_TW)
+
+> Taiwan,Traditional Chinese (zh_TW)
+
+
+## Selecting locale is available in early boot
+
 
 ## Tools
 
@@ -93,6 +103,12 @@
 > On early booting, pivot root is enabled on tmpfs. This makes possible using Flatpak
 > It is possible to enable a loopback file on the USB Key to store Flatpak data
 
+## FixUSB option
+
+> By putting scripts into an "fixusb" folder, inside an USB key, you can change the behavor 
+
+> Some scripts are available on [https://github.com/linuxconsole-org/fixusb] (https://github.com/linuxconsole-org/fixusb)
+
 ## Auto connect wireless
 
 > By writing a /ydfs/wireless.cfg file on the USB key, Wireless network will be up at statup
@@ -102,7 +118,6 @@
 Scripts have been successufuly tested on [Linux Mint] (https://raw.githubusercontent.com/linuxconsole-org/ydfs2/refs/heads/2.12/addons/install-with-grub.sh) and [Catchy OS] (https://github.com/linuxconsole-org/ydfs2/blob/2.12/addons/install-with-limine.sh)
 
 ## WSL Build
-
 
 I works ! (Make fast-iso)
 
