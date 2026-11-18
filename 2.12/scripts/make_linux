@@ -182,6 +182,21 @@ fi
   then
     ZSTD_CLEVEL=19 make INSTALL_MOD_STRIP=1 modules O=$BUILD_DIR || exit 0
     ZSTD_CLEVEL=19 make INSTALL_MOD_STRIP=1 modules_install O=$BUILD_DIR INSTALL_MOD_PATH=$HOME/ydfs/kernel-$ARCH/modules/$KERNEL3 || exit 1
+
+    if [ ! -e open-gpu-kernel-modules-620.73.04 ]
+    then
+      wget https://github.com/NVIDIA/open-gpu-kernel-modules/archive/refs/tags/620.73.04.tar.gz
+      tar xzvf 620.73.04.tar.gz
+    fi 
+
+    cd open-gpu-kernel-modules-620.73.04 || exit 1
+        mv $HOME/$ARCH/include/libelf.h $HOME/$ARCH/include/libelf.h-disabled
+        LDFLAGS="" CC=clang make
+	cd kernel-open
+	make SYSSRC=$HOME/ydfs/src/linux-$KERNEL3/ SYSOUT=$HOME/ydfs/build/linux-x86_64-$KERNEL3 module || exit 2
+	cp *.ko $HOME/ydfs/kernel-$ARCH/modules/$KERNEL3/lib/modules/$KERNEL3/kernel/drivers/video || exit 3
+    cd ..
+
     /sbin/depmod -b $HOME/ydfs/kernel-$ARCH/modules/"$KERNEL3" -m "$KERNEL3"
     [ ! -e $HOME/ydfs/kernel-$ARCH/modules/$KERNEL3/lib/modules/"$KERNEL3"/modules.dep ] && echo "$HOME/ydfs/kernel-$ARCH/modules/"$KERNEL3"/modules.dep not found" && [ ! -e $HOME/ydfs/kernel-$ARCH/modules/$KERNEL3/lib/modules/"$KERNEL3"-pae/modules.dep ] && echo "$HOME/ydfs/kernel-$ARCH/modules/"$KERNEL3"/modules.dep not found" && exit 2
   fi

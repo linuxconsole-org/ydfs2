@@ -430,7 +430,6 @@ if [ -e minetest.conf.example ]
   [ -e src/lib/blockdev.c.in ] && sed -i "s/-Werror//" src/plugins/Makefile.am
   [ -e src/lib/blockdev.c.in ] && sed -i "s/-Werror//" src/plugins/fs/Makefile.am
   pwd | grep xorg-server && mv $HOME/$ARCH/include/gc.h $HOME/$ARCH/include/gc.h-disabled
-  pwd | grep open-gpu-kernel-modules && mv $HOME/$ARCH/include/libelf.h $HOME/$ARCH/include/libelf.h-disabled
   [ -e $HOME/$ARCH/include/fmt-disabled ] && mv $HOME/$ARCH/include/fmt-disabled $HOME/$ARCH/include/fmt
   [ -e $HOME/$ARCH/include/ode-disabled ] && mv $HOME/$ARCH/include/ode-disabled $HOME/$ARCH/include/ode
   [ -e $HOME/$ARCH/include/rapidjson-disabled ] && mv $HOME/$ARCH/include/rapidjson-disabled $HOME/$ARCH/include/rapidjson
@@ -2762,12 +2761,6 @@ Cflags: -I${includedir}' > lua.pc
       OLDARCH=$ARCH # Fix vlc bug
       [ -e src/cadence.py ] && make
       [ -e src/cadence.py ] && LD_LIBRARY_PATH="" make
-      if [ -e kernel-open ]
-      then
-        LDFLAGS="" make
-	cd kernel-open
-	make SYSSRC=$HOME/ydfs/src/linux-$KERNEL3/ SYSOUT=$HOME/ydfs/build/linux-x86_64-$KERNEL3 module || exit 2
-      fi
 
       [ -e share/vlc.desktop.in ] && OLDARCH=$ARCH && unset ARCH
       #make DBM_INCLUDE=$HOME/$OLDARCH/include -n -k -j3 
