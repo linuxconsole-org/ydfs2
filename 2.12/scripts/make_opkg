@@ -50,7 +50,7 @@ fi
 [ "$NAME" = "chrome" ] && DBEXTRA=Internet && PKGVER="latest" && PKGSRC="http://bugtracker.linuxconsole.org" && PKGDESC="Chrome Web browser"
 [ "$NAME" = "playonlinux" ] && DBEXTRA=games && PKGVER="4.2.5" && PKGSRC="http://bugtracker.linuxconsole.org" && PKGDESC="Play Linux Games with Wine"
 [ "$NAME" = "spring" ] && DBEXTRA=games && PKGVER="98.0" && PKGSRC="http://bugtracker.linuxconsole.org" && PKGDESC="RTS Game"
-
+[ "$NAME" = "wolfssl-5.9.4" ] && NAME="wolfssl"
 
 [ "$PKGDESC" = "" ] && [ -e $HOME/archpkg/$NAME ] && PKGDESC=$(grep pkgdes $HOME/archpkg/$NAME | cut -d'=' -f2)
 #[ "$PKGDESC" = "" ] && echo "What is DESC for $NAME ?" && read PKGDESC && echo "$NAME;$PKGDESC" >> $HOME_DIBAB/packages.desc
@@ -76,6 +76,8 @@ echo "Extra is $DBEXTRA, name is $NAME"
 [ "$NAME" = "gnome-mplayer" ] && DEPENDS="gmtk, mplayer-export"
 [ "$NAME" = "celestia" ] && DEPENDS="pangox-compat,gtkglext"
 [ "$NAME" = "podman" ] && DEPENDS="virtiofsd,qemu"
+#[ "$NAME" = "qemu" ] && DEPENDS="wolfssl,vde-2,rdma-core"
+[ "$NAME" = "qemu" ] && DEPENDS="vde-2"
 # [ "$NAME" = "kgeography" ] && DEPENDS="libkdeedu"
 [ "$NAME" = "khangman" ] && DEPENDS="libkdeedu"
 # [ "$NAME" = "shotwell" ] && DEPENDS="webkitgtk"

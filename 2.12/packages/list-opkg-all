@@ -1,5 +1,8 @@
+wolfssl-5.9.4-stable.tar.gz::https://github.com/wolfssl/wolfssl/archive/refs/tags/v5.9.4-stable.tar.gz
+vde2-2.3.3.tar.gz::https://github.com/virtualsquare/vde-2/archive/refs/tags/v2.3.3.tar.gz
+https://github.com/linux-rdma/rdma-core/archive/v66.0/rdma-core-66.0.tar.gz
+https://download.qemu.org/qemu-10.2.4.tar.xz
 git://github.com/linuxconsole-org/opkg-gui.git
-https://download.qemu.org/qemu-10.2.3.tar.xz
 git://github.com/linuxconsole-org/podman-ydfs.git
 https://gitlab.com/virtio-fs/virtiofsd/-/archive/v1.12.0/virtiofsd-v1.12.0.tar.gz
 https://ftp.gnu.org/gnu/make/make-4.4.1.tar.lz

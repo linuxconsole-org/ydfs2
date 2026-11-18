@@ -342,6 +342,8 @@ echo $ARCHIVE | grep virglrenderer && LC_CONFIGURE_OPTS="  -Dvenus-experimental=
 	echo $ARCHIVE | grep FileZilla && export LC_CONFIGURE_OPTS="--with-pugixml=builtin"
 	echo $ARCHIVE | grep apt-1 && export LC_CONFIGURE_OPTS="--enable-nonportable-atomics"
 	echo $ARCHIVE | grep calf && export LC_CONFIGURE_OPTS="--enable-experimental --enable-sse"
+	echo $ARCHIVE | grep virtualsquare/vde-2 && export LC_CONFIGURE_OPTS="--enable-experimental"
+	echo $ARCHIVE | grep rdma-core && export LC_CONFIGURE_OPTS="-DNO_MAN_PAGES=1"
 	echo $ARCHIVE | grep mbedtls && export LC_CONFIGURE_OPTS="-DUSE_SHARED_MBEDTLS_LIBRARY=On -DCMAKE_C_FLAGS='-fPIC'"
 	echo $ARCHIVE | grep fluidsynth && export LC_CONFIGURE_OPTS="-Denable-ladspa=ON"
 	echo $ARCHIVE | grep kio-5 && export LC_CONFIGURE_OPTS="-DCMAKE_INSTALL_LIBEXECDIR=lib \
