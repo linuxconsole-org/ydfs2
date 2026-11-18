@@ -458,7 +458,9 @@ if [ -e minetest.conf.example ]
   [ -e $HOME/$ARCH/include/GL-disabled ] && mv $HOME/$ARCH/include/GL-disabled $HOME/$ARCH/include/GL
   [ -e $HOME/$ARCH/include/utils.h ] && mv $HOME/$ARCH/include/utils.h $HOME/$ARCH/include/utils-cdparanoia.h
   [ -e $HOME/$ARCH/include/util/debug.h ] && mv $HOME/$ARCH/include/util/debug.h $HOME/$ARCH/include/util/debug-samba.h
-  
+  [ -e /home/linuxconsole2026/x86_64/lib/pkgconfig/libpng12-disabled.pc ] && mv /home/linuxconsole2026/x86_64/lib/pkgconfig/libpng12-disabled.pc /home/linuxconsole2026/x86_64/lib/pkgconfig/libpng12.pc
+ 
+  pwd | grep glmark2 && mv /home/linuxconsole2026/x86_64/lib/pkgconfig/libpng12.pc /home/linuxconsole2026/x86_64/lib/pkgconfig/libpng12-disabled.pc 
   [ "$BUILDME" = "OK" ] && echo "Build yourself" && bash # xterm 
   if [ -e src/colord.gresource.xml ]
   then
@@ -2536,6 +2538,9 @@ echo "At BUILDPERL"
      ./waf configure --prefix=$PREFIX $LC_CONFIGURE_OPTS
      fi
      [ -e ardour.1 ] && echo "DEBUG LC_CONFIGURE_OPTS $LC_CONFIGURE_OPTS" && sleep 10
+
+     pwd | grep glmark2 && find . -type f -exec touch {} +
+
      ./waf || exit $?
      ./waf install || exit $?
      if [ -e ardour.1 ] 
@@ -2556,7 +2561,8 @@ echo "At BUILDPERL"
     	  ydfs-install-package
        exit 0
      fi
-     touch buildok-$ARCH
+    pwd | grep glmark2 && ydfs-install-package
+    touch buildok-$ARCH
   fi
   # Fix building CUPS
   if [ -e cups-config.in ]
