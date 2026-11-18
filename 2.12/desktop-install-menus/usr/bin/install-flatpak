@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-FREEMEG=$(free -m |grep Mem |  gawk '{print $4}')
+FREEMEG=$(free -m |grep Mem |  gawk '{print $7}')
 if [ "$FREEMEG" -gt "4000" ]
 then
   echo "Free mem : $FREEMEG, OK"
