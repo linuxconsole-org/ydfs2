@@ -134,6 +134,20 @@ else
   [ -e src/redkite/tools ] && ln -s $HOME/$ARCH/include/cairo src/redkite/tools/
   [ -e src/redkite/tools ] && ln -s $HOME/$ARCH/include/jack src/redkite/include/
 
+  if [ -e ssssrc/slirp.h ] 
+  then
+    wget https://deb.debian.org/debian/pool/main/s/slirp/slirp_1.0.17-11.debian.tar.xz
+    tar xJvf slirp_1.0.17-11.debian.tar.xz
+    for f in $(cat debian/patches/series); do patch -p1 <  "debian/patches/$f"; done
+    cd src
+    export CFLAGS="$CFLAGS -Wall -I. -DUSE_PPP -DUSE_MS_DNS -fno-strict-aliasing -Wno-unused -std=gnu89 -fcommon"
+    export CFLAGS="$CFLAGS -DHAVE_STDLIB_H" # whoever can fix this, plz leave a comment
+    export PPPCFLAGS="$CFLAGS"
+    ./configure --prefix=$PREFIX || exit 1
+    make CFLAGS="$CFLAGS -DFULL_BOLT" PPPCFLAGS="$PPPCFLAGS" clean all || exit 2
+    touch buildok-$ARCH
+  fi
+
   if [ -e src/unetbootin/build-nostatic ]
   then
     cd src/unetbootin/

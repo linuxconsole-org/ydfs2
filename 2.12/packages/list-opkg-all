@@ -1,6 +1,6 @@
 git://github.com/ggml-org/ggml.git#tag=v0.29.0
 git://github.com/ggml-org/llama.cpp.git
-vde2-2.3.3.tar.gz::https://github.com/virtualsquare/vde-2/archive/refs/tags/v2.3.3.tar.gz
+https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.9.7/libslirp-v4.9.7.tar.gz
 https://download.qemu.org/qemu-10.2.4.tar.xz
 https://download.nvidia.com/XFree86/Linux-x86_64/620.70.06/NVIDIA-Linux-x86_64-620.70.06.run
 https://developer.download.nvidia.com/compute/cuda/13.5.0/local_installers/cuda_13.5.0_linux.run
