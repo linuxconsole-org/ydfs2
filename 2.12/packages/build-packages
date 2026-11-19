@@ -285,6 +285,7 @@ fi
     SOURCE_DIR=`basename $ARCHIVE |cut -d'#' -f1 | cut -d'.' -f1`
     #[ "$SOURCE_DIR" = "core" ] && SOURCE_DIR=libreoffice
     [ "$SOURCE_DIR" = "avldrums" ] && SOURCE_DIR="avldrums.lv2"
+    [ "$SOURCE_DIR" = "llama" ] && SOURCE_DIR="llama.cpp"
     [ -e $SOURCE_DIR/buildok-$ARCH ] && echo -n " $SOURCE_DIR/buildok-$ARCH " && continue
     echo "$SOURCE_DIR"
     if [ "daemonmap" = "$SOURCE_DIR" ]

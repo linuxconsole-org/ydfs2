@@ -1,6 +1,8 @@
 ARCHIVE=$HOME/ydfs/tarballs/"$DIR".run
 pkgver=`basename $DIR| cut -d'-' -f4`
-pkgdir=/$HOME/ydfs/packages-x86_64/nvidia-$pkgver/$HOME/$ARCH
+pkgdir=$HOME/ydfs/packages-x86_64/cuda-$pkgver/$MYPREFIX
+echo "pkgdir : $pkgdir" && sleep 4
+
 [ -e "$pkgdir" ] && echo "$pkgdir exists, skip building" && exit 0
 cd $HOME/ydfs/src
 mkdir cuda
@@ -10,9 +12,8 @@ cd cuda
  cd $DIR
 
     echo "srcdir : $srcdir"
-    echo "pkgdir : $pkgdir"
 
-PREFIX=$HOME/ydfs/packages-x86_64/cuda-$pkgver/$MYPREFIX
+PREFIX=$pkgdir
 install -d $PREFIX
 
 pushd builds
