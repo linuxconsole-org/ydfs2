@@ -192,7 +192,7 @@ fi
 
     cd open-gpu-kernel-modules-620.73.04 || exit 1
         mv $HOME/$ARCH/include/libelf.h $HOME/$ARCH/include/libelf.h-disabled
-        LDFLAGS="" CC=clang make
+        LDFLAGS="" make
 	cd kernel-open
 	make SYSSRC=$HOME/ydfs/src/linux-$KERNEL3/ SYSOUT=$HOME/ydfs/build/linux-x86_64-$KERNEL3 module || exit 2
 	cp *.ko $HOME/ydfs/kernel-$ARCH/modules/$KERNEL3/lib/modules/$KERNEL3/kernel/drivers/video || exit 3
