@@ -218,7 +218,7 @@ clean-opkg:
 clean:
 	bash scripts/make_clean
 uninstall:
-	bash scripts/uninstall-package libgpg-error-1.46
+	bash scripts/uninstall-package nvidia-620.70.06
 ifeq ($(ARCH),x86)
 	rm ${ISOPATH}
 	rm ${LCMBUILD}/*

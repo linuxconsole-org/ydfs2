@@ -22,9 +22,8 @@ then
 	then
 	  echo "Use buildt squashfs for drivers"
 	else
-    # [ ! -e $HOME/iso/kernel-modules-$YDFS_TAG-$ARCH.tar.gz ] && wget -O $HOME/iso/kernel-modules-$YDFS_TAG-$ARCH.tar.gz https://jukebox.linuxconsole.org/fast/kernel-modules-$YDFS_TAG-$ARCH.tar.gz
-    [ ! -e $HOME/iso/kernel-$KERNEL3-modules-$YDFS_TAG-$ARCH.tar.gz ] && wget -O $HOME/iso/kernel-$KERNEL3-modules-$YDFS_TAG-$ARCH.tar.gz https://jukebox.linuxconsole.org/fast/kernel-$KERNEL3-modules-$YDFS_TAG-$ARCH.tar.gz
-	#  [ ! -e ydfs/kernel-$ARCH/modules/$KERNEL3/ ] && tar xf $HOME/iso/kernel-modules-$YDFS_TAG-$ARCH.tar.gz
+	  echo "Try getting kernel-$KERNEL3-modules-$YDFS_TAG-$ARCH.tar.gz"
+          [ ! -e $HOME/iso/kernel-$KERNEL3-modules-$YDFS_TAG-$ARCH.tar.gz ] && wget -O $HOME/iso/kernel-$KERNEL3-modules-$YDFS_TAG-$ARCH.tar.gz https://jukebox.linuxconsole.org/fast/kernel-$KERNEL3-modules-$YDFS_TAG-$ARCH.tar.gz
 	  [ ! -e ydfs/kernel-$ARCH/modules/$KERNEL3/ ] && tar xf $HOME/iso/kernel-$KERNEL3-modules-$YDFS_TAG-$ARCH.tar.gz
 	  [ ! -e ydfs/kernel-$ARCH/modules/$KERNEL3/ ] && exit 1
 	fi

@@ -24,6 +24,8 @@ fi
 
 source $HOME/archpkg/$PKG
 
+echo ${source_x86_64}
+
 for i in ${!source[*]}
 do 
  echo ${source[i]}
