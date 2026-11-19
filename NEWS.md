@@ -10,7 +10,7 @@
 
 > Using a [Ventoy release] (https://github.com/ventoy/Ventoy/issues/3745) greater than 1.1.18
 
-## Kernel 6.18.29, Busybox 1.36.1
+## Kernel 6.18.64, Busybox 1.38.0
 
 > [make_config_ini] (https://github.com/linuxconsole-org/ydfs2/blob/2.12/2.12/scripts/make_config_ini)
 
