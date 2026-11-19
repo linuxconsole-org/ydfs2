@@ -82,7 +82,9 @@ then
 else
   if [ ! -e tarballs/linux-"$KERNEL3".tar.xz ]
   then
-    wget --directory-prefix=tarballs https://www.kernel.org/pub/linux/kernel/v5.x/linux-"$KERNEL3".tar.xz || wget --directory-prefix=tarballs ftp://ftp.free.fr/mirrors/ftp.kernel.org/linux/kernel/v5.x/linux-"$KERNEL3".tar.xz || wget --directory-prefix=tarballs https://www.kernel.org/pub/linux/kernel/v6.x/linux-"$KERNEL3".tar.xz || wget --directory-prefix=tarballs ftp://ftp.free.fr/mirrors/ftp.kernel.org/linux/kernel/v6.x/linux-"$KERNEL3".tar.xz || exit 1
+	  MAJOR=$(echo $KERNEL3 | cut -d'.' -f1)
+	  echo "Major : $MAJOR"
+          wget --directory-prefix=tarballs https://www.kernel.org/pub/linux/kernel/v$MAJOR.x/linux-"$KERNEL3".tar.xz || exit 1
   fi
 fi
 
