@@ -1,11 +1,13 @@
 function install_docker_engine
 {
-  TARBALL=https://download.docker.com/linux/static/stable/x86_64/docker-29.8.2.tgz
   TARBALL=https://download.docker.com/linux/static/stable/x86_64/docker-20.10.12.tgz
+  TARBALL=https://download.docker.com/linux/static/stable/x86_64/docker-29.8.2.tgz
   cd $HOME
   [ ! -e `basename $TARBALL` ] && wget $TARBALL 
   [ ! -e docker ] && tar xzvf `basename $TARBALL`
   cp -a docker/* /usr/bin
+  curl -SL https://github.com/docker/compose/releases/download/v5.6.0/docker-compose-linux-x86_64 -o /usr/bin/docker-compose
+  chmod +x /usr/bin/docker-compose
 }
 
 function enable_docker_engine
