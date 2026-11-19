@@ -184,7 +184,7 @@ iso: isodep wineprogs ${ISOPATH} # sleep
 metalink:
 	bash scripts/iso_to_metalink
 
-${ISOPATH}: scripts/make_iso ${HOME}/ydfs/build-${ARCH}/${INITRAMFS} ${LCMBUILD}/${ARCH}.squashfs ${LCMBUILD}/mate-${ARCH}.squashfs ${LCMBUILD}/firmware-${ARCH}.squashfs # ${LCMBUILD}/kde-${ARCH}.squashfs # config.ini #  ${LCMBUILD}
+${ISOPATH}: scripts/make_iso ${HOME}/ydfs/build-${ARCH}/${INITRAMFS} ${LCMBUILD}/${ARCH}.squashfs ${LCMBUILD}/nvidia-${ARCH}.squashfs ${LCMBUILD}/firmware-${ARCH}.squashfs ${LCMBUILD}/mate-${ARCH}.squashfs # config.ini #  ${LCMBUILD}
 	bash scripts/make_iso
 
 config.ini:
@@ -339,6 +339,12 @@ ${LCMBUILD}/mate-${ARCH}.squashfs : packages/list-mate
 	bash scripts/make_packages mate
 	bash scripts/strip_module mate
 	bash scripts/make_module mate
+
+nvidia: ${LCMBUILD}/nvidia-${ARCH}.squashfs
+${LCMBUILD}/nvidia-${ARCH}.squashfs : packages/list-nvidia
+	bash scripts/make_packages nvidia
+#	bash scripts/strip_module nvidia
+	bash scripts/make_module nvidia
 
 devtools: ${LCMBUILD}/devtools-${ARCH}.squashfs
 ${LCMBUILD}/devtools-${ARCH}.squashfs : packages/list-devtools

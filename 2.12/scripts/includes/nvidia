@@ -200,7 +200,6 @@ cd nvidia
         [[ -e "${_base}" ]] || ln -s $(basename "${_soname}") "${_base}"
     done
 
-cd $HOME/ydfs/packages-x86_64/nvidia-$pkgver
-$HOME_DIBAB/scripts/make_opkg
+echo $MYPREFIX | grep opkg && cd $HOME/ydfs/packages-x86_64/nvidia-$pkgver && $HOME_DIBAB/scripts/make_opkg
 
 echo
