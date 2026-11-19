@@ -1,0 +1,38 @@
+ARCHIVE=$HOME/ydfs/tarballs/"$DIR".run
+pkgver=`basename $DIR| cut -d'-' -f4`
+pkgdir=/$HOME/ydfs/packages-x86_64/nvidia-$pkgver/$HOME/$ARCH
+[ -e "$pkgdir" ] && echo "$pkgdir exists, skip building" && exit 0
+cd $HOME/ydfs/src
+mkdir cuda
+cd cuda
+[ ! -e "$DIR" ] && sh $ARCHIVE --target "$PWD" --noexec
+
+ cd $DIR
+
+    echo "srcdir : $srcdir"
+    echo "pkgdir : $pkgdir"
+
+PREFIX=$HOME/ydfs/packages-x86_64/cuda-$pkgver/$MYPREFIX
+install -d $PREFIX
+
+pushd builds
+  rm -rf cuda_nsight cuda_sanitizer_api nsight_{compute,systems}
+  rm -rvf bin integration NVIDIA*.run
+  cp version.json $PREFIX
+  cp EULA.txt     $PREFIX
+  rm version.json EULA.txt
+  mkdir -p $PREFIX/bin
+  for lib in *; do
+    cp -vR $lib/* $PREFIX
+    rm -rf $lib
+  done
+  ln -svf lib64 $PREFIX/lib
+  for mf in $(find $PREFIX -name Makefile); do
+    sed -i "s|/usr/local/cuda|$PREFIX|g" "$mf"
+  done
+popd
+
+echo "Done"
+
+cd $HOME/ydfs/packages-x86_64/cuda-$pkgver
+$HOME_DIBAB/scripts/make_opkg

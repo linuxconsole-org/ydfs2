@@ -9,13 +9,17 @@ cd nvidia
 
  cd $DIR
 
-	echo "srcdir : $srcdir"
-	echo "pkgdir : $pkgdir"
+    echo "srcdir : $srcdir"
+    echo "pkgdir : $pkgdir"
+
     # bash
     tar xjvf nvidia-persistenced-init.tar.bz2
 
-    # X driver
+    # OpenCL     
+    install -Dm644 nvidia.icd "${pkgdir}/etc/OpenCL/vendors/nvidia.icd"     
+    install -Dm755 "libnvidia-opencl.so.${pkgver}" "${pkgdir}/lib/libnvidia-opencl.so.${pkgver}"
 
+    # X driver
     install -Dm755 nvidia_drv.so "${pkgdir}/lib/xorg/modules/drivers/nvidia_drv.so"
 
     # Wayland/GBM

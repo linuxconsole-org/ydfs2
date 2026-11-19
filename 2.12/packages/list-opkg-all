@@ -1,4 +1,5 @@
 https://download.nvidia.com/XFree86/Linux-x86_64/620.70.06/NVIDIA-Linux-x86_64-620.70.06.run
+https://developer.download.nvidia.com/compute/cuda/13.5.0/local_installers/cuda_13.5.0_linux.run
 glmark2-2023.01.tar.gz::https://github.com/glmark2/glmark2/archive/2023.01.tar.gz
 https://ftp.gnu.org/gnu/gdb/gdb-18.1.tar.xz
 #git://github.com/ggml-org/llama.cpp.git
