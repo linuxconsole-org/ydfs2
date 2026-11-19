@@ -38,4 +38,6 @@ EOF
   fi
 #fi
 
+[ -e /usr/etc/ssh/ssh_host_rsa_key ] && /usr/sbin/sshd
+
 /ydfs/detect/wireless
