@@ -1,0 +1,30 @@
+ls $HOME_DIBAB | while read module
+do
+  [ $module = "x86" ] && [ "$1" != "force" ] && continue
+  [ $module = "x86_64" ] && [ "$1" != "force" ] && continue
+  [ ! -e $HOME_DIBAB/$module/share/glib-2.0/schemas/ ] && continue
+  
+  echo "Install $HOME_DIBAB/$module/share/glib-2.0/schemas/ to /usr/share/glib-2.0/schemas/"
+
+  ls $HOME_DIBAB/$module/share/glib-2.0/schemas/ | while read file
+  do
+    [ ! -e /usr/share/glib-2.0/schemas/$file ] && cp $HOME_DIBAB/$module/share/glib-2.0/schemas/$file /usr/share/glib-2.0/schemas/ && touch /tmp/compile-schemas
+    if [ "$1" = "force" ] 
+    then
+      diff $HOME_DIBAB/$module/share/glib-2.0/schemas/$file /usr/share/glib-2.0/schemas/$file || cp $HOME_DIBAB/$module/share/glib-2.0/schemas/$file /usr/share/glib-2.0/schemas/ && touch /tmp/compile-schemas
+    fi
+  done
+
+  [ ! -e /ydfs/modules/$module/share/glib-2.0/schemas/ ] && continue
+  ls /ydfs/modules/$module/share/glib-2.0/schemas/ | while read file
+  do
+    [ ! -e /usr/share/glib-2.0/schemas/$file ] && cp /ydfs/modules/$module/share/glib-2.0/schemas/$file /usr/share/glib-2.0/schemas/ && touch /tmp/compile-schemas
+    if [ "$1" = "force" ] 
+    then
+      diff /ydfs/modules/$module/share/glib-2.0/schemas/$file /usr/share/glib-2.0/schemas/$file || cp /ydfs/modules/$module/share/glib-2.0/schemas/$file /usr/share/glib-2.0/schemas/ && touch /tmp/compile-schemas
+    fi
+  done
+
+done
+
+[ -e /tmp/compile-schemas ] && echo -n "glib-compile-schemas .." && glib-compile-schemas /usr/share/glib-2.0/schemas/ && echo "done"
