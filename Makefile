@@ -53,6 +53,7 @@ prepare:
 	install -d ${HOME}/${GIT_BRANCH}/kde
 	install -d ${HOME}/${GIT_BRANCH}/llvm-multilib
 	install -d ${HOME}/${GIT_BRANCH}/opkg
+	install -d ${HOME}/${GIT_BRANCH}/nvidia
 	install -d ${HOME}/iso
 	install -d ${HOME}/.ncftp
 
@@ -65,6 +66,7 @@ prepare:
 	chmod 777 ${HOME}/${GIT_BRANCH}/kde
 	chmod 777 ${HOME}/${GIT_BRANCH}/llvm-multilib
 	chmod 777 ${HOME}/${GIT_BRANCH}/opkg
+	chmod 777 ${HOME}/${GIT_BRANCH}/nvidia
 	chmod 777 ${HOME}/iso
 
 #	$(CMD) buildenv-docker
@@ -98,6 +100,9 @@ kodi:
 
 cinnamon:
 	$(CMD) cinnamon-docker
+
+nvidia:
+	$(CMD) nvidia-docker
 
 mate:
 	$(CMD) mate-docker
