@@ -1,1 +1,2 @@
-https://download.nvidia.com/XFree86/Linux-x86_64/620.70.06/NVIDIA-Linux-x86_64-620.73.04.run
+https://download.nvidia.com/XFree86/Linux-x86_64/620.73.04/NVIDIA-Linux-x86_64-620.73.04.run
+git://github.com/NVIDIA/nvidia-settings.git#tag=620.73.04
