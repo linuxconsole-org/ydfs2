@@ -1,15 +1,14 @@
-git://github.com/ggml-org/ggml.git#tag=v0.29.0
-git://github.com/ggml-org/llama.cpp.git
+#git://github.com/ggml-org/ggml.git#tag=v0.29.0
+#git://github.com/ggml-org/llama.cpp.git
 https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.9.7/libslirp-v4.9.7.tar.gz
-https://download.qemu.org/qemu-10.2.4.tar.xz
-https://developer.download.nvidia.com/compute/cuda/13.5.0/local_installers/cuda_13.5.0_linux.run
+#https://developer.download.nvidia.com/compute/cuda/13.5.0/local_installers/cuda_13.5.0_linux.run
 glmark2-2023.01.tar.gz::https://github.com/glmark2/glmark2/archive/2023.01.tar.gz
 https://ftp.gnu.org/gnu/gdb/gdb-18.1.tar.xz
-wolfssl-5.9.4-stable.tar.gz::https://github.com/wolfssl/wolfssl/archive/refs/tags/v5.9.4-stable.tar.gz
-https://github.com/linux-rdma/rdma-core/archive/v66.0/rdma-core-66.0.tar.gz
+#wolfssl-5.9.4-stable.tar.gz::https://github.com/wolfssl/wolfssl/archive/refs/tags/v5.9.4-stable.tar.gz
+#https://github.com/linux-rdma/rdma-core/archive/v66.0/rdma-core-66.0.tar.gz
 git://github.com/linuxconsole-org/opkg-gui.git
-git://github.com/linuxconsole-org/podman-ydfs.git
-https://gitlab.com/virtio-fs/virtiofsd/-/archive/v1.12.0/virtiofsd-v1.12.0.tar.gz
+#git://github.com/linuxconsole-org/podman-ydfs.git
+#https://gitlab.com/virtio-fs/virtiofsd/-/archive/v1.12.0/virtiofsd-v1.12.0.tar.gz
 https://ftp.gnu.org/gnu/make/make-4.4.1.tar.lz
 https://christian.amsuess.com/tools/arandr/files/arandr-0.1.11.tar.gz
 git://github.com/vim/vim.git#tag=v9.2.0388
@@ -17,3 +16,4 @@ https://mesa.freedesktop.org/archive/demos/mesa-demos-9.0.0.tar.xz
 git://github.com/htop-dev/htop.git#tag=3.4.1
 https://www.kernel.org/pub/software/scm/git/git-2.56.0.tar.xz
 https://www.ncftp.com/public_ftp/ncftp/ncftp-3.3.0-src.tar.gz
+https://download.qemu.org/qemu-10.2.4.tar.xz

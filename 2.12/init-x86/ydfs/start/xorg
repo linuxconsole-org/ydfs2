@@ -23,16 +23,45 @@ Section "InputClass"
 EndSection
 ' > /etc/X11/xorg.conf.d/kb.conf
 
-if [ ! -e /ydfs/boot/options/noamdfix ]
+NVIDIA=""
+if [ ! -e /ydfs/boot/options/nonvidiafix ]
+then
+  lspci | grep VGA | grep NVIDIA && lsmod | grep nvidia && NVIDIA=OK
+
+  if [ "$NVIDIA" == "OK" ]
+  then
+    rm /home/linuxconsole2026/x86_64/lib/xorg/modules/drivers/nouveau_drv*
+    rm /home/linuxconsole2026/x86_64/lib/xorg/modules/drivers/amdgpu_drv*
+
+    cp -a /ydfs/modules/nvidia/* /usr
+    cp /ydfs/modules/nvidia/lib/nvidia/xorg/* /usr/lib/xorg/modules/extensions/
+
+    echo '
+Section "Device"
+    Identifier "Card0"
+    Driver "nvidia"
+EndSection
+' > /etc/X11/xorg.conf.d/nvidia.conf
+  else
+    cp /ydfs/modules/x86_64/lib/xorg/modules/drivers/nouveau_drv.* /home/linuxconsole2026/x86_64/lib/xorg/modules/drivers/
+    cp /ydfs/modules/x86_64/lib/xorg/modules/drivers/amdgpu_drv.* /home/linuxconsole2026/x86_64/lib/xorg/modules/drivers/
+  fi
+else
+   [ -e /etc/X11/xorg.conf.d/nvidia.conf ] && rm /etc/X11/xorg.conf.d/nvidia.conf
+   cp /ydfs/modules/x86_64/lib/xorg/modules/drivers/nouveau_drv.* /home/linuxconsole2026/x86_64/lib/xorg/modules/drivers/
+   cp /ydfs/modules/x86_64/lib/xorg/modules/drivers/amdgpu_drv.* /home/linuxconsole2026/x86_64/lib/xorg/modules/drivers/
+fi
+
+if [ ! -e /ydfs/boot/options/noamdfix ] && [ "$NVIDIA" == "" ]
 then
 
-AMD=""
-lspci | grep VGA | grep AMD && AMD=OK
+  AMD=""
+  lspci | grep VGA | grep AMD && AMD=OK
 
-if [ "$AMD" == "OK" ]
-then
+  if [ "$AMD" == "OK" ]
+  then
 
-Xorg -configure
+    Xorg -configure
 grep amdgpu /xorg.conf.new && AMD=amdgpu
 grep radeon /xorg.conf.new && AMD=radeon
 
@@ -57,7 +86,6 @@ else
 	[ -e /etc/X11/xorg.conf.d/radeon.conf ] && rm /etc/X11/xorg.conf.d/radeon.conf
 	[ -e /etc/X11/xorg.conf.d/amdgpu.conf ] && rm /etc/X11/xorg.conf.d/amdgpu.conf
 fi
-
 export HOME=/root
 
 if [ ! -e $HOME/.config/openbox/rc.xml ]
