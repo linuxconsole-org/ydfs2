@@ -218,7 +218,7 @@ clean-opkg:
 clean:
 	bash scripts/make_clean
 uninstall:
-	bash scripts/uninstall-package vde-2-2.3.3
+	bash scripts/uninstall-package nvidia-settings
 ifeq ($(ARCH),x86)
 	rm ${ISOPATH}
 	rm ${LCMBUILD}/*
