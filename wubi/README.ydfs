@@ -1,8 +1,0 @@
-docker build -t "ydfs-wubi" .
-
-docker run -ti --rm --security-opt seccomp=unconfined \
-	-w="$(pwd)" \
-	-v "$(pwd):$(pwd)" \
-	--user="`id -u`:`id -g`" \
-	"ydfs-wubi" ${@}
-

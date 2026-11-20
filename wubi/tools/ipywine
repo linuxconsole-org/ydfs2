@@ -1,3 +1,0 @@
-#!/bin/sh
-root="$(cd ${0%/*}/../;pwd)"
-PYTHONPATH=src "$root/tools/pywine" c:/python23/Scripts/ipython $@
