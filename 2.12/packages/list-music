@@ -1,4 +1,6 @@
 #git://github.com/kmatheussen/radium.git#tag=7.4.76
+#tuxguitar-2.1.1.zip::https://github.com/helge17/tuxguitar/archive/refs/tags/2.1.1.zip
+https://github.com/brummer10/guitarix/releases/download/V0.47.0/guitarix2-0.47.0.tar.xz
 git://github.com/ardour/ardour.git#tag=8.12
 git://github.com/distrho/distrho-ports#tag=2021-03-15
 https://gitlab.com/Geonkick-Synthesizer/geonkick/-/archive/v3.6.2/geonkick-v3.6.2.tar.gz

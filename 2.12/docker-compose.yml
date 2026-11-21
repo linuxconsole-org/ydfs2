@@ -14,6 +14,10 @@ services:
             - $HOME/2.12/llvm-multilib:/home/linuxconsole2026/llvm-multilib
             - $HOME/2.12/kde:/home/linuxconsole2026/kde
             - $HOME/2.12/nvidia:/home/linuxconsole2026/nvidia
+            - $HOME/2.12/nvidia:/home/linuxconsole2026/music
+            - $HOME/2.12/nvidia:/home/linuxconsole2026/games
+            - $HOME/2.12/nvidia:/home/linuxconsole2026/ai
+            - $HOME/2.12/nvidia:/home/linuxconsole2026/tools
             - $HOME/.ncftp:/home/linuxconsole2026/.ncftp
             - ${PWD}:/2.12
         environment:
@@ -43,6 +47,10 @@ services:
             - $HOME/2.12/llvm-multilib:/home/linuxconsole2026/llvm-multilib
             - $HOME/2.12/kde:/home/linuxconsole2026/kde
             - $HOME/2.12/nvidia:/home/linuxconsole2026/nvidia
+            - $HOME/2.12/nvidia:/home/linuxconsole2026/music
+            - $HOME/2.12/nvidia:/home/linuxconsole2026/games
+            - $HOME/2.12/nvidia:/home/linuxconsole2026/ai
+            - $HOME/2.12/nvidia:/home/linuxconsole2026/tools
             - ${PWD}:/2.12
         environment:
             BUILDYDFS: "fast"

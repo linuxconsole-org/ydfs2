@@ -54,6 +54,10 @@ prepare:
 	install -d ${HOME}/${GIT_BRANCH}/llvm-multilib
 	install -d ${HOME}/${GIT_BRANCH}/opkg
 	install -d ${HOME}/${GIT_BRANCH}/nvidia
+	install -d ${HOME}/${GIT_BRANCH}/music
+	install -d ${HOME}/${GIT_BRANCH}/games
+	install -d ${HOME}/${GIT_BRANCH}/ai
+	install -d ${HOME}/${GIT_BRANCH}/tools
 	install -d ${HOME}/iso
 	install -d ${HOME}/.ncftp
 
@@ -67,6 +71,9 @@ prepare:
 	chmod 777 ${HOME}/${GIT_BRANCH}/llvm-multilib
 	chmod 777 ${HOME}/${GIT_BRANCH}/opkg
 	chmod 777 ${HOME}/${GIT_BRANCH}/nvidia
+	chmod 777 ${HOME}/${GIT_BRANCH}/music
+	chmod 777 ${HOME}/${GIT_BRANCH}/games
+	chmod 777 ${HOME}/${GIT_BRANCH}/tools
 	chmod 777 ${HOME}/iso
 
 #	$(CMD) buildenv-docker
@@ -100,6 +107,9 @@ kodi:
 
 cinnamon:
 	$(CMD) cinnamon-docker
+
+music:
+	$(CMD) music-docker
 
 nvidia:
 	$(CMD) nvidia-docker
