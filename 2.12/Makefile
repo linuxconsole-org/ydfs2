@@ -218,7 +218,7 @@ clean-opkg:
 clean:
 	bash scripts/make_clean
 uninstall:
-	bash scripts/uninstall-package mate-session-manager-1.28.2
+	bash scripts/uninstall-package nvidia-settings
 ifeq ($(ARCH),x86)
 	rm ${ISOPATH}
 	rm ${LCMBUILD}/*

@@ -382,6 +382,8 @@ if [ -e minetest.conf.example ]
     sed -i "s@/usr/local@$PREFIX@g" utils.mk src/XF86Config-parser/Generate.c src/libXNVCtrl/utils.mk
     install -D -m644 doc/nvidia-settings.desktop "${MYPREFIX}/share/applications/nvidia-settings.desktop"   
     install -D -m644 doc/nvidia-settings.png "${MYPREFIX}/share/pixmaps/nvidia-settings.png"
+    sed -i "s@__UTILS_PATH__/@@g" ${MYPREFIX}/share/applications/nvidia-settings.desktop
+    sed -i "s@__NVIDIA_SETTINGS_DESKTOP_CATEGORIES__@GTK;Settings;HardwareSettings;@g" ${MYPREFIX}/share/applications/nvidia-settings.desktop
   fi
 
   pwd | grep jxrlib &&  sed -i "s@/usr/local@$PREFIX@g" Makefile
