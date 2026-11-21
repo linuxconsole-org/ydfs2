@@ -12,13 +12,18 @@ if [ ! -e /ydfs/boot/options/nounderscan ]
 then
   OUTPUT=$(xrandr |grep primary |cut -d' ' -f1)
   echo Output is $OUTPUT
-  xrandr --output $OUTPUT --set underscan auto
+  xrandr --output $OUTPUT --set underscan auto 2>/dev/null
 fi
 
 [ ! -e $HOME/.local/share/icons/org.flameshot.Flameshot.png ] && install -d $HOME/.local/share/icons && cp /usr/share/icons/hicolor/48x48/apps/org.flameshot.Flameshot.png $HOME/.local/share/icons
 
-ls /ydfs/modules/ | while read module
+ls /ydfs/modules/ |while read module
 do
-  [ ! -e /ydfs/module/$module/share/applications ] && continue
-  echo $XDG_DATA_DIRS | grep $HOME_DIBAB/$module/share || export XDG_DATA_DIRS=$XDG_DATA_DIRS:$HOME_DIBAB/$module/share
+  [ ! -e /ydfs/modules/$module/share/applications ] && continue
+  echo $XDG_DATA_DIRS | grep $HOME_DIBAB/$module/share >/dev/null || export XDG_DATA_DIRS=$XDG_DATA_DIRS:$HOME_DIBAB/$module/share
+  echo "XDG_DATA_DIRS=$XDG_DATA_DIRS" > $HOME/.xdg-data-dir
 done
+
+[ -e $HOME/.xdg-data-dir ] && . $HOME/.xdg-data-dir
+
+echo XDG_DATA_DIRS $XDG_DATA_DIRS
