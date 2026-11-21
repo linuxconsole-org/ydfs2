@@ -1,0 +1,57 @@
+diff --git a/mate-session/gsm-app.c b/mate-session/gsm-app.c
+index c37480e..c0a5904 100644
+--- a/mate-session/gsm-app.c
++++ b/mate-session/gsm-app.c
+@@ -538,9 +538,10 @@ gsm_app_restart (GsmApp  *app,
+                 g_set_error (error,
+                              GSM_APP_ERROR,
+                              GSM_APP_ERROR_GENERAL,
+-                             "Component '%s' crashing too quickly",
++                             "YLD Component '%s' crashing too quickly",
+                              priv->app_id ? priv->app_id : priv->id);
+-                return FALSE;
++                //YLF return FALSE;
++                return TRUE;
+         }
+         priv->last_restart_time = current_time;
+ 
+diff --git a/mate-session/gsm-manager.c b/mate-session/gsm-manager.c
+index 0b22eae..8540305 100644
+--- a/mate-session/gsm-manager.c
++++ b/mate-session/gsm-manager.c
+@@ -3589,8 +3589,9 @@ gsm_manager_request_shutdown (GsmManager *manager,
+                 g_set_error (error,
+                              GSM_MANAGER_ERROR,
+                              GSM_MANAGER_ERROR_NOT_IN_RUNNING,
+-                             "RequestShutdown interface is only available during the Running phase");
+-                return FALSE;
++                             "YLD2 RequestShutdown interface is only available during the Running phase");
++                //YLD return FALSE;
++                return TRUE;
+         }
+ 
+         request_shutdown (manager);
+@@ -3657,8 +3658,9 @@ gsm_manager_shutdown (GsmManager *manager,
+                 g_set_error (error,
+                              GSM_MANAGER_ERROR,
+                              GSM_MANAGER_ERROR_NOT_IN_RUNNING,
+-                             "Shutdown interface is only available during the Running phase");
+-                return FALSE;
++                             "YLD Shutdown interface is only available during the Running phase");
++                // YLD return FALSE;
++                return TRUE;
+         }
+ 
+         if (_log_out_is_locked_down (manager)) {
+@@ -3727,8 +3729,9 @@ gsm_manager_logout (GsmManager *manager,
+                 g_set_error (error,
+                              GSM_MANAGER_ERROR,
+                              GSM_MANAGER_ERROR_NOT_IN_RUNNING,
+-                             "Shutdown interface is only available during the Running phase");
+-                return FALSE;
++                             "YLD3 Shutdown interface is only available during the Running phase");
++                // YLD return FALSE;
++                return TRUE;
+         }
+ 
+         if (_log_out_is_locked_down (manager)) {

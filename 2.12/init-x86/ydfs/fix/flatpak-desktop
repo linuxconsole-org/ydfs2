@@ -1,11 +1,11 @@
 while [ 1 ]
 do
-sleep 3
-if [ -e /home/linuxconsole2026/x86_64/var/lib/flatpak/exports/ ]
-then
-ls /home/linuxconsole2026/x86_64/var/lib/flatpak/exports/share/applications/ | while read app
-do
-[ ! -e /share/applications/$app ] && echo "Install $app" && cp -rL /home/linuxconsole2026/x86_64/var/lib/flatpak/exports/share/* /share/
-done
-fi
+  sleep 3
+  if [ -e /home/linuxconsole2026/x86_64/var/lib/flatpak/exports/ ]
+  then
+    ls /home/linuxconsole2026/x86_64/var/lib/flatpak/exports/share/applications/ | while read app
+    do
+      [ ! -e /share/applications/$app ] && echo "Install $app" && cp -rL /home/linuxconsole2026/x86_64/var/lib/flatpak/exports/share/* /share/
+    done
+  fi
 done

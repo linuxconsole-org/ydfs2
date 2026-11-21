@@ -1426,6 +1426,8 @@ EOF
 
   pwd | grep mate-dock-applet && ACLOCAL_FLAGS="-I $HOME/$ARCH/share/aclocal " && ACLOCAL="aclocal $ACLOCAL_FLAGS "  && autoreconf --force --install
 
+  pwd | grep mate-desktop && cd po && echo "Force Mate desktop fr.gmo" && sleep 10 && msgfmt -c -o fr.gmo fr.po && cd ..
+
   if [ -e libmate-panel-applet/mate-panel-applet.c ]
   then
 	echo libmate-panel-applet/mate-panel-applet.c

@@ -31,12 +31,11 @@ echo $HOME | grep root && [ -e /dev/nvme0n1 ] && [ ! -e /media/ydfs/ydfs.cfg ] &
 sed -i s@$HOME_DIBAB/$ARCH/bin/gparted@/fix/gparted@ /usr/share/applications/gparted.desktop
 
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:$HOME/.local/share:$HOME/.local/share/flatpak/exports/share
+install -d $HOME/.local/share/applications
 
-bash /ydfs/fix/fix-desktop
+. /ydfs/fix/fix-desktop
 
 bash /ydfs/fix/flatpak-desktop &
-
-install -d $HOME/.local/share/applications
 
 update-desktop-database
 update-mime-database /usr/share/mime

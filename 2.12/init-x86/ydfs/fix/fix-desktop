@@ -14,3 +14,11 @@ then
   echo Output is $OUTPUT
   xrandr --output $OUTPUT --set underscan auto
 fi
+
+[ ! -e $HOME/.local/share/icons/org.flameshot.Flameshot.png ] && install -d $HOME/.local/share/icons && cp /usr/share/icons/hicolor/48x48/apps/org.flameshot.Flameshot.png $HOME/.local/share/icons
+
+ls /ydfs/modules/ | while read module
+do
+  [ ! -e /ydfs/module/$module/share/applications ] && continue
+  echo $XDG_DATA_DIRS | grep $HOME_DIBAB/$module/share || export XDG_DATA_DIRS=$XDG_DATA_DIRS:$HOME_DIBAB/$module/share
+done
