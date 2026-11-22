@@ -70,7 +70,7 @@ then
   if [ -e /sys/firmware/efi ]
   then
 	echo 'mklabel gpt
-	mkpart primary fat32 0% 100M
+	mkpart primary fat32 0% 200M
 	mkpart primary ext4 100M 100%' | parted /dev/"$DISK"
 	install -d /mnt/"$DISK"1
 	if [ -e /dev/"$DISK"p1 ]
