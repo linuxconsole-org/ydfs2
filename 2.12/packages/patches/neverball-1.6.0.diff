@@ -73,3 +73,15 @@ diff -ur --new-file a/ydfs.install b/ydfs.install
 +done
 +
 +chmod -R u=rwX,go=rX "${MYPREFIX}//share/neverball"
+
+--- a/share/text.h
++++ b/share/text.h
+@@ -15,7 +15,7 @@ int text_length(const char *);
+ 
+ /*---------------------------------------------------------------------------*/
+ 
+-char text_input[MAXSTR];
++extern char text_input[MAXSTR];
+ 
+ void text_input_start(void (*cb)(int typing));
+ void text_input_stop(void);

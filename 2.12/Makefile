@@ -218,7 +218,7 @@ clean-opkg:
 clean:
 	bash scripts/make_clean
 uninstall:
-	bash scripts/uninstall-package nvidia-settings
+	bash scripts/uninstall-package glmark2-2023.01
 ifeq ($(ARCH),x86)
 	rm ${ISOPATH}
 	rm ${LCMBUILD}/*

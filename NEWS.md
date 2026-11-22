@@ -1,4 +1,10 @@
-# YDFS - What is new in 2.12-RC2 relase
+# YDFS - What is new in 2.12 release
+
+> Opkg Gui (gtk)
+
+> Nividia driver (620.73.04)
+
+> New Apt wrapper 
 
 ## Compatible with MultiOS-USB
 

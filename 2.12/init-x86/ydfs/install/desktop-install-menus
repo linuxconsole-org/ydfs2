@@ -2,6 +2,8 @@ RELEASE=`cat /ydfs-release`
 MODULE=`cat /ydfs-name`
 cd /
 
+grep notpdate /proc/cmdline || ntpdate 1.fr.pool.ntp.org
+
 while [ 1 ]
 do
   grep noinstallmenu /proc/cmdline && continue
@@ -17,7 +19,6 @@ done
 
 grep nontpdate /proc/cmdline && exit 1
 [ ! -e /etc/localtime ] && ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
-ntpdate 1.fr.pool.ntp.org
 
 # opkg-cl update
 # opkg-cl install fixes

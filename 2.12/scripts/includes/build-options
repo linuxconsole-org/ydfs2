@@ -200,6 +200,7 @@ echo $ARCHIVE | grep cifs-utils &&  LC_CONFIGURE_OPTS="--sbindir=$DIBAB_PREFIX/$
 echo $ARCHIVE | grep cinnamon-desktop &&  LC_CONFIGURE_OPTS="-Dalsa=true"
 echo $ARCHIVE | grep vte-0.7 &&  LC_CONFIGURE_OPTS="-Dfribidi=false -D_systemd=false"
 echo $ARCHIVE | grep vte.git &&  LC_CONFIGURE_OPTS="-Dfribidi=false -D_systemd=false"
+echo $ARCHIVE | grep sdl-jstest &&  LC_CONFIGURE_OPTS="-DBUILD_SDL3_JSTEST=OFF -DBUILD_SDL_JSTEST=OFF"
 echo $ARCHIVE | grep gnome-settings-daemon &&  LC_CONFIGURE_OPTS=" -Dsystemd=false"
 
 echo $ARCHIVE | grep qpdf && LC_CONFIGURE_OPTS="   --disable-static \

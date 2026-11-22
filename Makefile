@@ -108,6 +108,9 @@ kodi:
 cinnamon:
 	$(CMD) cinnamon-docker
 
+games:
+	$(CMD) games-docker
+
 music:
 	$(CMD) music-docker
 

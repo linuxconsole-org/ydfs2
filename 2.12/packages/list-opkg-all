@@ -1,10 +1,9 @@
-https://github.com/flameshot-org/flameshot/archive/refs/tags/v15.0.0/flameshot-15.0.0.tar.gz
-FAIL
-#git://github.com/ggml-org/ggml.git#tag=v0.29.0
-#git://github.com/ggml-org/llama.cpp.git
+git://github.com/Grumbel/jstest-gtk.git
+git://github.com/Grumbel/sdl-jstest.git
+git://github.com/ggml-org/ggml.git#tag=v0.29.0
+git://github.com/ggml-org/llama.cpp.git
 https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.9.7/libslirp-v4.9.7.tar.gz
 #https://developer.download.nvidia.com/compute/cuda/13.5.0/local_installers/cuda_13.5.0_linux.run
-glmark2-2023.01.tar.gz::https://github.com/glmark2/glmark2/archive/2023.01.tar.gz
 https://ftp.gnu.org/gnu/gdb/gdb-18.1.tar.xz
 #wolfssl-5.9.4-stable.tar.gz::https://github.com/wolfssl/wolfssl/archive/refs/tags/v5.9.4-stable.tar.gz
 #https://github.com/linux-rdma/rdma-core/archive/v66.0/rdma-core-66.0.tar.gz

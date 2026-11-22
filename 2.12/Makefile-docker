@@ -1,5 +1,6 @@
 DOCKER_COMPOSE  = $(shell which docker-compose)
 PODMAN  = $(shell which podman)
+WHOAMI  = $(shell whoami)
 GIT_BRANCH  = $(shell git rev-parse --abbrev-ref HEAD)
 GIT_TAG  = $(shell git describe --tags --abbrev=0)
 
@@ -44,7 +45,10 @@ OPTION_BUILD=DIBAB_VERBOSE_BUILD=YES
 OPTION_BUILD=KERNEL3=SYSTEM
 OPTION_BUILD=MENUCONFIG=YES
 OPTION_BUILD=
-OPTION_BUILD=DIBAB_VERBOSE_BUILD=YES
+
+ifeq ($(WHOAMI),yann)
+  OPTION_BUILD=DIBAB_VERBOSE_BUILD=YES
+endif
 
 clear-initramfs-docker: 
 	${COMPOSE} ${DOCKER_OPTIONS} -c '${BUILD_COMMAND} ${OPTION_BUILD} rm /home/linuxconsole2026/ydfs/build-x86_64/initramfs'
@@ -84,6 +88,9 @@ cinnamon-docker:
 
 music-docker:
 	${COMPOSE} ${DOCKER_OPTIONS} -c '${BUILD_COMMAND} ${OPTION_BUILD} make music'
+
+games-docker:
+	${COMPOSE} ${DOCKER_OPTIONS} -c '${BUILD_COMMAND} ${OPTION_BUILD} make games'
 
 nvidia-docker:
 	${COMPOSE} ${DOCKER_OPTIONS} -c '${BUILD_COMMAND} ${OPTION_BUILD} make nvidia'

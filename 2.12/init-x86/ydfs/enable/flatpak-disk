@@ -4,16 +4,26 @@
 if [ -e /disk/flatpak.loop ]
 then
   echo "Enable /disk/flatpak.loop"
-
   install -d /flatpak
   mount /disk/flatpak.loop /flatpak -o loop
   [ -e /flatpak/lost+found ] && rmdir /flatpak/lost+found
   ln -sf /flatpak /home/linuxconsole2026/x86_64/var/lib/flatpak
-
   install -d /flatpak/root/.var/app
   install -d /root/.var
   ln -s  /flatpak/root/.var/app /root/.var/
-fi
+else
+  if [ -e /media/ydfs/ydfs.cfg ]
+  then
+    echo "Enable /media/ydfs/flatpak"
+    HOME_FLATPAK=/home/linuxconsole2026/x86_64/var/lib/flatpak
+    install -d /media/ydfs/flatpak
+    ln -s /media/ydfs/flatpak $HOME_FLATPAK
+    install -d $HOME_FLATPAK/root/.var/app
+    install -d /root/.var
+    ln -s  $HOME_FLATPAK/root/.var/app /root/.var/
+  fi
+fi 
+
   
 install -d /flatpak/home     
 ls /home | while read home
