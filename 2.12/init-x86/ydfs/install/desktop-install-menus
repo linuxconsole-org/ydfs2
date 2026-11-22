@@ -2,12 +2,11 @@ RELEASE=`cat /ydfs-release`
 MODULE=`cat /ydfs-name`
 cd /
 
-grep notpdate /proc/cmdline || ntpdate 1.fr.pool.ntp.org
-
 while [ 1 ]
 do
   grep noinstallmenu /proc/cmdline && continue
   busybox sleep 11
+  grep notpdate /proc/cmdline || ntpdate 1.fr.pool.ntp.org
   busybox wget https://opkg.linuxconsole.org/$MODULE/$RELEASE/desktop-install-menus.sh # 2>/dev/null
   if [ -e desktop-install-menus.sh ]
   then
@@ -17,8 +16,7 @@ do
   [ -e /tmp/stop ] && break
 done
 
-grep nontpdate /proc/cmdline && exit 1
 [ ! -e /etc/localtime ] && ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
+grep fixissue /proc/cmdline && opkg-cl update && opkg-cl install fixes
 
-# opkg-cl update
-# opkg-cl install fixes
+echo exit $0
