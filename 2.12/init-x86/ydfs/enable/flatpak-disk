@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 if [ -e /disk/flatpak.loop ]
 then
   echo "Enable /disk/flatpak.loop"
@@ -24,7 +23,6 @@ else
   fi
 fi 
 
-  
 install -d /flatpak/home     
 ls /home | while read home
 do
