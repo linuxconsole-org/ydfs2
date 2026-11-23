@@ -110,8 +110,8 @@ else
   done
 fi
 
-Echo "Run update pci"
-$HOME/$ARCH/x86_64/bin/update-pciids || exit 22
+echo "Run update pci"
+$HOME/$ARCH/bin/update-pciids || exit 22
 
 [ -e /tmp/ko ] && rm /tmp/ko && exit 45
 

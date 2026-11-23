@@ -40,12 +40,11 @@ echo $ARCHIVE | grep iptables &&  LC_CONFIGURE_OPTS=" --disable-nftables "
 echo $ARCHIVE | grep volume_key && export CFLAGS+=" $(python3-config --includes)"
 echo $ARCHIVE | grep bbonobo &&  LC_CONFIGURE_OPTS=" --disable-static "
 echo $ARCHIVE | grep guitarix &&  LC_CONFIGURE_OPTS=" --enable-nls \
-                        --ladspa \
-                        --new-ladspa \
-                        --faust \
-                        --shared-lib \
-                        --lib-dev --install-roboto-font
-                        --ldflags=-L$HOME/$ARCH/lib"
+    --shared-lib
+    --lib-dev
+    --ldflags=-L$HOME/$ARCH/lib"
+    #--cxxflags='-flto'
+                        
 
 	echo $ARCHIVE | grep firefox-38 && LC_CONFIGURE_OPTS="	--with-system-nspr --enable-system-ffi \
     --with-system-zlib --with-system-icu --with-intl-api --enable-ctypes \

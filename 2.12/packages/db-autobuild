@@ -2542,7 +2542,6 @@ echo "At BUILDPERL"
        pwd | grep ardour &&  LC_CONFIGURE_OPTS=" --with-backends=jack,alsa,dummy,pulseaudio \
                         --libjack=weak \
                         --optimize \
-                        --cxx11 \
                         --freedesktop \
                         --ptformat \
                         --no-phone-home"
