@@ -24,6 +24,9 @@ do
   echo "XDG_DATA_DIRS=$XDG_DATA_DIRS" > $HOME/.xdg-data-dir
 done
 
+xset s off
+xset -dpms
+
 [ -e $HOME/.xdg-data-dir ] && . $HOME/.xdg-data-dir
 
 echo XDG_DATA_DIRS $XDG_DATA_DIRS
