@@ -1,40 +1,37 @@
 #!/bin/bash
 
+HOME_FLATPAK=/home/linuxconsole2026/x86_64/var/lib/flatpak
+
 if [ -e /disk/flatpak.loop ]
 then
   echo "Enable /disk/flatpak.loop"
-  install -d /flatpak
-  mount /disk/flatpak.loop /flatpak -o loop
-  [ -e /flatpak/lost+found ] && rmdir /flatpak/lost+found
-  ln -sf /flatpak /home/linuxconsole2026/x86_64/var/lib/flatpak
-  install -d /flatpak/root/.var/app
-  install -d /root/.var
-  ln -s  /flatpak/root/.var/app /root/.var/
+  mount /disk/flatpak.loop $HOME_FLATPAK -o loop
+  [ -e /$HOME_FLATPAK/lost+found ] && rmdir $HOME_FLATPAK/lost+found
 else
   if [ -e /media/ydfs/ydfs.cfg ]
   then
-    echo "Enable /media/ydfs/flatpak"
-    HOME_FLATPAK=/home/linuxconsole2026/x86_64/var/lib/flatpak
     install -d /media/ydfs/flatpak
+    echo "Enable /media/ydfs/flatpak"
     ln -s /media/ydfs/flatpak $HOME_FLATPAK
-    install -d $HOME_FLATPAK/root/.var/app
-    install -d /root/.var
-    ln -s  $HOME_FLATPAK/root/.var/app /root/.var/
   fi
 fi 
 
-install -d /flatpak/home     
-ls /home | while read home
-do
-  echo $home | grep linuxconsole && continue
-  if [ ! -e /flatpak/home/$home ] 
-  then
-      mv /home/$home /flatpak/home && ln -s /flatpak/home/$home /home/$home
-  else
-      mv /home/$home /home/$home.old
-      ln -s /flatpak/home/$home /home/$home
-  fi
-done   
+install -d $HOME_FLATPAK/root/.var/app
+install -d /root/.var
+ln -s  $HOME_FLATPAK/root/.var/app /root/.var/
+
+#install -d /flatpak/home     
+#ls /home | while read home
+#do
+#   echo $home | grep linuxconsole && continue
+#  if [ ! -e /flatpak/home/$home ] 
+#  then
+#      mv /home/$home /flatpak/home && ln -s /flatpak/home/$home /home/$home
+#  else
+#      mv /home/$home /home/$home.old
+#      ln -s /flatpak/home/$home /home/$home
+#  fi
+# done   
 
 # Create needed folders
 flatpak remotes
