@@ -27,6 +27,10 @@ done
 xset s off
 xset -dpms
 
+# Fix file access on live USB mode
+
+[ ! -e /media/ydfs/ydfs.cfg ] && flatpak override --user --filesystem=$HOME
+
 [ -e $HOME/.xdg-data-dir ] && . $HOME/.xdg-data-dir
 
 echo XDG_DATA_DIRS $XDG_DATA_DIRS
